@@ -1,0 +1,59 @@
+.navbar-inner{
+	background-color: #151515;
+}
+
+.createAccount{
+	position: absolute;
+	top: 150px;
+	left: 900px;
+}
+
+input {
+	width:350px;
+	height: 25px;
+	opacity: 0.8;
+}
+input[type="text"]:hover{
+	opacity: 1.0;
+}
+
+select#country {
+	width:350px;
+	height: 25px;
+	opacity: 0.9;
+}
+
+select#bday {
+	position: absolute; 
+	top:0px;
+	width: 90px;
+	height: 25px;
+	opacity: 0.9;
+}
+
+select#country:hover{
+	opacity:0.8;
+}
+
+select#bday:hover{
+	opacity:0.8;
+}
+
+#bday{
+	position: absolute;
+	top: 280px;
+	left: 900px;
+}
+
+#submit{
+	width:200px;
+	margin-top: 300px;
+	margin-right: 80px;
+	margin-left:auto;
+}
+
+#logo{
+	position:absolute;
+	top:170px;
+	left:70px; 
+}
