@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>calendar</title>
+	<!--FullCalendar Dependencies-->
+	<link rel="stylesheet" href='css/fullcalendar/fullcalendar.css' />
+	<link rel="stylesheet" href="css/fullcalendar/style.css"/>
+	<link rel="stylesheet" href="css/bootstrap.min.css">		
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	
+	<meta name="veiwport" content="wdith=device-width, initial-scale=1.0">
+	
+	<script src='js/lib/jquery.min.js'></script>
+	<script src='js/lib/moment.min.js'></script>
+	<script src='js/fullcalendar.js'></script>
+	<script>
+	$(document).ready(function() {
+		// page is now ready, initialize the calendar...
+			$('#calendar').fullCalendar({
+			dayClick: function(date, jsEvent, view) {
+				/*
+					alert('Clicked on: ' + date.format() + '\nCoordinates: ' 
+					+ jsEvent.pageX + ',' + jsEvent.pageY + '\nCurrent view: ' + view.name);
+				*/
+				// change the day's background color just for fun
+				$(this).css('background-color', '#5FB404');
+				}
+			});
+	});
+	
+	</script>
+</head>
+<body>
+	<div class="navbar navbar-trackMe navbar-static-top">
+		<div class="container">
+				<a href="#.html" class="navbar-brand">TrackMe</a><!--will lead to homepage-->
+				
+				<button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<div class="collapse navbar-collapse navHeaderCollapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#">Profile</a></li><!--will lead to profile page-->
+					</ul>
+				</div>
+			</div>
+	</div>
+	
+	<div id="calPos">
+		<div id="calendar"></div>
+	</div>
+		
+		
+		<form id="formPos" action="demo_form.asp" method="get">
+			<h3>Add Events</h3><br>
+			Event name:<input class="EvName" type="text" name="eName"><br><br>
+			Date:<input class="Date" type="text" name="eDate"><br><br>
+			Time:<input class="Time" type="text" name="eTime"><br><br>
+			Place:<input class="Place" type="text" name="ePlace"><br><br>
+			Description:<textarea class="Desc" ></textarea><br><br>
+			<input id="submitB" type="submit" value="Submit">
+		</form>
+	
+	
+</body>
+</html>
+
+<!--
+
+$(document).ready(function() {
+
+		// page is now ready, initialize the calendar...
+			$('#calendar').fullCalendar({
+    dayClick: function(date, jsEvent, view) {
+
+        alert('Clicked on: ' + date.format());
+
+        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+
+        alert('Current view: ' + view.name);
+
+        // change the day's background color just for fun
+        $(this).css('background-color', 'red');
+
+    }
+});
+	
+	});
+	
+////////////////////////////////////////////////////////////////////////////////
+	
+	$(document).ready(function() {
+
+	$(document).ready(function () {
+
+    var date = new Date();
+    var d = date.getDate();
+    var m = date.getMonth();
+    var y = date.getFullYear();
+    var lastView;
+    var daySource = new Object();
+    daySource.title = 'DAY'; // this should be string
+    daySource.start = new Date(y, m, d); // this should be date object
+    daySource.end = new Date(y, m, d);
+
+    var day = new Array();
+    day[0] = daySource;
+
+    var monthSource = new Object();
+    monthSource.title = 'MONTH'; // this should be string
+    monthSource.start = new Date(y, m, d); // this should be date object
+    monthSource.end = new Date(y, m, d);
+
+    var month = new Array();
+    month[0] = monthSource;
+
+    $('#calendar').fullCalendar({
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+        columnFormat: {
+            month: 'ddd',
+            week: 'ddd d/M',
+            day: 'dddd d/M'
+        },
+        defaultView: 'agendaDay',
+        viewDisplay: function (view) {
+            if (lastView == 'undefined') {
+                lastView = 'firstRun';
+            }
+            if (view.name !== lastView) {
+                if (view.name == 'agendaWeek') {
+                    $('#calendar').fullCalendar('addEventSource', month);
+                    $('#calendar').fullCalendar('removeEventSource', day);
+                    $('#calendar').fullCalendar('removeEventSource', day);
+                    $('#calendar').fullCalendar('renderEvents');
+                }
+                if (view.name == 'agendaDay') {
+                    $('#calendar').fullCalendar('addEventSource', day);
+                    $('#calendar').fullCalendar('removeEventSource', month);
+                    $('#calendar').fullCalendar('removeEventSource', month);
+                    $('#calendar').fullCalendar('renderEvents');
+                }
+                if (view.name == 'month') {
+                    $('#calendar').fullCalendar('addEventSource', month);
+                    $('#calendar').fullCalendar('removeEventSource', day);
+                    $('#calendar').fullCalendar('removeEventSource', day);
+                    $('#calendar').fullCalendar('renderEvents');
+                }
+                lastView = view.name;
+            }
+        },
+        timeFormat: { // for event elements
+            agendaDay: '',
+            agendaWeek: '',
+            month: '',
+                '': 'h(:mm)t' // default
+        }
+    });
+
+    $('#calendar').fullCalendar('addEventSource', month);
+    $('#calendar').fullCalendar('rerenderEvents');
+});
+
+	});
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+$(document).ready(function() {
+
+		// page is now ready, initialize the calendar...
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+		var lastView;
+		var daySource = new Object();
+		daySource.title = 'DAY'; // this should be string
+		daySource.start = new Date(y, m, d); // this should be date object
+		daySource.end = new Date(y, m, d);
+		
+		var day = new Array();
+		day[0] = daySource;
+
+		var monthSource = new Object();
+		monthSource.title = 'MONH'; // this should be string
+		monthSource.start = new Date(y, m, d); // this should be date object
+		monthSource.end = new Date(y, m, d);
+
+		var month = new Array();
+		month[0] = monthSource;
+		
+		
+		$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay'
+			},
+			columnFormat: {
+				month: 'ddd',
+				week: 'ddd d/M',
+				day: 'dddd d/M'
+			},	
+			defaultView: 'month',
+			viewDisplay: function (view) {
+				if (lastView == 'undefined') {
+					lastView = 'firstRun';
+				}
+				if (view.name !== lastView) {
+					if (view.name == 'agendaWeek') {
+						$('#calendar').fullCalendar('addEventSource', month);
+						$('#calendar').fullCalendar('removeEventSource', day);
+						$('#calendar').fullCalendar('removeEventSource', day);
+						$('#calendar').fullCalendar('renderEvents');
+					}
+					if (view.name == 'agendaDay') {
+						$('#calendar').fullCalendar('addEventSource', day);
+						$('#calendar').fullCalendar('removeEventSource', month);
+						$('#calendar').fullCalendar('removeEventSource', month);
+						$('#calendar').fullCalendar('renderEvents');
+					}
+					if (view.name == 'month') {
+						$('#calendar').fullCalendar('addEventSource', month);
+						$('#calendar').fullCalendar('removeEventSource', day);
+						$('#calendar').fullCalendar('removeEventSource', day);
+						$('#calendar').fullCalendar('renderEvents');
+					}
+					lastView = view.name;
+				}
+			},
+			timeFormat: { // for event elements
+				agendaDay: '',
+				agendaWeek: '',
+				month: '',
+					'': 'h(:mm)t' // default
+			}
+		});
+	
+	});
+-->

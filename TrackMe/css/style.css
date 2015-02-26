@@ -1,0 +1,17 @@
+.navbar-default{
+	background-color: white;
+	border-color: white;
+	padding-top: 15px;
+}
+
+.container{
+	width: 95%;
+}
+
+.btn-default{
+	border-color: white;
+}
+
+.navbar .nav > li > a {
+  line-height: 5px;
+}
