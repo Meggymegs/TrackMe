@@ -1,0 +1,19 @@
+.navbar{
+	background-color: #D81E28;
+}
+
+a {
+	color: white;
+}
+
+.logo {
+	width: 100px;
+}
+
+
+
+#logo{
+	position:absolute;
+	top:170px;
+	left:70px; 
+}

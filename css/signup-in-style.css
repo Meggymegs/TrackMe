@@ -1,7 +1,3 @@
-.navbar-inner{
-	background-color: #151515;
-}
-
 .createAccount{
 	position: absolute;
 	top: 150px;
@@ -50,10 +46,4 @@ select#bday:hover{
 	margin-top: 300px;
 	margin-right: 80px;
 	margin-left:auto;
-}
-
-#logo{
-	position:absolute;
-	top:170px;
-	left:70px; 
 }
