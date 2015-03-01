@@ -1,0 +1,81 @@
+.navbar-pic{
+	margin-right: 10px;
+}
+
+.navbar{
+	background-color: #D81E28;
+}
+
+a {
+	color: white;
+}
+
+.logo {
+	width: 100px;
+}
+
+
+
+#logo{
+	position:absolute;
+	top:170px;
+	left:70px; 
+}
+
+.panel{
+	float:left;
+	background-color: #fff;
+	border: 0px solid transparent;
+	border-radius: 4px;
+	width: 400px;
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+          box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.btn-group-vertical{
+	float:left;
+	width: 200px;
+	margin-right: 10px;
+	background-color: #fff;
+	border: 0px solid transparent;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+          box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.acctSettings{
+	margin-top: 10px;
+	margin-left: 350px;
+	margin-right: 350px;
+}
+
+.btn-submit{	
+	background-color:  #D81E28; /* #D81E28 or #DF013A*/
+	color: white;
+	margin-left:121px;
+	border-radius: 8px;
+}
+
+input.Name[type="text"]{
+	margin-left:76px;
+}
+
+input.Username[type="text"]{
+	margin-left:48px;
+}
+
+input.Email[type="text"]{
+	margin-left:79px;
+}
+
+input.NewPassword[type="text"]{
+	margin-left:20px;
+}
+
+input.VerifyPassword[type="text"]{
+	margin-left:12px;
+}
+
+body{
+	background-color: #2D3E50;
+}
