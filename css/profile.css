@@ -6,6 +6,10 @@
 	background-color: #D81E28;
 }
 
+.sidebar-pic{
+	margin: 10px;
+}
+
 .navbar .nav > li.dropdown.open > a
 {
    color: #fff;
@@ -19,12 +23,13 @@
 
 .col-md-2{
 	
-	height: 300px;
+	min-height: 100px;
 	background-color: white;
 	margin-left: 10px;
 	margin-right: 10px;
 	margin-bottom: 10px;
 	border-radius: 3px;
+	padding-bottom: 20px;
 }
 
 .col-md-6{
