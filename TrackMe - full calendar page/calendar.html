@@ -18,21 +18,24 @@
 	$(document).ready(function() {
 		// page is now ready, initialize the calendar...
 			$('#calendar').fullCalendar({
+			/*
 			dayClick: function(date, jsEvent, view) {
-				/*
+				
 					alert('Clicked on: ' + date.format() + '\nCoordinates: ' 
 					+ jsEvent.pageX + ',' + jsEvent.pageY + '\nCurrent view: ' + view.name);
-				*/
+				
 				// change the day's background color just for fun
 				$(this).css('background-color', '#5FB404');
+				
 				}
+			*/
 			});
 	});
 	
 	</script>
 </head>
-<body>
-	<div class="navbar navbar-trackMe navbar-static-top">
+<body style="background-color:#2d3e50;"> <!--#226666 or #B40431 or #2d3e50 or  #D81E28-->
+	<div class="navbar navbar-trackMe navbar-fixed-top">
 		<div class="container">
 				<a href="#.html" class="navbar-brand">TrackMe</a><!--will lead to homepage-->
 				
@@ -48,7 +51,7 @@
 				</div>
 			</div>
 	</div>
-	
+	<br><br><br>
 	<div id="calPos">
 		<div id="calendar"></div>
 	</div>
