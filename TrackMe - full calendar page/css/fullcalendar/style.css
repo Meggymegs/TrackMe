@@ -13,6 +13,7 @@
 	margin-top:25px;
 	margin-left:140px;
 	margin-right:auto;
+	border: 1px solid #ccc;
 	border-radius: 8px;
 }
 
@@ -29,6 +30,7 @@
 
 #submitB{
 	background-color:  #D81E28; /* #D81E28 or #DF013A*/
+	border: 1px solid #ccc;
 	color: white;
 }
 

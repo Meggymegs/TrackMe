@@ -17,8 +17,77 @@
 	<script>
 	$(document).ready(function() {
 		// page is now ready, initialize the calendar...
+			
 			$('#calendar').fullCalendar({
-			/*
+			defaultDate: '2015-02-12',
+			editable: true,
+			eventLimit: true, // allow "more" link when too many events
+			events: [
+				{
+					title: 'All Day Event',
+					start: '2015-02-01',
+					backgroundColor: '#FF4000',
+					borderColor: '#FF4000'
+				},
+				{
+					title: 'Long Event',
+					start: '2015-02-07',
+					end: '2015-02-10',
+					backgroundColor: '#FF4000',
+					borderColor: '#FF4000'
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: '2015-02-09T16:00:00',
+					backgroundColor: '#ED1317',
+					borderColor: '#ED1317'
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: '2015-02-16T16:00:00',
+					backgroundColor: '#ED1317',
+					borderColor: '#ED1317'
+				},
+				{
+					title: 'Conference',
+					start: '2015-02-11',
+					end: '2015-02-13',
+					backgroundColor: '#A901DB',
+					borderColor: '#A901DB'
+				},
+				{
+					title: 'Meeting',
+					start: '2015-02-12T10:30:00',
+					end: '2015-02-12T12:30:00',
+					backgroundColor: '#A901DB',
+					borderColor: '#A901DB'
+				},
+				{
+					title: 'Meeting',
+					start: '2015-02-12T14:30:00',
+					backgroundColor: '#A901DB',
+					borderColor: '#A901DB'
+				},
+				{
+					title: 'Happy Hour',
+					start: '2015-02-13T17:30:00',
+					backgroundColor: '#04B404',
+					borderColor: '#04B404'
+				},				
+				{
+					title: 'Click for Google',
+					url: 'http://google.com/',
+					start: '2015-02-28'
+				}
+			],
+	
+		});
+			
+		/*
+			$('#calendar').fullCalendar({
+			
 			dayClick: function(date, jsEvent, view) {
 				
 					alert('Clicked on: ' + date.format() + '\nCoordinates: ' 
@@ -28,8 +97,9 @@
 				$(this).css('background-color', '#5FB404');
 				
 				}
-			*/
+		
 			});
+		*/
 	});
 	
 	</script>
