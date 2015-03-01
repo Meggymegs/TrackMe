@@ -6,8 +6,11 @@
 	background-color: #D81E28;
 }
 
-a {
-	color: white;
+.navbar .nav > li.dropdown.open > a
+{
+   color: #fff;
+   background-color: #AD1515;
+   border-color: #fff;
 }
 
 .logo {
