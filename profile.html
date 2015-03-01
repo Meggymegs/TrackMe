@@ -2,11 +2,106 @@
 <html>
 	<head>
 		<title>Profile</title>
+		<link rel="stylesheet" href='css/fullcalendar/fullcalendar.css' />
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/bootstrap.theme.min.css">
 		<link rel="stylesheet" href="css/profile.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<head>
+		
+		<script src='js/lib/jquery.min.js'></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src='js/lib/moment.min.js'></script>
+		<script src='js/fullcalendar.js'></script>
+		<script>
+		$(document).ready(function() {
+			// page is now ready, initialize the calendar...
+				
+				$('#calendar').fullCalendar({
+				defaultDate: '2015-02-12',
+				editable: true,
+				eventLimit: true, // allow "more" link when too many events
+				events: [
+					{
+						title: 'All Day Event',
+						start: '2015-02-01',
+						backgroundColor: '#FF4000',
+						borderColor: '#FF4000'
+					},
+					{
+						title: 'Long Event',
+						start: '2015-02-07',
+						end: '2015-02-10',
+						backgroundColor: '#FF4000',
+						borderColor: '#FF4000'
+					},
+					{
+						id: 999,
+						title: 'Repeating Event',
+						start: '2015-02-09T16:00:00',
+						backgroundColor: '#ED1317',
+						borderColor: '#ED1317'
+					},
+					{
+						id: 999,
+						title: 'Repeating Event',
+						start: '2015-02-16T16:00:00',
+						backgroundColor: '#ED1317',
+						borderColor: '#ED1317'
+					},
+					{
+						title: 'Conference',
+						start: '2015-02-11',
+						end: '2015-02-13',
+						backgroundColor: '#A901DB',
+						borderColor: '#A901DB'
+					},
+					{
+						title: 'Meeting',
+						start: '2015-02-12T10:30:00',
+						end: '2015-02-12T12:30:00',
+						backgroundColor: '#A901DB',
+						borderColor: '#A901DB'
+					},
+					{
+						title: 'Meeting',
+						start: '2015-02-12T14:30:00',
+						backgroundColor: '#A901DB',
+						borderColor: '#A901DB'
+					},
+					{
+						title: 'Happy Hour',
+						start: '2015-02-13T17:30:00',
+						backgroundColor: '#04B404',
+						borderColor: '#04B404'
+					},				
+					{
+						title: 'Click for Google',
+						url: 'http://google.com/',
+						start: '2015-02-28'
+					}
+				],
+		
+			});
+				
+			/*
+				$('#calendar').fullCalendar({
+				
+				dayClick: function(date, jsEvent, view) {
+					
+						alert('Clicked on: ' + date.format() + '\nCoordinates: ' 
+						+ jsEvent.pageX + ',' + jsEvent.pageY + '\nCurrent view: ' + view.name);
+					
+					// change the day's background color just for fun
+					$(this).css('background-color', '#5FB404');
+					
+					}
+			
+				});
+			*/
+		});
+		
+		</script>
+	</head>
 	<body style="background-color:#2d3e50;">
 		<nav class="navbar navbar-inverse navbar-static-top">
 		  <div class="container-fluid">
@@ -40,21 +135,25 @@
 			</div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
+		
 		<div class="container">
-			<div class="col-sm-2"> <!--for the news feed -->
+			<div class="col-md-2"> <!--for the user info -->
 			
 			</div>
 		
-			<div class="col-sm-6"> <!--for the news feed -->
-			
+			<div class="col-md-6"> <!--for the news feed -->
+			<h1>Training Set A</h1>
+			<img src="assets/images/situp.gif">
+			<img src="assets/images/situp2.gif">
+			<br><br>
+			<h1>Your Guide to Getting Enough Omega-3 Fatty Acids</h1>
+			"Omega-3s are healthy polyunsaturated fats, and an essential part of a heart-healthy diet," explains Suzanne Steinbaum, DO, founding member of the Global Nutrition and Health Alliance (GNHA) and director and attending cardiologist of the Women and Heart Disease Center at Lenox Hill Hospital. "They've been shown to decrease cholesterol, lower inflammation, and prevent clotting." Research has linked omega-3 fatty acids to improved cognition and a reduced risk of depression, Alzheimer's disease, and even sudden death. But more than half of Americans questioned if they were getting enough in their diets, finds a recent GNHA poll. Here five ways to up your intake.
 			</div>
 			
-			<div class="col-sm-3"> <!--for the calendar and bmi calc -->
-			
+			<div class="col-md-3"> <!--for the calendar and bmi calc -->
+				<div id="calendar">
+				</div>
 			</div>
 		</div>
-	
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
 	</body>
-</head>
+</html>
