@@ -60,7 +60,10 @@ a {
 }
 
 .logo {
-	width: 100px;
+	position:absolute;
+	bottom:2px;
+	width:250px;
+	height:50px;
 }
 
 #calendar{
