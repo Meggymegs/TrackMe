@@ -6,7 +6,10 @@ body {
 	background-color: #2a3d73;
 }
 .logo {
-	width: 100px;
+	position:absolute;
+	bottom:2px;
+	width:250px;
+	height:50px;
 }
 
 h2 {
