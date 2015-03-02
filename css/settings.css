@@ -14,8 +14,8 @@
 }
 
 .logo {
-	position:absolute;
-	bottom:2px;
+	position:fixed;
+	top:-2px;
 	width:250px;
 	height:50px;
 }
