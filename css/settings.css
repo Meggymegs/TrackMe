@@ -79,6 +79,12 @@ input.VerifyPassword[type="text"]{
 	margin-left:12px;
 }
 
+select{
+	width: 175px;
+	height: 25px;
+	margin-left: 35px;
+}
+
 body{
 	background-color: #2D3E50;
 }

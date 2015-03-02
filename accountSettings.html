@@ -60,9 +60,15 @@
 			 </div>
 			 <div class="panel-body">
 				<form id="formPos" action="demo_form.asp" method="get">
+					Select image to upload: <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
 					Name: <input class="Name" type="text" name="Name"><br><br>
 					Username: <input class="Username" type="text" name="Username"><br><br>
 					Email: <input class="Email" type="text" name="Email"><br><br>
+					Training Set: <select id="tSet">
+							<option value="A"> Training Set A </option>
+							<option value="B"> Training Set B </option>
+							<option value="C"> Training Set C </option>
+						 </select><br><br><br>
 					<button type="button" class="btn btn-submit">Save Changes</button>
 				</form>
 			 </div>
