@@ -1,6 +1,13 @@
+body {
+	background-color: #2D3E50;
+
+}
+
 .navbar{
 	background-color: #D81E28;
 	background-image: none;
+	margin-bottom: 0;
+	opacity: 0.95;
 }
 
 a {
@@ -8,5 +15,17 @@ a {
 }
 
 .logo {
-	width: 100px;
+	position:absolute;
+	top:-2px;
+	width:250px;
+	height:50px;
 }
+
+.panel {
+	float: left;
+	width: 400px;
+	height: 400px;
+	margin-left: 10px;
+
+}
+
