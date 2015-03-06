@@ -1,70 +1,489 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Track Your Fitness - TrackMe</title>
-		<link rel="stylesheet" href="css/bootstrap.min.css">		
-		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
-		<link rel="stylesheet" href="css/index_style.css">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-		
-		<script src='js/lib/jquery.min.js'></script>
-		<script src="js/bootstrap.min.js"></script>
-	</head>
+	<html>
+<head>
+	<link rel="stylesheet" href="css/bootstrap.min.css">		
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	
+	<script src="js/bootstrap.min.js"></script>
+	<title>TrackMe</title>
+<style>
+
+  /* Parallax base styles
+  --------------------------------------------- */
+
+  .parallax {
+    height: 500px; /* fallback for older browsers */
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-perspective: 300px;
+    perspective: 300px;
+  }
+
+  .parallax__group {
+    position: relative;
+    height: 500px; /* fallback for older browsers */
+    height: 100vh;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+
+  .parallax__layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .parallax__layer--fore {
+    -webkit-transform: translateZ(90px) scale(.7);
+    transform: translateZ(90px) scale(.7);
+    z-index: 1;
+  }
+
+  .parallax__layer--base {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    z-index: 4;
+  }
+
+  .parallax__layer--back {
+    -webkit-transform: translateZ(-300px) scale(2);
+    transform: translateZ(-300px) scale(2);
+    z-index: 3;
+  }
+
+  .parallax__layer--deep {
+    -webkit-transform: translateZ(-600px) scale(3);
+    transform: translateZ(-600px) scale(3);
+    z-index: 2;
+  }
+
+
+  /* Debugger styles - used to show the effect
+  --------------------------------------------- */
+
+  .debug {
+    position: fixed;
+    top: 0;
+    left: .5em;
+    z-index: 999;
+    background: rgba(0,0,0,.85);
+    color: #fff;
+    padding: .5em;
+    border-radius: 0 0 5px 5px;
+  }
+  .debug-on .parallax__group {
+    -webkit-transform: translate3d(800px, 0, -800px) rotateY(30deg);
+    transform: translate3d(700px, 0, -800px) rotateY(30deg);
+ }
+  .debug-on .parallax__layer {
+    box-shadow: 0 0 0 7px #000;
+    opacity: 0.9;
+  }
+  .parallax__group {
+    -webkit-transition: -webkit-transform 0.5s;
+    transition: transform 0.5s;
+  }
+
+  /* demo styles
+  --------------------------------------------- */
+
+  body, html {
+    overflow: hidden;
+  }
+
+  body {
+    font: 100% / 1.5 Arial;
+  }
+
+  * {
+    margin:0;
+    padding:0;
+  }
+
+  .parallax {
+    font-size: 200%;
+  }
+
+   /* centre the content in the parallax layers */
+  .title {
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+	width:100%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+
+
+  /* style the groups
+  --------------------------------------------- */
+
+  #group1 {
+    z-index: 5; /* slide over group 2 */
+  }
+  #group1 .parallax__layer--base {
+    background-color:#2D3E50;
+  }
+
+  #group2 {
+    z-index: 3; /* slide under groups 1 and 3 */
+  }
+  #group2 .parallax__layer--back {
+	background-color: #D81E28;
+	background-image: url(assets/images/beach-run.jpg);
+  }
+
+  #group3 {
+    z-index: 4; /* slide over group 2 and 4 */
+  }
+  #group3 .parallax__layer--base {
+    background-color: #2D3E50;
+  }
+
+  #group4 {
+    z-index: 2; /* slide under group 3 and 5 */
+  }
+  #group4 .parallax__layer--deep {
+    background-color: #D81E28;
+	background-image: url(assets/images/diet.jpg);
+  }
+
+  #group5 {
+    z-index: 3; /* slide over group 4 and 6 */
+  }
+  #group5 .parallax__layer--base {
+    background-color:#2D3E50;
+  }
+
+  #group6 {
+    z-index: 2; /* slide under group 5 and 7 */
+  }
+  #group6 .parallax__layer--back {
+    background-color: #D81E28;
+	background-image: url(assets/images/cycling.jpg);
+  }
+
+  #group7 {
+    z-index: 3; /* slide over group 7 */
+  }
+  #group7 .parallax__layer--base {
+    background-color:#2D3E50;
+  }
+
+
+  /* misc
+  --------------------------------------------- */
+  .demo__info {
+    position: absolute;
+    z-index:100;
+    bottom: 1vh;
+    top: auto;
+    font-size:80%;
+    text-align:center;
+    width: 100%;
+  }
+  
+  /*my css
+  ------------------------------------------------*/
+	.content{
+		padding-top:20px;
+		margin-left:auto;
+		margin-right:auto;
+		padding-bottom:20px;
+		width:100%;
+		font-size:20px;
+		width:23em;
+		word-wrap: break-word;
+		color:white;
+	}
+
+	.divider_content{
+		color:white;
+		padding:80px;
+		width:19em;
+		word-wrap: break-word;
+		font-size:80px;
+	}
+	
+	.divider_content2{
+		color:white;
+		margin-left:60px;
+		padding:103px;
+		width:17em;
+		word-wrap: break-word;
+		font-size:80px;
+	}
+	
+	.footerHeader{
+		color:white;
+	}
+  
+	.footerContent{
+		color: #D81E28; 
+	}
+	
+	.highlight{
+		color: #D81E28;
+	}
+	
+	a:hover {
+		color: white;
+		text-decoration: none;
+	}
+	
+	a:active {
+		text-decoration: none;
+	}
+	
+	a:visited {
+		text-decoration: none;
+	}
+	
+	#footer{
+		border-style: solid;
+		border-top-style: dotted;
+		border-bottom-style:none;
+		border-left-style:none;
+		border-right-style:none;
+		text-align:center;
+		padding-top:15px;
+		margin-top:150px;
+	}
+	
+	#buttons{
+		margin-top:60px;
+		margin-left:490px;
+	}
+	
+	.btn {
+		display: inline-block;
+		padding: 6px 50px;
+		margin-left:20px;
+		margin-bottom: 0;
+		font-size: 14px;
+		font-weight: normal;
+		line-height: 1.42857143;
+		text-align: center;
+		white-space: nowrap;
+		vertical-align: middle;
+		-ms-touch-action: manipulation;
+		touch-action: manipulation;
+		cursor: pointer;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+        user-select: none;
+		background-image: none;
+		border: 1px solid transparent;
+		border-radius: 4px;
+		background-color:#D8D8D8;
+	}
+	
+	.btn:hover{
+		background-color:#D81E28;
+	}
+	
+	.thumbnail1{
+		color:#D81E28;
+		text-align:center;
+	}
+	
+	.facts{
+		width: 80%;
+		margin: 0 auto;
+		margin-top:60px;
+	}
+	
+	.about{
+		width: 80%;
+		margin: 0 auto;
+		margin-top:200px;
+	}
+	
+	h1{
+		color:white;
+	}
+	
+</style>
+<style type="text/css"></style>
+</head>
 	
 	<body>
-
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-		  <div class="container-fluid">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			  </button>
-			  <a class="navbar-brand" href="#">
-				<img class="logo" src="assets/images/trackmelogo.png">
-			  </a>
-			</div>
-
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			  <ul class="nav navbar-nav navbar-right">
-				  <li><a href="signin.html">Sign In </a></li>
-				  <li><a href="signup.html">Sign Up </a></li>
-			  </ul>
-			</div><!-- /.navbar-collapse -->
-		  </div><!-- /.container-fluid -->
-		</nav>
-
-		<div class="jumbotron">
-			<div class="container">
-				<h1>Track your workout and diet!</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto sed vero eum, ratione culpa, distinctio ipsa repudiandae sequi. Nostrum placeat consectetur excepturi aliquam eaque laborum illum iusto cupiditate animi velit!</p>
-			</div>
-		</div>
-		
-		<div class="feature-container">
-			<div class="panel panel-default">
-				<div class="panel-heading">WORKOUT SCHEDULER</div>
-				<div class="panel-body">
-					Schedule your workout.
-				</div>
-			</div>
-
-			<div class="panel panel-default">
-				<div class="panel-heading">DIET TRACKER</div>
-				<div class="panel-body">
-					Track your diet.
+	
+		<div class="parallax">
+			
+			<div id="group1" class="parallax__group">
+				<div class="parallax__layer parallax__layer--base">
+					<img src="assets/images/TRACKME LOGO2.png" width=1200px height=250px style="margin-left:160px; margin-top:170px;"/>
 				</div>
 			</div>
 			
-		</div>
-
-		<footer></footer>
-		
+			<div id="group2" class="parallax__group">
+				<div class="parallax__layer parallax__layer--base">
+					<div class="title">
+						<h1>TRACK YOUR WORKOUT PROGRESS</h1>
+						<p class="content">Record every workout session, sports activities and 
+						any other of your physical activities and see your progress on the fly!
+						</p>
+					</div>
+				</div>
+				<div class="parallax__layer parallax__layer--back"></div>
+				<div class="parallax__layer parallax__layer--deep"></div>
+			</div><!--end of group4-->
+			
+			<div id="group7" class="parallax__group">
+				<div class="parallax__layer parallax__layer--base">
+					<div class="about">
+						<div class="row">
+						
+						  <div class="col-sm-6 col-md-4">
+							<div class="thumbnail1">
+							  <div class="caption">
+									<span style="color:white; font-size:30px;">&middot </span><span style="font-size:30px;"> Easy</span><span style="color:white; font-size:30px"> access to your personal health journal whenever you want to wherever you want to.</span>
+							  </div>
+							</div>
+						  </div>
+						  
+						  <div class="col-sm-6 col-md-4">
+							<div class="thumbnail1">
+							  <div class="caption">
+									<span style="color:white; font-size:30px">&middot We believe that living a </span> <span style="font-size:30px;"> healthy </span><span style="color:white; font-size:30px">life-style can bring more</span><span style="font-size:30px;"> happiness.</span>
+							  </div>
+							</div>
+						  </div>
+						  
+						  <div class="col-sm-6 col-md-4">
+							<div class="thumbnail1">
+							  <div class="caption">
+									<span style="color:white; font-size:30px">&middot We aim to</span> <span style="font-size:30px;"> motivate </span><span style="color:white; font-size:30px">people to do</span><span style="font-size:30px;"> more.</span>
+							  </div>
+							</div>
+						  </div>
+						  
+						</div>
+					</div>
+				</div><!--end if parallax_layer-->
+			</div><!--end of group7-->
+			
+			<div id="group4" class="parallax__group">
+				<div class="parallax__layer parallax__layer--base">
+					<div class="title">
+						<h1>MANAGE YOUR DIET</h1>
+						<p class="content">Keep an eye out for that perfectly balanced meal!</p>
+					</div>
+				</div>
+				<div class="parallax__layer parallax__layer--back"></div>
+				<div class="parallax__layer parallax__layer--deep"></div>
+			</div><!--end of group4-->
+			
+			
+			<div id="group7" class="parallax__group">
+				<div class="parallax__layer parallax__layer--base">
+					<div class="facts">
+						<h1 style="text-align:center;">HEALTHY FACTS</h1><br>
+						<div class="row">
+						
+						  <div class="col-sm-6 col-md-4">
+							<div class="thumbnail1">
+							  <div class="caption">
+								<h2>Fact <span style="color:white;">#1</span></h2><br>
+								<p><span style="color:white;">Farting</span> helps <span style="color:white;"> reduce high blood pressure </span>and is good for your health.</p>
+							  </div>
+							</div>
+						  </div>
+						  
+						  <div class="col-sm-6 col-md-4">
+							<div class="thumbnail1">
+							  <div class="caption">
+								<h2>Fact <span style="color:white;">#2</span></h2><br>
+								<p>People who <span style="color:white;">regularly</span> eat <span style="color:white;">dinner</span> or <span style="color:white;">breakfast in restaurants double</span> their risk of becoming <span style="color:white;">obese.</span></p>
+							  </div>
+							</div>
+						  </div>
+						  
+						  <div class="col-sm-6 col-md-4">
+							<div class="thumbnail1">
+							  <div class="caption">
+								<h2>Fact <span style="color:white;">#3</span></h2><br>
+								<p>A <span style="color:white;">lack of exercise</span> is now causing as <span style="color:white;">many deaths as smoking</span> across the world.</p>
+							  </div>
+							</div>
+						  </div>
+						  
+						  <div class="col-sm-6 col-md-4">
+							<div class="thumbnail1">
+							  <div class="caption">
+								<h2>Fact <span style="color:white;">#4</span></h2><br>
+								<p>Laughing <span style="color:white;">100 time is equivalent to</span> 15 minutes of exercise <span style="color:white;">on a stationary bicycle.</span></p>
+							  </div>
+							</div>
+						  </div>
+						  
+						  <div class="col-sm-6 col-md-4">
+							<div class="thumbnail1">
+							  <div class="caption">
+								<h2>Fact <span style="color:white;">#5</span></h2><br>
+								<p>Sitting <span style="color:white;">for more than</span> three hours <span style="color:white;">a day can</span> cut two years off <span style="color:white;"> a person's life expectancy.</p>
+							  </div>
+							</div>
+						  </div>
+						  
+						  <div class="col-sm-6 col-md-4">
+							<div class="thumbnail1">
+							  <div class="caption">
+								<h2>Fact <span style="color:white;">#6</span></h2><br>
+								<p>Over <span style="color:white;">30% of cancer</span> could be <span style="color:white;">prevented</span> by avoiding <span style="color:white;">tobacco and alcohol</span>, having a <span style="color:white;">healthy</span> diet and <span style="color:white;">physical</span> activity.</p>
+							  </div>
+							</div>
+						  </div>
+						  
+						</div>
+					</div>
+				</div><!--end if parallax_layer-->
+			</div><!--end of group7-->
+			
+			<div id="group6" class="parallax__group">
+				<div class="parallax__layer parallax__layer--base">
+					<div class="title">
+						<h1>AND STAY UPDATED</h1>
+						<p class="content">Never not know all the sports happenings in the Philippines!!</p>
+					</div>
+				</div>
+				<div class="parallax__layer parallax__layer--back">
+				</div>
+			</div><!--end of group6-->
+			
+			<div id="group1" class="parallax__group">
+				<div class="parallax__layer parallax__layer--base">
+					<img src="assets/images/TRACKME LOGO2.png" width=1200px height=250px style="margin-left:160px; margin-top:100px;"/>
+					<div id="buttons">
+						<a href="signin.html">
+							<button class="btn" type="button">Sign in</button>
+						</a>
+						<a href="signup.html">
+							<button class="btn" type="button">Sign up</button>
+						</a>
+					</div>
+					<div id="footer">
+						<p class="footerHeader">	
+							<a href="#" class="footerContent"> Join us</a>
+							&middot <a href="#" class="footerContent"> About us</a>
+							&middot <a href="#" class="footerContent">  Contact us</a>
+						</p>
+					</div>
+				</div>
+			</div><!--end of group7-->
+		</div><!--end of class parallax-->
 		
 	</body>
 

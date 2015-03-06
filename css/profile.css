@@ -18,7 +18,7 @@
 }
 
 .container{
-	width: 98%;
+	width: 100%;
 }
 
 .col-md-2{
@@ -45,10 +45,11 @@
 }
 
 .col-md-3{
-	width:393px;
+	width:250px;
 	min-height: 200px;
 	background-color: white;
-	margin-left: 3px;
+	margin-left: 6px;
+	margin-right: 10px;
 	margin-bottom: 10px;
 	border-radius: 3px;
 	padding-bottom: 10px;
