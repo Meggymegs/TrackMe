@@ -36,7 +36,7 @@
 	
 	min-height: 500px;
 	background-color: white;
-	margin-left: 3px;
+	margin-left: 10px;
 	margin-right: 10px;
 	margin-bottom: 10px;
 	border-radius: 3px;
@@ -45,10 +45,9 @@
 }
 
 .col-md-3{
-	width:250px;
 	min-height: 200px;
 	background-color: white;
-	margin-left: 6px;
+	margin-left: 10px;
 	margin-right: 10px;
 	margin-bottom: 10px;
 	border-radius: 3px;
