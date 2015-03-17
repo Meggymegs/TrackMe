@@ -22,7 +22,7 @@
 }
 
 .col-md-2{
-	
+	width: 250px;
 	min-height: 100px;
 	background-color: white;
 	margin-left: 10px;
@@ -32,22 +32,36 @@
 	padding-bottom: 20px;
 }
 
-.col-md-6{
-	
-	min-height: 500px;
+.col-md-3{
+	position:absolte;
+	top:210px;
+	right:266px;
+	min-height: 400px;
 	background-color: white;
 	margin-left: 10px;
 	margin-right: 10px;
 	margin-bottom: 10px;
 	border-radius: 3px;
-	padding-top: 10px;
+	padding-bottom: 20px;
+}
+
+.col-md-6{
+	width:500px;
+	min-height: 579px;
+	background-color: white;
+	margin-left: 3px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	border-radius: 3px;
+	padding-top: 70px;
 	padding-bottom: 10px;
 }
 
 .col-md-3{
+	width:250px;
 	min-height: 200px;
 	background-color: white;
-	margin-left: 10px;
+	margin-left: 6px;
 	margin-right: 10px;
 	margin-bottom: 10px;
 	border-radius: 3px;
