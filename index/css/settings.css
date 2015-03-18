@@ -62,8 +62,12 @@
 	border-radius: 8px;
 }
 
-input.Name[type="text"]{
-	margin-left:76px;
+input.FirstName[type="text"]{
+	margin-left:44px;
+}
+
+input.LastName[type="text"]{
+	margin-left:45px;
 }
 
 input.Username[type="text"]{
