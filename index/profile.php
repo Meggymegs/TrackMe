@@ -312,7 +312,7 @@
 					<span class="thumb"><h3>Physical Activity</h3></span>
 						<input id="togList1" type="checkbox">
 						  <label for="togList1">
-							<span><p><span style="color:#AA3939;">ClLICK ME!!</span> to add time based activity</p></span>
+							<span><p><span style="color:#AA3939;">ClLICK ME!</span> to add time based activities</p></span>
 							<span style="color:#AA3939;"><p>Collapse</p></span>
 						  </label>
 						  <div class="list1">
@@ -325,7 +325,7 @@
 					
 						<input id="togList2" type="checkbox">
 						  <label for="togList2">
-							<span><p><span style="color:#AA3939;">ClLICK ME!!</span> to add repetitions and sets based activity</p></span>
+							<span><p><span style="color:#AA3939;">ClLICK ME</span> to add repetitions and sets based activities</p></span>
 							<span style="color:#AA3939;"><p>Collapse</p></span>
 						  </label>
 						  <div class="list2">
@@ -335,11 +335,13 @@
 								<input class="listCont" type="checkbox" name="vehicle" value="pullUp">Pull up</input> <input name="duration" type="number" style="margin-left:39px;margin-top:2px;width:50px;height:22px"> <input name="duration" type="number" style="margin-left:25px;width:50px; height:22px"><br> 
 							</ul>
 						  </div><!--end of list-->
-						  
+					
+					&middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot
+					
 					<span class="thumb"><h3>Food intake</h3></span>
 						<input id="togList3" type="checkbox">
 						  <label for="togList3">
-							<span><p><span style="color:#AA3939;">ClLICK ME!!</span> to add food.</p></span>
+							<span><p><span style="color:#AA3939;">ClLICK ME</span> to add food consumed</p></span>
 							<span style="color:#AA3939;"><p>Collapse</p></span>
 						  </label>
 						  <div class="list3">
@@ -426,7 +428,7 @@
 			</div>
 			
 			<div class="col-md-6"> <!--for the calendar-->
-				<h1>MY CALENDAR</h1>
+				<h1 align="center">MY CALENDAR</h1>
 				<div id="calendar"></div>
 			</div>
 			
