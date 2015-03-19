@@ -22,7 +22,7 @@
 }
 
 .col-md-2{
-	width: 260px;
+	width: 280px;
 	min-height: 100px;
 	background-color: white;
 	margin-left: 10px;
@@ -35,7 +35,7 @@
 .col-md-3{
 	position:absolte;
 	top:210px;
-	right:276px;
+	right:296px;
 	min-height: 400px;
 	background-color: white;
 	margin-left: 10px;
@@ -56,7 +56,7 @@
 }
 
 .col-md-3{
-	width:260px;
+	width:280px;
 	min-height: 200px;
 	background-color: white;
 	margin-left: 6px;

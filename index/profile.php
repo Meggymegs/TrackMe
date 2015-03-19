@@ -254,6 +254,61 @@
 			*/
 		});
 		
+		//responsible for checking all checkboxes with class name 'TimeAct'
+		function checkAllTimeAct(ele) {
+			 var checkboxes = document.getElementsByClassName("TimeAct");
+			 if (ele.checked) {
+				 for (var i = 0; i < checkboxes.length; i++) {
+					 if (checkboxes[i].type == 'checkbox') {
+						 checkboxes[i].checked = true;
+					 }
+				 }
+			 } else {
+				 for (var i = 0; i < checkboxes.length; i++) {
+					 console.log(i)
+					 if (checkboxes[i].type == 'checkbox') {
+						 checkboxes[i].checked = false;
+					 }
+				 }
+			 }
+		 }
+		 //responsible for checking all checkboxes with class name 'RepSetAct'
+		 function checkAllRepSetAct(ele) {
+			 var checkboxes = document.getElementsByClassName("RepSetAct");
+			 if (ele.checked) {
+				 for (var i = 0; i < checkboxes.length; i++) {
+					 if (checkboxes[i].type == 'checkbox') {
+						 checkboxes[i].checked = true;
+					 }
+				 }
+			 } else {
+				 for (var i = 0; i < checkboxes.length; i++) {
+					 console.log(i)
+					 if (checkboxes[i].type == 'checkbox') {
+						 checkboxes[i].checked = false;
+					 }
+				 }
+			 }
+		 }
+		 
+		 //responsible for checking all checkboxes with class name 'food'
+		 function checkAllFood(ele) {
+			 var checkboxes = document.getElementsByClassName("food");
+			 if (ele.checked) {
+				 for (var i = 0; i < checkboxes.length; i++) {
+					 if (checkboxes[i].type == 'checkbox') {
+						 checkboxes[i].checked = true;
+					 }
+				 }
+			 } else {
+				 for (var i = 0; i < checkboxes.length; i++) {
+					 console.log(i)
+					 if (checkboxes[i].type == 'checkbox') {
+						 checkboxes[i].checked = false;
+					 }
+				 }
+			 }
+		 }
 		</script>
 		
 	</head>
@@ -315,24 +370,34 @@
 							<span><p>Click <span style="color:#AA3939;">ME</span> to add time based activities</p></span>
 							<span style="color:#AA3939;"><p>Collapse</p></span>
 						  </label>
-						  <div class="list1">
+						  <div class="list1" style="border:1px solid #E0E0E0; width: 260px; padding-top:5px; padding-left:5px;">
 							<ul style="margin-left:-40px;">
 								<strong>Activity</strong><span style="margin-left:50px;"><strong>Duration</strong><br>
-								<input class="listCont" type="checkbox" name="vehicle" value="running">Running</input> <input name="duration" type="number" style="margin-left:35px;width:50px; height:22px; margin-bottom:3px;"><br> 
-								<input class="listCont" type="checkbox" name="vehicle" value="walking">walking</input> <input name="duration" type="number" style="margin-left:41px;width:50px; height:22px"><br> 
+								<input class="TimeAct" type="checkbox" name="vehicle" value="running">Running</input> <input name="duration" type="number" min="0" style="margin-left:35px;width:50px; height:22px; margin-bottom:3px;"><br> 
+								<input class="TimeAct" type="checkbox" name="vehicle" value="walking">walking</input> <input name="duration" type="number" min="0" style="margin-left:41px;width:50px; height:22px; margin-bottom:3px"><br> 
+								<input class="TimeAct" type="checkbox" name="vehicle" value="jogging">Jogging</input> <input name="duration" type="number" min="0" style="margin-left:38px;width:50px; height:22px; margin-bottom:3px;"><br> 
+								<!--check all-->
+								<input type="checkbox" onchange="checkAllTimeAct(this)" name="chk[]" />All
 							</ul>
 						  </div><!--end of list-->
-					
+						<br>
 						<input id="togList2" type="checkbox">
 						  <label for="togList2">
 							<span><p>Click <span style="color:#AA3939;">ME</span> to add repetition and set based activities</p></span>
 							<span style="color:#AA3939;"><p>Collapse</p></span>
 						  </label>
-						  <div class="list2">
+						  <div class="list2" style="overflow-y:scroll; height:100px; width: 260px; border:1px solid #E0E0E0; padding-top:5px; padding-left:5px;">
 							<ul style="margin-left:-40px;">
 								<strong>Activity</strong><span style="margin-left:55px;"><strong>Reps</strong><span style="margin-left:45px;"><strong>Sets</strong><br>
-								<input class="listCont" type="checkbox" name="vehicle" value="pushUp">Push up</input> <input name="duration" type="number" style="margin-left:30px;width:50px; height:22px"> <input name="duration" type="number" style="margin-left:25px;width:50px; height:22px"><br> 
-								<input class="listCont" type="checkbox" name="vehicle" value="pullUp">Pull up</input> <input name="duration" type="number" style="margin-left:39px;margin-top:2px;width:50px;height:22px"> <input name="duration" type="number" style="margin-left:25px;width:50px; height:22px"><br> 
+								<input class="RepSetAct" type="checkbox" name="vehicle" value="pushUp">Push up</input> <input name="reps" type="number" min="0" style="margin-left:32.5px;width:50px; height:22px"> <input name="sets" type="number" min="0" style="margin-left:25px;width:50px; height:22px; margin-bottom:1px;"><br> 
+								<input class="RepSetAct" type="checkbox" name="vehicle" value="pullUp">Pull up</input> <input name="reps" type="number" min="0" style="margin-left:41.5px;margin-top:2px;width:50px;height:22px"> <input name="sets" min="0" type="number" style="margin-left:25px;width:50px; height:22px; margin-bottom:3px;"><br> 
+								<input class="RepSetAct" type="checkbox" name="vehicle" value="benchPress">Bench press</input> <input name="reps" type="number" min="0" style="margin-left:5.5px;width:50px; height:22px"> <input name="sets" type="number" min="0" style="margin-left:25px;width:50px; height:22px; margin-bottom:1px;"><br> 
+								<input class="RepSetAct" type="checkbox" name="vehicle" value="curlUps">Curl ups</input> <input name="reps" type="number" min="0" style="margin-left:32px;margin-top:2px;width:50px;height:22px"> <input name="sets" type="number" min="0" style="margin-left:25px;width:50px; height:22px; margin-bottom:1px;"><br> 
+								<input class="RepSetAct" type="checkbox" name="vehicle" value="curlUps">Leg press</input> <input name="reps" type="number" min="0" style="margin-left:22px;margin-top:2px;width:50px;height:22px"> <input name="sets" type="number" min="0" style="margin-left:25px;width:50px; height:22px; margin-bottom:1px;"><br> 
+								<input class="RepSetAct" type="checkbox" name="vehicle" value="curlUps">Lat pulldown</input> <input name="reps" type="number" min="0" style="margin-left:4.5px;margin-top:2px;width:50px;height:22px"> <input name="sets" type="number" min="0" style="margin-left:25px;width:50px; height:22px; margin-bottom:1px;"><br> 
+								<input class="RepSetAct" type="checkbox" name="vehicle" value="curlUps">Lying leg curl</input> <input name="reps" type="number" min="0" style="margin-left:.5px;margin-top:2px;width:50px;height:22px"> <input name="sets" type="number" min="0" style="margin-left:25px;width:50px; height:22px; margin-bottom:1px;"><br> 
+								<!--check all-->
+								<input type="checkbox" onchange="checkAllRepSetAct(this)" name="chk[]" />All
 							</ul>
 						  </div><!--end of list-->
 					
@@ -344,10 +409,10 @@
 							<span><p>Click <span style="color:#AA3939;">ME</span> to add food consumed</p></span>
 							<span style="color:#AA3939;"><p>Collapse</p></span>
 						  </label>
-						  <div class="list3">
+						  <div class="list3" style="overflow-y:scroll; height:100px; width: 260px; border:1px solid #E0E0E0; padding-top:5px; padding-left:5px;">
 							<ul style="margin-left:-40px;">
 								<strong>Food</strong><span style="margin-left:40px;"><strong>Servings & </span><span style="margin-left:2px;">Servings</strong><br>
-								<input class="listCont" type="checkbox" name="vehicle" value="egg">Egg</input> 
+								<input class="food" type="checkbox" name="vehicle" value="egg">Egg</input> 
 									<select name="servings_1" style="margin-left:50px; width:45px; margin-bottom:3px;">
 										<option value="0">0</option>
 										<option value="1">1</option>
@@ -365,7 +430,7 @@
 										<option value=".17">1/6</option>
 									</select>
 									<br><!--end of choice egg-->
-								<input class="listCont" type="checkbox" name="vehicle" value="pork">Pork</input> 
+								<input class="food" type="checkbox" name="vehicle" value="pork">Pork</input> 
 									<select name="servings_1" style="margin-left:45.5px; width:45px; margin-bottom:3px;">
 										<option value="0">0</option>
 										<option value="1">1</option>
@@ -383,7 +448,7 @@
 										<option value=".17">1/6</option>
 									</select>
 									<br><!--end of choice pork-->
-								<input class="listCont" type="checkbox" name="vehicle" value="chicken">Chicken</input> 
+								<input class="food" type="checkbox" name="vehicle" value="chicken">Chicken</input> 
 									<select name="servings_1" style="margin-left:24.3px; width:45px; margin-bottom:3px;">
 										<option value="0">0</option>
 										<option value="1">1</option>
@@ -401,7 +466,7 @@
 										<option value=".17">1/6</option>
 									</select>
 									<br><!--end of choice chicken-->
-								<input class="listCont" type="checkbox" name="vehicle" value="bread">Bread</input> 
+								<input class="food" type="checkbox" name="vehicle" value="bread">Bread</input> 
 									<select name="servings_1" style="margin-left:36.5px; width:45px; margin-bottom:3px;">
 										<option value="0">0</option>
 										<option value="1">1</option>
@@ -419,6 +484,9 @@
 										<option value=".17">1/6</option>
 									</select>
 									<br><!--end of choice chicken-->
+									
+									<!--check all-->
+									<input type="checkbox" onchange="checkAllFood(this)" name="chk[]" />All
 							</ul>
 						  </div><!--end of list-->
 					
