@@ -22,7 +22,7 @@
 }
 
 .col-md-2{
-	width: 250px;
+	width: 260px;
 	min-height: 100px;
 	background-color: white;
 	margin-left: 10px;
@@ -35,7 +35,7 @@
 .col-md-3{
 	position:absolte;
 	top:210px;
-	right:266px;
+	right:277px;
 	min-height: 400px;
 	background-color: white;
 	margin-left: 10px;
@@ -47,18 +47,16 @@
 
 .col-md-6{
 	width:500px;
-	min-height: 579px;
+	min-height: 526px;
 	background-color: white;
 	margin-left: 3px;
 	margin-right: 10px;
 	margin-bottom: 10px;
 	border-radius: 3px;
-	padding-top: 70px;
-	padding-bottom: 10px;
 }
 
 .col-md-3{
-	width:250px;
+	width:260px;
 	min-height: 200px;
 	background-color: white;
 	margin-left: 6px;
@@ -93,4 +91,44 @@ a {
 	position:absolute;
 	top:170px;
 	left:70px; 
+}
+
+[id^="togList1"],                        /* HIDE CHECKBOX */
+[id^="togList1"] ~ .list1,                /* HIDE LIST */
+[id^="togList1"] + label  span + span,   /* HIDE "Collapse" */
+[id^="togList1"]:checked + label span{   /* HIDE "Expand" (IF CHECKED) */
+	display:none;
+}
+[id^="togList1"]:checked + label span + span{
+	display:inline-block;                 /* SHOW "Collapse" (IF CHECKED) */
+}
+[id^="togList1"]:checked ~ .list1{
+	display:block;                        /* SHOW LIST (IF CHECKED) */
+}
+
+
+[id^="togList2"],                        /* HIDE CHECKBOX */
+[id^="togList2"] ~ .list2,                /* HIDE LIST */
+[id^="togList2"] + label  span + span,   /* HIDE "Collapse" */
+[id^="togList2"]:checked + label span{   /* HIDE "Expand" (IF CHECKED) */
+	display:none;
+}
+[id^="togList2"]:checked + label span + span{
+	display:inline-block;                 /* SHOW "Collapse" (IF CHECKED) */
+}
+[id^="togList2"]:checked ~ .list2{
+	display:block;                        /* SHOW LIST (IF CHECKED) */
+}
+
+[id^="togList3"],                        /* HIDE CHECKBOX */
+[id^="togList3"] ~ .list3,                /* HIDE LIST */
+[id^="togList3"] + label  span + span,   /* HIDE "Collapse" */
+[id^="togList3"]:checked + label span{   /* HIDE "Expand" (IF CHECKED) */
+	display:none;
+}
+[id^="togList3"]:checked + label span + span{
+	display:inline-block;                 /* SHOW "Collapse" (IF CHECKED) */
+}
+[id^="togList3"]:checked ~ .list3{
+	display:block;                        /* SHOW LIST (IF CHECKED) */
 }
