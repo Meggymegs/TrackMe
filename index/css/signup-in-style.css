@@ -46,23 +46,23 @@ input[type="text"]:hover{
 	float: right;
 }
 
-select#country {
+#country {
 	width:200px;
 	height: 25px;
 	opacity: 0.9;
 }
 
-select#bday {
+#bday {
 	width: 90px;
 	height: 25px;
 	opacity: 0.9;
 }
 
-select#country:hover{
+#country:hover{
 	opacity:0.8;
 }
 
-select#bday:hover{
+#bday:hover{
 	opacity:0.8;
 }
 
