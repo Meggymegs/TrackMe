@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
+-- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 21, 2015 at 04:29 AM
--- Server version: 5.6.20
--- PHP Version: 5.5.15
+-- Host: localhost
+-- Generation Time: Mar 21, 2015 at 12:22 PM
+-- Server version: 5.5.41-0ubuntu0.14.04.1
+-- PHP Version: 5.5.9-1ubuntu4.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `trackme`
 --
+CREATE DATABASE IF NOT EXISTS `trackme` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `trackme`;
 
 -- --------------------------------------------------------
 
@@ -41,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `admin_table` (
 --
 
 CREATE TABLE IF NOT EXISTS `body_measurement_table` (
-  `user_id` int(11) NOT NULL,
+  `user_id` varchar(30) CHARACTER SET utf8 NOT NULL,
   `body_measurement_type_id` int(255) NOT NULL,
   `body_measurement_value` int(255) NOT NULL,
   `date_created` date NOT NULL
@@ -79,7 +81,7 @@ INSERT INTO `body_measurement_type_table` (`body_measurement_type_id`, `body_mea
 --
 
 CREATE TABLE IF NOT EXISTS `food_served_table` (
-  `user_id` int(255) NOT NULL,
+  `user_id` varchar(30) CHARACTER SET utf8 NOT NULL,
   `food_id` int(255) NOT NULL,
   `food_serving` float NOT NULL,
   `date_created` date NOT NULL
@@ -104,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `food_table` (
 --
 
 CREATE TABLE IF NOT EXISTS `physical_activities_dist_table` (
-  `user_id` int(255) NOT NULL,
+  `user_id` varchar(30) CHARACTER SET utf8 NOT NULL,
   `physical_activity_dist_id` int(255) NOT NULL,
   `distance` int(255) NOT NULL,
   `time` int(255) NOT NULL,
@@ -129,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `physical_activities_dist_type_table` (
 --
 
 CREATE TABLE IF NOT EXISTS `physical_activities_rep_table` (
-  `user_id` int(255) NOT NULL,
+  `user_id` varchar(30) CHARACTER SET utf8 NOT NULL,
   `physical_activity_rep_id` int(255) NOT NULL,
   `number_of_reps` int(255) NOT NULL,
   `number_of_sets` int(255) NOT NULL,
@@ -154,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `physical_activities_rep_type_table` (
 --
 
 CREATE TABLE IF NOT EXISTS `physical_activities_time_table` (
-  `user_id` int(255) NOT NULL,
+  `user_id` varchar(30) CHARACTER SET utf8 NOT NULL,
   `physical_activity_time_id` int(255) NOT NULL,
   `time` int(255) NOT NULL,
   `date_created` date NOT NULL
@@ -178,21 +180,22 @@ CREATE TABLE IF NOT EXISTS `physical_activities_time_type_table` (
 --
 
 CREATE TABLE IF NOT EXISTS `users_table` (
-`user_id` int(11) NOT NULL,
-  `first_name` varchar(50) NOT NULL,
-  `last_name` varchar(50) NOT NULL,
-  `user_email` varchar(30) NOT NULL,
-  `user_password` varchar(255) NOT NULL,
+  `user_id` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `first_name` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `last_name` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `user_email` varchar(320) CHARACTER SET utf8 NOT NULL,
+  `user_password` varchar(255) CHARACTER SET utf8 NOT NULL,
   `user_birthdate` date NOT NULL,
-  `user_profile_pic` varchar(50) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  `user_profile_pic` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users_table`
 --
 
 INSERT INTO `users_table` (`user_id`, `first_name`, `last_name`, `user_email`, `user_password`, `user_birthdate`, `user_profile_pic`) VALUES
-(1, 'Mark Genesis', 'Romantigue', 'markg.romantigue@gmail.com', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', '1995-10-13', 'assets/images/profilePic.jpg');
+('1', 'Mark Genesis', 'Romantigue', 'markg.romantigue@gmail.com', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', '1995-10-13', 'assets/images/profilePic.jpg');
 
 -- --------------------------------------------------------
 
@@ -201,7 +204,7 @@ INSERT INTO `users_table` (`user_id`, `first_name`, `last_name`, `user_email`, `
 --
 
 CREATE TABLE IF NOT EXISTS `vital_signs_table` (
-  `user_id` int(255) NOT NULL,
+  `user_id` varchar(30) CHARACTER SET utf8 NOT NULL,
   `vital_signs_type_id` int(255) NOT NULL,
   `vital_signs_value` int(255) NOT NULL,
   `date_created` date NOT NULL
@@ -228,25 +231,6 @@ INSERT INTO `vital_signs_type_table` (`vital_signs_type_id`, `vital_signs_type`)
 (3, 'systolic'),
 (4, 'diastolic');
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `users_table`
---
-ALTER TABLE `users_table`
- ADD PRIMARY KEY (`user_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `users_table`
---
-ALTER TABLE `users_table`
-MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
