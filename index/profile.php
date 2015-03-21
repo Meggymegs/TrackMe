@@ -1,3 +1,11 @@
+<?php
+	error_reporting(0);
+	session_start();
+	if(!isset($_SESSION['myusername'])){ //if login in session is not set
+    header("Location:signin.php");
+}
+?>
+
 <!doctype html>
 <html>
 	<head>
@@ -16,75 +24,7 @@
 		<script>
 		$(document).ready(function() {
 			// page is now ready, initialize the calendar...
-			
-			$('#calendar').fullCalendar({
-				defaultDate: '2015-02-12',
-				editable: true,
-				eventLimit: true, // allow "more" link when too many events
-				events: [
-					{
-						title: 'All Day Event',
-						start: '2015-02-01',
-						backgroundColor: '#FF4000',
-						borderColor: '#FF4000'
-					},
-					{
-						title: 'Long Event',
-						start: '2015-02-07',
-						end: '2015-02-10',
-						backgroundColor: '#FF4000',
-						borderColor: '#FF4000'
-					},
-					{
-						id: 999,
-						title: 'Repeating Event',
-						start: '2015-02-09T16:00:00',
-						backgroundColor: '#ED1317',
-						borderColor: '#ED1317'
-					},
-					{
-						id: 999,
-						title: 'Repeating Event',
-						start: '2015-02-16T16:00:00',
-						backgroundColor: '#ED1317',
-						borderColor: '#ED1317'
-					},
-					{
-						title: 'Conference',
-						start: '2015-02-11',
-						end: '2015-02-13',
-						backgroundColor: '#A901DB',
-						borderColor: '#A901DB'
-					},
-					{
-						title: 'Meeting',
-						start: '2015-02-12T10:30:00',
-						end: '2015-02-12T12:30:00',
-						backgroundColor: '#A901DB',
-						borderColor: '#A901DB'
-					},
-					{
-						title: 'Meeting',
-						start: '2015-02-12T14:30:00',
-						backgroundColor: '#A901DB',
-						borderColor: '#A901DB'
-					},
-					{
-						title: 'Happy Hour',
-						start: '2015-02-13T17:30:00',
-						backgroundColor: '#04B404',
-						borderColor: '#04B404'
-					},				
-					{
-						title: 'Click for Google',
-						url: 'http://google.com/',
-						start: '2015-02-28'
-					}
-				],
-		
-			});
-			
-				/*
+				
 				$('#calendar').fullCalendar({
 				defaultDate: '2015-02-12',
 				editable: true,
@@ -151,92 +91,7 @@
 				],
 		
 			});
-////////////////////////////////////////////////////////////////////////////////
-			
-			$(document).ready(function()){
-			var calendar = $('#calendar').fullCalendar({
-				editable: true,
-				header: {
-				left: 'today, prevYear, nextYear',
-				center: 'title',
-				right: 'prev,next,basicDay,month'
-				},
 				
-				eventSource: ['getEvent.php','profile.php']
-				
-				});
-				});
-				
-			
-			$(document).ready(function()){
-				var date =  new Date();
-				var d = date.getDate();
-				var m = date.getMonth();
-				var y = date.getFullYear();
-				var calendar = $('#calendar').fullCalendar({
-					editable: false;
-					header: {
-						left:'prev,next, today',
-						center: 'title',
-						right: 'month,agendaWeek,agendaDay'
-					},
-					events: "http://localhost:80/fullCalendar/getEvent.php"
-					eventRender: function(event,element, view){
-						if(event.allDay == 'true'){
-							event.allDay = true;
-						} else {
-							event.allDay = false;
-						}
-						
-						selectable: true,
-						selectHelper: true,
-						select: function(start, end, allDay){
-							var title = prompt('Event Title:');
-							if(title){
-								start = $.fullCalendar.formatDate(start,"yyyy-MM-dd HH:mm:ss");
-								end = $.fullCalendar.formatDate(end, "yyyy-MM-dd HH:mm:ss");
-								$.ajax({
-									url: 'http://localhost:80/fullCalendar/add_events.php',
-									data: 'title=' + title + '&start=' + start + '&end='+ end,
-									type: "POST",
-									success: function(json){
-									alert('Add Success');
-									}
-								});
-								calendar.fullCalendar('renderEvent',
-								{
-									title: title,
-									start: start,
-									end: end,
-									allDay: allDay
-								},
-									true
-								);
-							}
-							calendar.fullCalendar('unselect');
-						},
-						editable: true,
-						eventDrop: function(event, delta){
-							start = $.fullCalendar.formatDate(event.start, "yyyy-MM-dd HH:mm:ss");
-							end = $.fullCalendar.formatDate(event.end, "yyyy-MM-dd HH:mm:ss");
-							$.ajax({
-								url: 'http://localhost:80/fullCalendar/add_events.php',
-									data: 'title=' + title + '&start=' + start + '&end='+ end,
-									type: "POST",
-									success: function(json){
-									alert('Update Successfull');
-									}
-								});
-							}
-						});
-					});
-							
-			*/
-			//to set the calendar to today date
-			var date = $('#calendar').fullCalendar('today');
-			
-			$('#calendar').fullCalendar('gotoDate', date);
-			
 			/*
 				$('#calendar').fullCalendar({
 				
@@ -254,63 +109,7 @@
 			*/
 		});
 		
-		//responsible for checking all checkboxes with class name 'TimeAct'
-		function checkAllTimeAct(ele) {
-			 var checkboxes = document.getElementsByClassName("TimeAct");
-			 if (ele.checked) {
-				 for (var i = 0; i < checkboxes.length; i++) {
-					 if (checkboxes[i].type == 'checkbox') {
-						 checkboxes[i].checked = true;
-					 }
-				 }
-			 } else {
-				 for (var i = 0; i < checkboxes.length; i++) {
-					 console.log(i)
-					 if (checkboxes[i].type == 'checkbox') {
-						 checkboxes[i].checked = false;
-					 }
-				 }
-			 }
-		 }
-		 //responsible for checking all checkboxes with class name 'RepSetAct'
-		 function checkAllRepSetAct(ele) {
-			 var checkboxes = document.getElementsByClassName("RepSetAct");
-			 if (ele.checked) {
-				 for (var i = 0; i < checkboxes.length; i++) {
-					 if (checkboxes[i].type == 'checkbox') {
-						 checkboxes[i].checked = true;
-					 }
-				 }
-			 } else {
-				 for (var i = 0; i < checkboxes.length; i++) {
-					 console.log(i)
-					 if (checkboxes[i].type == 'checkbox') {
-						 checkboxes[i].checked = false;
-					 }
-				 }
-			 }
-		 }
-		 
-		 //responsible for checking all checkboxes with class name 'food'
-		 function checkAllFood(ele) {
-			 var checkboxes = document.getElementsByClassName("food");
-			 if (ele.checked) {
-				 for (var i = 0; i < checkboxes.length; i++) {
-					 if (checkboxes[i].type == 'checkbox') {
-						 checkboxes[i].checked = true;
-					 }
-				 }
-			 } else {
-				 for (var i = 0; i < checkboxes.length; i++) {
-					 console.log(i)
-					 if (checkboxes[i].type == 'checkbox') {
-						 checkboxes[i].checked = false;
-					 }
-				 }
-			 }
-		 }
 		</script>
-		
 	</head>
 	<body style="background-color:#2d3e50;">
 		<nav class="navbar navbar-inverse navbar-static-top">
@@ -349,7 +148,6 @@
 		</nav>
 		
 		<div class="container">
-			
 			<div class="col-md-2"> <!--for the user info -->
 				<img src="assets/images/profilePic.jpg" class="sidebar-pic" height="40" width="40">
 				Mark&nbspGenesis<br><br>
@@ -362,142 +160,64 @@
 			
 			<div class="col-md-3"><!--form for physical act and food intake-->
 				
-				<form action='' method="post">
+				<form>
+					<h3>Physical Activity</h3>
+					Activity: <select style="margin-left:30px; width:100px;">
+						<option value="running">Running</option>
+						<option value="walking">Walking</option>
+					</select><br><br>
+					Duration: <select style="margin-left:20px; width:100px;">
+						<option value="10">10 mins</option>
+						<option value="15">15 mins</option>
+						<option value="20">20 mins</option>
+						<option value="25">25 mins</option>
+						<option value="30">30 mins</option>
+					</select>
+					<br><br>
+					Activity: <select style="margin-left:30px; width:100px;">
+						<option value="pushUp">Push up</option>
+						<option value="pullUp">Pull up</option>
+					</select>
+					<br><br>
+					Repetition: <select style="margin-left:10px; width:100px;">
+						<option value="10">10 reps</option>
+						<option value="15">15 reps</option>
+						<option value="20">20 reps</option>
+						<option value="25">25 reps</option>
+						<option value="30">30 reps</option>
+					</select>
 					
-					<span class="thumb"><h3>Physical Activity</h3></span>
-						<input id="togList1" type="checkbox">
-						  <label for="togList1">
-							<span><p>Click <span style="color:#AA3939;">ME</span> to add time based activities</p></span>
-							<span style="color:#AA3939;"><p>Collapse</p></span>
-						  </label>
-						  <div class="list1" style="border:1px solid #E0E0E0; width: 260px; padding-top:5px; padding-left:5px;">
-							<ul style="margin-left:-40px;">
-								<strong>Activity</strong><span style="margin-left:50px;"><strong>Duration</strong><br>
-								<input class="TimeAct" type="checkbox" name="vehicle" value="running">Running</input> <input name="duration" type="number" min="0" style="margin-left:35px;width:50px; height:22px; margin-bottom:3px;"><br> 
-								<input class="TimeAct" type="checkbox" name="vehicle" value="walking">walking</input> <input name="duration" type="number" min="0" style="margin-left:41px;width:50px; height:22px; margin-bottom:3px"><br> 
-								<input class="TimeAct" type="checkbox" name="vehicle" value="jogging">Jogging</input> <input name="duration" type="number" min="0" style="margin-left:38px;width:50px; height:22px; margin-bottom:3px;"><br> 
-								<!--check all-->
-								<input type="checkbox" onchange="checkAllTimeAct(this)" name="chk[]" />All
-							</ul>
-						  </div><!--end of list-->
-						<br>
-						<input id="togList2" type="checkbox">
-						  <label for="togList2">
-							<span><p>Click <span style="color:#AA3939;">ME</span> to add repetition and set based activities</p></span>
-							<span style="color:#AA3939;"><p>Collapse</p></span>
-						  </label>
-						  <div class="list2" style="overflow-y:scroll; height:100px; width: 260px; border:1px solid #E0E0E0; padding-top:5px; padding-left:5px;">
-							<ul style="margin-left:-40px;">
-								<strong>Activity</strong><span style="margin-left:55px;"><strong>Reps</strong><span style="margin-left:45px;"><strong>Sets</strong><br>
-								<input class="RepSetAct" type="checkbox" name="vehicle" value="pushUp">Push up</input> <input name="reps" type="number" min="0" style="margin-left:32.5px;width:50px; height:22px"> <input name="sets" type="number" min="0" style="margin-left:25px;width:50px; height:22px; margin-bottom:1px;"><br> 
-								<input class="RepSetAct" type="checkbox" name="vehicle" value="pullUp">Pull up</input> <input name="reps" type="number" min="0" style="margin-left:41.5px;margin-top:2px;width:50px;height:22px"> <input name="sets" min="0" type="number" style="margin-left:25px;width:50px; height:22px; margin-bottom:3px;"><br> 
-								<input class="RepSetAct" type="checkbox" name="vehicle" value="benchPress">Bench press</input> <input name="reps" type="number" min="0" style="margin-left:5.5px;width:50px; height:22px"> <input name="sets" type="number" min="0" style="margin-left:25px;width:50px; height:22px; margin-bottom:1px;"><br> 
-								<input class="RepSetAct" type="checkbox" name="vehicle" value="curlUps">Curl ups</input> <input name="reps" type="number" min="0" style="margin-left:32px;margin-top:2px;width:50px;height:22px"> <input name="sets" type="number" min="0" style="margin-left:25px;width:50px; height:22px; margin-bottom:1px;"><br> 
-								<input class="RepSetAct" type="checkbox" name="vehicle" value="curlUps">Leg press</input> <input name="reps" type="number" min="0" style="margin-left:22px;margin-top:2px;width:50px;height:22px"> <input name="sets" type="number" min="0" style="margin-left:25px;width:50px; height:22px; margin-bottom:1px;"><br> 
-								<input class="RepSetAct" type="checkbox" name="vehicle" value="curlUps">Lat pulldown</input> <input name="reps" type="number" min="0" style="margin-left:4.5px;margin-top:2px;width:50px;height:22px"> <input name="sets" type="number" min="0" style="margin-left:25px;width:50px; height:22px; margin-bottom:1px;"><br> 
-								<input class="RepSetAct" type="checkbox" name="vehicle" value="curlUps">Lying leg curl</input> <input name="reps" type="number" min="0" style="margin-left:.5px;margin-top:2px;width:50px;height:22px"> <input name="sets" type="number" min="0" style="margin-left:25px;width:50px; height:22px; margin-bottom:1px;"><br> 
-								<!--check all-->
-								<input type="checkbox" onchange="checkAllRepSetAct(this)" name="chk[]" />All
-							</ul>
-						  </div><!--end of list-->
-					
-					&middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot &middot
-					
-					<span class="thumb"><h3>Food intake</h3></span>
-						<input id="togList3" type="checkbox">
-						  <label for="togList3">
-							<span><p>Click <span style="color:#AA3939;">ME</span> to add food consumed</p></span>
-							<span style="color:#AA3939;"><p>Collapse</p></span>
-						  </label>
-						  <div class="list3" style="overflow-y:scroll; height:100px; width: 260px; border:1px solid #E0E0E0; padding-top:5px; padding-left:5px;">
-							<ul style="margin-left:-40px;">
-								<strong>Food</strong><span style="margin-left:40px;"><strong>Servings & </span><span style="margin-left:2px;">Servings</strong><br>
-								<input class="food" type="checkbox" name="vehicle" value="egg">Egg</input> 
-									<select name="servings_1" style="margin-left:50px; width:45px; margin-bottom:3px;">
-										<option value="0">0</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-									</select>
-									<select name="servings_2" style="margin-left:20px; width:45px; margin-bottom:3px;">
-										<option value="0">0</option>
-										<option value=".5">1/2</option>
-										<option value=".33">1/3</option>
-										<option value=".25">1/4</option>
-										<option value=".2">1/5</option>
-										<option value=".17">1/6</option>
-									</select>
-									<br><!--end of choice egg-->
-								<input class="food" type="checkbox" name="vehicle" value="pork">Pork</input> 
-									<select name="servings_1" style="margin-left:45.5px; width:45px; margin-bottom:3px;">
-										<option value="0">0</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-									</select>
-									<select name="servings_2" style="margin-left:20px; width:45px; margin-bottom:3px;">
-										<option value="0">0</option>
-										<option value=".5">1/2</option>
-										<option value=".33">1/3</option>
-										<option value=".25">1/4</option>
-										<option value=".2">1/5</option>
-										<option value=".17">1/6</option>
-									</select>
-									<br><!--end of choice pork-->
-								<input class="food" type="checkbox" name="vehicle" value="chicken">Chicken</input> 
-									<select name="servings_1" style="margin-left:24.3px; width:45px; margin-bottom:3px;">
-										<option value="0">0</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-									</select>
-									<select name="servings_2" style="margin-left:20px; width:45px; margin-bottom:3px;">
-										<option value="0">0</option>
-										<option value=".5">1/2</option>
-										<option value=".33">1/3</option>
-										<option value=".25">1/4</option>
-										<option value=".2">1/5</option>
-										<option value=".17">1/6</option>
-									</select>
-									<br><!--end of choice chicken-->
-								<input class="food" type="checkbox" name="vehicle" value="bread">Bread</input> 
-									<select name="servings_1" style="margin-left:36.5px; width:45px; margin-bottom:3px;">
-										<option value="0">0</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-									</select>
-									<select name="servings_2" style="margin-left:20px; width:45px;">
-										<option value="0">0</option>
-										<option value=".5">1/2</option>
-										<option value=".33">1/3</option>
-										<option value=".25">1/4</option>
-										<option value=".2">1/5</option>
-										<option value=".17">1/6</option>
-									</select>
-									<br><!--end of choice chicken-->
-									
-									<!--check all-->
-									<input type="checkbox" onchange="checkAllFood(this)" name="chk[]" />All
-							</ul>
-						  </div><!--end of list-->
-					
+					<h3>Food Intake</h3>
+					Food: <select style="margin-left:40px; width:100px;">
+						<option value="eggs">Eggs</option>
+						<option value="pancake">Pancake</option>
+						<option value="rice">Rice</option>
+						<option value="chicken">Chicken</option>
+					</select><br><br>
+					Servings: <select style="margin-left:18px;">
+						<option value="0">0</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+					& <select>
+						<option value="0">0</option>
+						<option value=".5">1/2</option>
+						<option value=".33">1/3</option>
+						<option value=".25">1/4</option>
+						<option value=".2">1/5</option>
+						<option value=".17">1/6</option>
+					</select>
 					<input type="submit" value="Submit" style="width:30%; margin-left:65px; margin-top:20px; border-radius:4px; background-color:#AA3939; color:white;">
 				</form>
 				
 			</div>
 			
 			<div class="col-md-6"> <!--for the calendar-->
-				<h1 align="center">MY CALENDAR</h1>
-				<div id="calendar"></div>
+				<div id="calendar">
+				</div>
 			</div>
 			
 		</div>
@@ -519,29 +239,4 @@
 			<center>
 			<form><table border="0" width="100%" height="300" align="center" style="border:1px solid #000"><thead><tr><th colspan="2">Body Mass Index</th></tr></thead><tbody><tr><td colspan="2" align="center"><label for="d1"><input type="radio" id="d1" name="d" value="1,1">cm/kg</label><label for="d2"><input type="radio" id="d2" name="d" value="2.54,2.2">in/lb</label></td></tr><tr><td align="right"><label for="h">Height:</label></td><td align="left"><input type="text" id="h" name="h" size="6"></td></tr><tr><td align="right"><label for="w">Weight:</label></td><td align="left"><input type="text" id="w" name="w" size="6"></td></tr><tr><td colspan="2" align="center"><input type="button" value="Calculate" onclick="calc(this.form);return false;"></td></tr><tr><td align="right"><label for="f">BMI:</label></td><td align="left"><input type="text" id="f" name="f" size="6" readonly="readonly"></td></tr></tbody></table></form>
 			</center>
-			
-			<?php
-			$servername = "localhost";
-			$username = "username";
-			$password = "password";
-			$dbname = "myDB";
-
-			// Create connection
-			$conn = new mysqli($servername, $username, $password, $dbname);
-			// Check connection
-			if ($conn->connect_error) {
-				die("Connection failed: " . $conn->connect_error);
-			}
-			
-			$sql = "INSERT INTO physical_activities_rep_type_table (physical_activity_rep_type)
-					VALUES ('')";
-
-					if ($conn->query($sql) === TRUE) {
-						echo "New record created successfully";
-					} else {
-						echo "Error: " . $sql . "<br>" . $conn->error;
-					}
-
-					$conn->close();
-		?>
 -->
