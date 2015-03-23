@@ -3,6 +3,8 @@
 	session_start();
 	if(!isset($_SESSION['myusername'])){ //if login in session is not set
     header("Location:signin.php");
+	
+	include '../mysqli_connect.php';
 }
 ?>
 
@@ -131,12 +133,32 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			  <ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
-				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img src="assets/images/profilePic.jpg" class="navbar-pic" height="20" width="20"><font color = "white">Mark Romantigue </font><span class="caret"></span></a>
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+				  
+						<img src="
+							<?php
+							$myusername = $_SESSION['myusername'];
+							include '../mysqli_connect.php';
+							$result = mysqli_query($dbc, "SELECT * FROM `users_table` WHERE user_email like '$myusername'"); 
+							while ($row = mysqli_fetch_assoc($result)) {
+								echo $row['user_profile_pic'];
+							}
+							?>
+						" class="navbar-pic" height="20" width="20"><font color = "white">
+						
+					<?php
+					$result = mysqli_query($dbc, "SELECT * FROM `users_table` WHERE user_email like '$myusername'"); 
+					while ($row = mysqli_fetch_assoc($result)) {
+						echo $row['first_name']. " " . $row['last_name'];
+					}
+					?>
+				  </font><span class="caret"></span></a>
+				  
 				  <ul class="dropdown-menu" role="menu">
 					<li><a href="profile.html">Profile</a></li>
 					<li><a href="accountSettings.html">Account Settings</a></li>
 					<li><a href="calendar.html">Calendar</a></li>
-					<li><a href="index.html">Log Out</a></li>
+					<li><a href="logout.php">Log Out</a></li>
 					<li class="divider"></li>
 					<li><a href="#">Help</a></li>
 					<li><a href="#">Report a problem</a></li>
@@ -149,8 +171,22 @@
 		
 		<div class="container">
 			<div class="col-md-2"> <!--for the user info -->
-				<img src="assets/images/profilePic.jpg" class="sidebar-pic" height="40" width="40">
-				Mark&nbspGenesis<br><br>
+			
+				<img src="
+					<?php
+					$result = mysqli_query($dbc, "SELECT * FROM `users_table` WHERE user_email like '$myusername'"); 
+					while ($row = mysqli_fetch_assoc($result)) {
+						echo $row['user_profile_pic'];
+					}
+					?>
+				" class="sidebar-pic" height="40" width="40">
+				
+				<?php
+					$result = mysqli_query($dbc, "SELECT * FROM `users_table` WHERE user_email like '$myusername'"); 
+					while ($row = mysqli_fetch_assoc($result)) {
+						echo $row['first_name'];
+					}
+				?><br><br>
 				<b>Age:</b>&nbsp19 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 				<b>Weight:</b>&nbsp56kg&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 				<b>Height:</b>&nbsp5'&nbsp4"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp

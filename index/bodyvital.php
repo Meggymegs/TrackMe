@@ -22,7 +22,7 @@ $fat = (26.8*2.20462*$b-$d*31.8+$c*15.7+$e*24.9-$f*43.4-898.7)/(2.20462*$b);
 }
 $fat = round($fat,2);
 $date = date("Y-m-d");
-mysql_connect("localhost", "root", "") or die (mysql_error());
+mysql_connect("localhost", "root", "1234") or die (mysql_error());
 mysql_select_db("trackme") or die (mysql_error());
 $strSQL = "INSERT INTO body_measurement_table(user_id,body_measurement_type_id,body_measurement_value,date_created) VALUES('" . $user . "','1','" . $a . "','" . $date . "')";
 mysql_query($strSQL) or die (mysql_error());
