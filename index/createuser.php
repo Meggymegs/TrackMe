@@ -37,6 +37,9 @@
 
 		mysqli_stmt_close($stmt);
 		mysqli_close($dbc);
+		session_start();
+		$_SERVER('myusername') = $user->getUserEmail();
+		header('location:profile.php');
 	} else {
 		echo 'Error occured <br />';
 		echo mysqli_error($dbc);

@@ -4,7 +4,6 @@
 	*/
 	class User 
 	{
-		
 		private $first_name;
 		private $last_name;
 		private $user_email;
