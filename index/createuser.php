@@ -37,6 +37,7 @@
 
 		mysqli_stmt_close($stmt);
 		mysqli_close($dbc);
+		header('Location: profile.php');
 	} else {
 		echo 'Error occured <br />';
 		echo mysqli_error($dbc);
