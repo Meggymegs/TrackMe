@@ -3,10 +3,9 @@
 	require_once('../mysqli_connect.php');
 	require_once('User.php');
 
-	$user_id = $first_name = $last_name = $email = $password = $birthdate = "";
+	$first_name = $last_name = $email = $password = $birthdate = "";
 
 	if(isset($_POST['submit'])) {
-		$user_id = test_input($_POST["username"]);
 		$first_name = test_input($_POST["first_name"]);
 		$last_name = test_input($_POST["last_name"]);
 		$email = test_input($_POST["email"]);
@@ -19,13 +18,13 @@
 
 	$birthdate = date('Y-m-d', strtotime($birthdate));
 
-	$user = new User($user_id, $first_name, $last_name, $email, $password, $birthdate);
+	$user = new User($first_name, $last_name, $email, $password, $birthdate);
 
-	$query = "INSERT INTO users_table VALUES (?, ?, ?, ?, ?, ?, NULL)";
+	$query = "INSERT INTO users_table VALUES (?, ?, ?, ?, ?, 'assets/images/placeholder.png')";
 
 	$stmt = mysqli_prepare($dbc, $query);
 
-	mysqli_stmt_bind_param($stmt, "ssssss", $user->getUserId(), $user->getFirstName(), $user->getLastName(), $user->getUserEmail(), 
+	mysqli_stmt_bind_param($stmt, "sssss", $user->getFirstName(), $user->getLastName(), $user->getUserEmail(), 
 		$user->getPassword(), $user->getBirthdate());
 
 	mysqli_stmt_execute($stmt);
@@ -37,7 +36,9 @@
 
 		mysqli_stmt_close($stmt);
 		mysqli_close($dbc);
-		header('Location: profile.php');
+		session_start();
+		$_SESSION($user->getUserEmail());
+		header('Location: signin.php');
 	} else {
 		echo 'Error occured <br />';
 		echo mysqli_error($dbc);
