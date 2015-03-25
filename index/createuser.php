@@ -2,6 +2,7 @@
 	ini_set('display_errors', 1);
 	require_once('../mysqli_connect.php');
 	require_once('User.php');
+	//comment
 
 	$user_id = $first_name = $last_name = $email = $password = $birthdate = "";
 
