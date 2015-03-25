@@ -20,7 +20,7 @@
 
 		<div class="container">
 			<div class="content">
-				<form action="http://localhost/trackme/index/checklogin.php" method="post">
+				<form action="checklogin.php" method="post">
 					<h2>Sign In</h2>
 					<hr>
 					Email Address: <input type="text" name="myusername" placeholder="Email Address" id="myusername"/>

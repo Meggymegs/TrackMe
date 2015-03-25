@@ -21,7 +21,7 @@
 
 	$user = new User($user_id, $first_name, $last_name, $email, $password, $birthdate);
 
-	$query = "INSERT INTO users_table VALUES (?, ?, ?, ?, ?, ?)";
+	$query = "INSERT INTO users_table VALUES (?, ?, ?, ?, ?, ?, NULL)";
 
 	$stmt = mysqli_prepare($dbc, $query);
 
