@@ -5,25 +5,19 @@
 	class User 
 	{
 		
-		private $user_id;
 		private $first_name;
 		private $last_name;
 		private $user_email;
 		private $user_password;
 		private $birthdate;
 
-		function __construct($user_id, $first_name, $last_name, $user_email, $user_password, $birthdate)
+		function __construct($first_name, $last_name, $user_email, $user_password, $birthdate)
 		{
-			$this->user_id = $user_id;
 			$this->first_name = $first_name;
 			$this->last_name = $last_name;
 			$this->user_email = $user_email;
 			$this->user_password = $user_password;
 			$this->birthdate = $birthdate;
-		}
-
-		function getUserId() {
-			return $this->user_id;
 		}
 
 		function getFirstName() {
