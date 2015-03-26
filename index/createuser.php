@@ -2,51 +2,68 @@
 	ini_set('display_errors', 1);
 	require_once('../mysqli_connect.php');
 	require_once('User.php');
-	//comment
-
-	$first_name = $last_name = $email = $password = $birthdate = "";
-
-	if(isset($_POST['submit'])) {
-		$first_name = test_input($_POST["first_name"]);
-		$last_name = test_input($_POST["last_name"]);
-		$email = test_input($_POST["email"]);
-		$password = test_input($_POST["password"]);
-		$birthdate = test_input($_POST["year"]) . test_input($_POST["month"]) . test_input($_POST["day"]);
+	
+	$required = array('first_name', 'last_name', 'email', 'password', 'repass');
+	$error = false;
+	$isSpecial = false;
+	foreach($required as $field) {
+		if (empty($_POST[$field]) || ctype_space($_POST[$field])) {
+			$error = true;
+		} else if (preg_match('/[\^£$%&*()}{#~?><>|=¬]/', $_POST[$field])){ //Check for special characters
+			$isSpecial = true;
+		}
 	}
+	
+	if ($error) {
+	    header("location:signup.php?msg=fail");
+	} else if ($isSpecial){
+		header("location:signup.php?msg=special");
+	}else{
+	
+		$first_name = $last_name = $email = $password = $birthdate = "";
 
-	$salt = sha1(md5($password));
-	$password = md5($password.$salt);
+		if(isset($_POST['submit'])) {
+			$first_name = test_input($_POST["first_name"]);
+			$last_name = test_input($_POST["last_name"]);
+			$email = test_input($_POST["email"]);
+			$password = test_input($_POST["password"]);
+			$birthdate = $_POST['bday'];
+		}
 
-	$birthdate = date('Y-m-d', strtotime($birthdate));
+		$salt = sha1(md5($password));
+		$password = md5($password.$salt);
 
-	$user = new User($first_name, $last_name, $email, $password, $birthdate);
+		$birthdate = date('Y-m-d', strtotime($birthdate));
 
-	$query = "INSERT INTO users_table VALUES (NULL, ?, ?, ?, ?, ?, 'assets/images/placeholder.png')";
+		$user = new User($first_name, $last_name, $email, $password, $birthdate);
 
-	$stmt = mysqli_prepare($dbc, $query);
+		$query = "INSERT INTO users_table VALUES (DEFAULT, ?, ?, ?, ?, ?, DEFAULT)";
 
-	mysqli_stmt_bind_param($stmt, "sssss", $user->getFirstName(), $user->getLastName(), $user->getUserEmail(), 
-		$user->getPassword(), $user->getBirthdate());
+		$stmt = mysqli_prepare($dbc, $query);
 
-	mysqli_stmt_execute($stmt);
+		mysqli_stmt_bind_param($stmt, "sssss", $user->getFirstName(), $user->getLastName(), $user->getUserEmail(), 
+			$user->getPassword(), $user->getBirthdate());
 
-	$affected_rows = mysqli_stmt_affected_rows($stmt);
+		mysqli_stmt_execute($stmt);
 
-	if($affected_rows == 1) {
-		echo 'Sign Up successful!';
+		$affected_rows = mysqli_stmt_affected_rows($stmt);
 
-		mysqli_stmt_close($stmt);
-		mysqli_close($dbc);
-		session_start();
-		$_SERVER('myusername') = $user->getUserEmail();
-		header('location:profile.php');
-	} else {
-		echo 'Error occured <br />';
-		echo mysqli_error($dbc);
-		mysqli_close($dbc);
+		if($affected_rows == 1) {
+			echo 'Sign Up successful!';
 
-	}
+			mysqli_stmt_close($stmt);
+			mysqli_close($dbc);
+			session_start();
+			$_SESSION['myusername'] = $user->getUserEmail();
+			header('location:profile.php');
+		} else {
+			echo 'Error occured <br />';
+			echo mysqli_error($dbc);
+			mysqli_close($dbc);
 
+		}
+	}	
+	
 	function test_input($data) {
 		$data = trim($data);
 		$data = stripslashes($data);
