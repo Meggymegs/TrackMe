@@ -444,13 +444,33 @@
 						  <div class="list2" style="overflow-y:scroll; height:100px; width: 260px; border:1px solid #E0E0E0; padding-top:5px; padding-left:5px;">
 							<ul style="margin-left:-40px;">
 								<strong>Activity</strong><span style="margin-left:55px;"><strong>Reps</strong><span style="margin-left:45px;"><strong>Sets</strong><br>
-								<input class="RepSetAct" type="checkbox" name="repSetBase" value="pushUp">Push up</input> <input name="reps" type="number" min="0" style="margin-left:32.5px;width:50px; height:22px"> <input name="sets" type="number" min="0" style="margin-left:25px;width:50px; height:22px; margin-bottom:1px;"><br> 
-								<input class="RepSetAct" type="checkbox" name="repSetBase" value="pullUp">Pull up</input> <input name="reps" type="number" min="0" style="margin-left:41.5px;margin-top:2px;width:50px;height:22px"> <input name="sets" min="0" type="number" style="margin-left:25px;width:50px; height:22px; margin-bottom:3px;"><br> 
-								<input class="RepSetAct" type="checkbox" name="repSetBase" value="benchPress">Bench press</input> <input name="reps" type="number" min="0" style="margin-left:5.5px;width:50px; height:22px"> <input name="sets" type="number" min="0" style="margin-left:25px;width:50px; height:22px; margin-bottom:1px;"><br> 
-								<input class="RepSetAct" type="checkbox" name="repSetBase" value="curlUps">Curl ups</input> <input name="reps" type="number" min="0" style="margin-left:32px;margin-top:2px;width:50px;height:22px"> <input name="sets" type="number" min="0" style="margin-left:25px;width:50px; height:22px; margin-bottom:1px;"><br> 
-								<input class="RepSetAct" type="checkbox" name="repSetBase" value="curlUps">Leg press</input> <input name="reps" type="number" min="0" style="margin-left:22px;margin-top:2px;width:50px;height:22px"> <input name="sets" type="number" min="0" style="margin-left:25px;width:50px; height:22px; margin-bottom:1px;"><br> 
-								<input class="RepSetAct" type="checkbox" name="repSetBase" value="curlUps">Lat pulldown</input> <input name="reps" type="number" min="0" style="margin-left:4.5px;margin-top:2px;width:50px;height:22px"> <input name="sets" type="number" min="0" style="margin-left:25px;width:50px; height:22px; margin-bottom:1px;"><br> 
-								<input class="RepSetAct" type="checkbox" name="repSetBase" value="curlUps">Lying leg curl</input> <input name="reps" type="number" min="0" style="margin-left:.5px;margin-top:2px;width:50px;height:22px"> <input name="sets" type="number" min="0" style="margin-left:25px;width:50px; height:22px; margin-bottom:1px;"><br> 
+								<input class="RepSetAct" type="checkbox" name="pushUp" value="pushUp">Push up</input> 
+								<input name="pushReps" type="number" min="0" style="margin-left:32.5px;width:50px; height:22px"> 
+								<input name="pushSets" type="number" min="0" style="margin-left:25px;width:50px; height:22px; margin-bottom:1px;"><br> 
+								
+								<input class="RepSetAct" type="checkbox" name="pullUp" value="pullUp">Pull up</input> 
+								<input name="pullReps" type="number" min="0" style="margin-left:41.5px;margin-top:2px;width:50px;height:22px"> 
+								<input name="pullSets" min="0" type="number" style="margin-left:25px;width:50px; height:22px; margin-bottom:3px;"><br> 
+								
+								<input class="RepSetAct" type="checkbox" name="benchPress" value="benchPress">Bench press</input> 
+								<input name="benchReps" type="number" min="0" style="margin-left:5.5px;width:50px; height:22px"> 
+								<input name="benchSets" type="number" min="0" style="margin-left:25px;width:50px; height:22px; margin-bottom:1px;"><br> 
+								
+								<input class="RepSetAct" type="checkbox" name="curlUps" value="curlUps">Curl ups</input> 
+								<input name="curlReps" type="number" min="0" style="margin-left:32px;margin-top:2px;width:50px;height:22px"> 
+								<input name="curlSets" type="number" min="0" style="margin-left:25px;width:50px; height:22px; margin-bottom:1px;"><br> 
+								
+								<input class="RepSetAct" type="checkbox" name="legPress" value="legPress">Leg press</input> 
+								<input name="legReps" type="number" min="0" style="margin-left:22px;margin-top:2px;width:50px;height:22px">
+								<input name="legSets" type="number" min="0" style="margin-left:25px;width:50px; height:22px; margin-bottom:1px;"><br> 
+								
+								<input class="RepSetAct" type="checkbox" name="latPulldown" value="latPulldown">Lat pulldown</input>
+								<input name="latReps" type="number" min="0" style="margin-left:4.5px;margin-top:2px;width:50px;height:22px"> 
+								<input name="latSets" type="number" min="0" style="margin-left:25px;width:50px; height:22px; margin-bottom:1px;"><br> 
+								
+								<input class="RepSetAct" type="checkbox" name="lyingLegCurl" value="lyingLegCurl">Lying leg curl</input>
+								<input name="lyingReps" type="number" min="0" style="margin-left:.5px;margin-top:2px;width:50px;height:22px">
+								<input name="lyingSets" type="number" min="0" style="margin-left:25px;width:50px; height:22px; margin-bottom:1px;"><br> 
 								<!--check all-->
 								<input type="checkbox" onchange="checkAllRepSetAct(this)" name="chk[]" />All
 							</ul>
@@ -467,8 +487,8 @@
 						  <div class="list3" style="overflow-y:scroll; height:100px; width: 260px; border:1px solid #E0E0E0; padding-top:5px; padding-left:5px;">
 							<ul style="margin-left:-40px;">
 								<strong>Food</strong><span style="margin-left:40px;"><strong>Servings & </span><span style="margin-left:2px;">Servings</strong><br>
-								<input class="food" type="checkbox" name="food" value="egg">Egg</input> 
-									<select name="servings_1" name="serving1" style="margin-left:50px; width:45px; margin-bottom:3px;">
+								<input class="food" type="checkbox" name="food" value="egg">Fried Eggs</input> 
+									<select name="egg_srvng1" value="egg_srvng1" style="margin-left:6px; width:45px; margin-bottom:3px;">
 										<option value="0">0</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
@@ -476,7 +496,7 @@
 										<option value="4">4</option>
 										<option value="5">5</option>
 									</select>
-									<select name="servings_2" name="serving2" style="margin-left:20px; width:45px; margin-bottom:3px;">
+									<select name="egg_srvng2" value="egg_srvng2" style="margin-left:20px; width:45px; margin-bottom:3px;">
 										<option value="0">0</option>
 										<option value=".5">1/2</option>
 										<option value=".33">1/3</option>
@@ -485,8 +505,8 @@
 										<option value=".17">1/6</option>
 									</select>
 									<br><!--end of choice egg-->
-								<input class="food" type="checkbox" name="food" value="pork">Pork</input> 
-									<select name="servings_1" name="serving1" style="margin-left:45.5px; width:45px; margin-bottom:3px;">
+								<input class="food" type="checkbox" name="food" value="beef">Beef</input> 
+									<select name="beef_srvng1" value="beef_srvng1" style="margin-left:45.5px; width:45px; margin-bottom:3px;">
 										<option value="0">0</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
@@ -494,7 +514,7 @@
 										<option value="4">4</option>
 										<option value="5">5</option>
 									</select>
-									<select name="servings_2" name="serving2" style="margin-left:20px; width:45px; margin-bottom:3px;">
+									<select name="beef_srvng2" value="beef_srvng2" style="margin-left:20px; width:45px; margin-bottom:3px;">
 										<option value="0">0</option>
 										<option value=".5">1/2</option>
 										<option value=".33">1/3</option>
@@ -504,7 +524,7 @@
 									</select>
 									<br><!--end of choice pork-->
 								<input class="food" type="checkbox" name="food" value="chicken">Chicken</input> 
-									<select name="servings_1" name="serving1" style="margin-left:24.3px; width:45px; margin-bottom:3px;">
+									<select name="chicken_srvng1" value="chicken_srvng1" style="margin-left:24.3px; width:45px; margin-bottom:3px;">
 										<option value="0">0</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
@@ -512,7 +532,7 @@
 										<option value="4">4</option>
 										<option value="5">5</option>
 									</select>
-									<select name="servings_2" name="serving2" style="margin-left:20px; width:45px; margin-bottom:3px;">
+									<select name="chicken_srvng2" value="chicken_srvng2" style="margin-left:20px; width:45px; margin-bottom:3px;">
 										<option value="0">0</option>
 										<option value=".5">1/2</option>
 										<option value=".33">1/3</option>
@@ -522,7 +542,7 @@
 									</select>
 									<br><!--end of choice chicken-->
 								<input class="food" type="checkbox" name="food" value="bread">Bread</input> 
-									<select name="servings_1" name="serving1" style="margin-left:36.5px; width:45px; margin-bottom:3px;">
+									<select name="bread_srvng1" value="bread_srvng1" style="margin-left:36.5px; width:45px; margin-bottom:3px;">
 										<option value="0">0</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
@@ -530,7 +550,7 @@
 										<option value="4">4</option>
 										<option value="5">5</option>
 									</select>
-									<select name="servings_2" name="serving2" style="margin-left:20px; width:45px;">
+									<select name="bread_srvng2" value="bread_srvng2" style="margin-left:20px; width:45px;">
 										<option value="0">0</option>
 										<option value=".5">1/2</option>
 										<option value=".33">1/3</option>
