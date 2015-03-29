@@ -24,23 +24,32 @@
 		<script type="text/javascript" src="js/bmicalc.js"></script>
 		<script>
 		
-		
-		$(document).ready(function() {
-			var calendar = $('#calendar').fullCalendar({
-				defaultView: 'month',
-				events: {
-					url: 'http://localhost/TrackMe/events.php',
-					type: 'POST', // Send post data
-					error: function() {
-						alert('There was an error while fetching events.');
+			$(document).ready(function() {
+			
+				$('#calendar').fullCalendar({
+					header: {
+						left: 'prev,next today',
+						center: 'title',
+						right: 'month,agendaWeek,agendaDay'
+					},
+					defaultDate: '2015-02-12',
+					editable: true,
+					eventLimit: true, // allow "more" link when too many events
+					events: {
+						url: 'events.php',
+						error: function() {
+							alert('There was an error while fetching events.');
+						}
+					},
+					loading: function(bool) {
+						$('#loading').toggle(bool);
 					}
-				}
+				});
+				
+				var date = $('#calendar').fullCalendar('today');
+			
+				$('#calendar').fullCalendar('gotoDate', date);
 			});
-			
-			var date = $('#calendar').fullCalendar('today');
-			
-			$('#calendar').fullCalendar('gotoDate', date);
-		});//end of fullCalendar
 		
 		 
 		 /*
@@ -693,7 +702,12 @@
 			</div>
 			
 			<div class="col-md-6"> <!--for the calendar-->
-				<h1 align="center">MY CALENDAR</h1>
+				<h1 align="center"><?php
+					$result = mysqli_query($dbc, "SELECT UPPER(first_name) AS first_name FROM `users_table` WHERE user_email like '$myusername'"); 
+					while ($row = mysqli_fetch_assoc($result)) {
+						echo $row['first_name']."'S";
+					}
+					?> CALENDAR</h1>
 				<div id="calendar"></div>
 			</div>
 			

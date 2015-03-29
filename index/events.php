@@ -25,6 +25,7 @@ try {
         $e['id'] = $row['user_table.user_id'];
         $e['title'] = $row['food_table.food_name'];
         $e['start'] = $row['food_served_table.date_created'];
+        $e['end'] = $row['food_served_table.date_created'];
         $e['allDay'] = false;
 
         // Merge the event array into the return array
