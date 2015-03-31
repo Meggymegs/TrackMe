@@ -4,8 +4,8 @@
 	if(!isset($_SESSION['myusername'])){ //if login in session is not set
     header("Location:signin.php");
 	
-	include '../mysqli_connect.php';
 }
+	include '../mysqli_connect.php';
 ?>
 <!doctype html>
 <html>
@@ -474,7 +474,6 @@
 						<img src="
 							<?php
 							$myusername = $_SESSION['myusername'];
-							include '../mysqli_connect.php';
 							$result = mysqli_query($dbc, "SELECT * FROM `users_table` WHERE user_email like '$myusername'"); 
 							while ($row = mysqli_fetch_assoc($result)) {
 								echo $row['user_profile_pic'];
@@ -491,8 +490,8 @@
 				  </font><span class="caret"></span></a>
 				  
 				  <ul class="dropdown-menu" role="menu">
-					<li><a href="profile.html">Profile</a></li>
-					<li><a href="accountSettings.html">Account Settings</a></li>
+					<li><a href="profile.php">Profile</a></li>
+					<li><a href="accountSettings.php">Account Settings</a></li>
 					<li><a href="calendar.html">Calendar</a></li>
 					<li><a href="logout.php">Log Out</a></li>
 					<li class="divider"></li>
@@ -523,11 +522,23 @@
 						echo $row['first_name'];
 					}
 				?><br><br>
-				<b>Age:</b>&nbsp19 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				<b>Weight:</b>&nbsp56kg&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				<b>Height:</b>&nbsp5'&nbsp4"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				<b>Target&nbspWeight:</b>&nbsp54kg&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				<b>Current&nbspTraining&nbspSet:</b>&nbspA
+				<b>Age:</b>
+					<?php
+						$result = mysqli_query($dbc, "SELECT * FROM `users_table` WHERE user_email like '$myusername'"); 
+						while ($row = mysqli_fetch_assoc($result)) {
+						$birthday = $row['user_birthdate'];
+						$birthday = explode("-", $birthday);
+						//get age from date or birthdate
+						$age = (date("md", date("U", mktime(0, 0, 0, $birthday[1], $birthday[2], $birthday[0]))) > date("md")
+							? ((date("Y") - $birthday[0]) - 1)
+							: (date("Y") - $birthday[0]));
+						echo $age;
+						}
+					?>
+				<br>
+				<b>Weight:</b>56kg <br>
+				<b>Height:</b>5'4" <br>
+				<b>Target&nbspWeight:</b>54kg
 			</div>
 			
 			<div class="col-md-3"><!--form for physical act and food intake-->

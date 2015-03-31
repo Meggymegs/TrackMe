@@ -1,3 +1,8 @@
+<?php
+	session_start();
+	include '../mysqli_connect.php';
+?>
+
 <!doctype html>
 <html>
 	<head>
@@ -18,7 +23,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			  </button>
-			  <a class="navbar-brand" href="#">
+			  <a class="navbar-brand" href="profile.php">
 				<img class="logo" src="assets/images/trackmelogo.png">
 			  </a>
 			</div>
@@ -27,10 +32,29 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			  <ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
-				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img src="assets/images/profilePic.jpg" class="navbar-pic" height="20" width="20"><font color="white">Mark Romantigue </font><span class="caret"></span></a>
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+				  
+						<img src="
+							<?php
+							$myusername = $_SESSION['myusername'];
+							$result = mysqli_query($dbc, "SELECT * FROM `users_table` WHERE user_email like '$myusername'"); 
+							while ($row = mysqli_fetch_assoc($result)) {
+								echo $row['user_profile_pic'];
+							}
+							?>
+						" class="navbar-pic" height="20" width="20"><font color = "white">
+						
+					<?php
+					$result = mysqli_query($dbc, "SELECT * FROM `users_table` WHERE user_email like '$myusername'"); 
+					while ($row = mysqli_fetch_assoc($result)) {
+						echo $row['first_name']. " " . $row['last_name'];
+					}
+					?>
+				  </font><span class="caret"></span></a>
+				  
 				  <ul class="dropdown-menu" role="menu">
-					<li><a href="accountSettings.html">Account Settings</a></li>
-					<li><a href="profile.html">Profile</a></li>
+					<li><a href="accountSettings.php">Account Settings</a></li>
+					<li><a href="profile.php">Profile</a></li>
 					<li><a href="calendar.html">Calendar</a></li>
 					<li><a href="index.html">Log Out</a></li>
 					<li class="divider"></li>
@@ -47,24 +71,28 @@
 		
 		<div class="btn-group-vertical" role="group" aria-label="...">
 			<div class="btn-group" id="account" role="group">
-				<a class="btn btn-default" href="accountSettings.html">Account >></a>
+				<a class="btn btn-default" href="#">Account >></a>
 			</div>
 			<div class="btn-group" role="group">
-				<a class="btn btn-default" href="#">Profile Picture >></a>
+				<a class="btn btn-default" href="changePicture.php">Profile Picture >></a>
 			</div>
 			<div class="btn-group" role="group">
-				<a class="btn btn-default" href="changePassword.html">Password >></a>
+				<a class="btn btn-default" href="changePassword.php">Password >></a>
 			</div>
 		</div>
 		
 		<div class="panel panel-default">
 			 <div class="panel-heading">
-				<h3 class="panel-title">Change Profile Picture</h3>
+				<h3 class="panel-title">Basic Information</h3>
 			 </div>
 			 <div class="panel-body">
 				<form id="formPos" action="demo_form.asp" method="get">
-					Select image to upload: <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
-					<button type="button" class="btn btn-submit">Upload Image</button>
+					First Name: <input class="FirstName" type="text" name="FirstName"><br><br>
+					Last Name: <input class="LastName" type="text" name="LastName"><br><br>
+					Username: <input class="Username" type="text" name="Username"><br><br>
+					Email: <input class="Email" type="text" name="Email"><br><br>
+					
+					<button type="button" class="btn btn-submit">Save Changes</button>
 				</form>
 			 </div>
 		</div>
