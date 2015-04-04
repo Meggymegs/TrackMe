@@ -1,12 +1,18 @@
 <?php
-	include '../mysqli_connect.php';
-	session_start();	
+	include 'mysqli_connect.php';
+	session_start();
+	$user_id = 0;	
 	$tbl_user = "users_table";
 	$tbl_phy_dist = "physical_activities_dist_type_table";
 	$tbl_phy_rep = "physical_activities_rep_type_table";
 	$tbl_food = "food_table";
 	$myusername = $_SESSION['myusername'];
-	//comment
+	$userID = mysqli_query($dbc, "SELECT user_id FROM $tbl_user WHERE user_email like '$myusername'");
+	while ($row = mysqli_fetch_assoc($userID)) {
+				//to get the integer value of the $userID
+				echo $row['user_id'];//debugging
+				$user_id = $user_id + $row['user_id'];
+	}
 	
 	////////////////////START OF TIME/DISTANCE BASED PHYSICAL ACTIVITIES INSERTION////////////////////
 	if(isset($_POST['running']) && $_POST['running']==='running'){ 
@@ -417,8 +423,56 @@
 	}//end of if beef
 	
 	////////////////////END OF FOOD INTAKE INSERTION////////////////////
+        ////////////////////START OF BODY MEASUREMENTS////////////////////
+
+
+	$a = $_POST["height1"];
+	$b = $_POST["weight1"];
+	$c = $_POST["waist1"];
+	$d = $_POST["wrist1"];
+	$e = $_POST["hip1"];
+	$f = $_POST["forearm1"];
+	$bmi = round($b/($a*$a),2);
+	$fat = (415*$c-8.2*2.20462*$b-9442)/(2.20462*$b); //male fat
+	$fat = (26.8*2.20462*$b-$d*31.8+$c*15.7+$e*24.9-$f*43.4-898.7)/(2.20462*$b); //female fat
+	$date = date("Y-m-d");
+	$strSQL = "INSERT INTO body_measurement_table(user_id,body_measurement_type_id,body_measurement_value,date_created) VALUES('" . $user_id . "','1','" . $a . "','" . $date . "')";
+	mysqli_query($dbc,$strSQL) or die (mysql_error());
+	$strSQL = "INSERT INTO body_measurement_table(user_id,body_measurement_type_id,body_measurement_value,date_created) VALUES('" . $user_id . "','2','" . $b . "','" . $date . "')";
+	mysqli_query($dbc,$strSQL) or die (mysql_error());
+	$strSQL = "INSERT INTO body_measurement_table(user_id,body_measurement_type_id,body_measurement_value,date_created) VALUES('" . $user_id . "','3','" . $c . "','" . $date . "')";
+	mysqli_query($dbc,$strSQL) or die (mysql_error());
+	$strSQL = "INSERT INTO body_measurement_table(user_id,body_measurement_type_id,body_measurement_value,date_created) VALUES('" . $user_id . "','4','" . $d . "','" . $date . "')";
+	mysqli_query($dbc,$strSQL) or die (mysql_error());
+	$strSQL = "INSERT INTO body_measurement_table(user_id,body_measurement_type_id,body_measurement_value,date_created) VALUES('" . $user_id . "','5','" . $e . "','" . $date . "')";
+	mysqli_query($dbc,$strSQL) or die (mysql_error());
+	$strSQL = "INSERT INTO body_measurement_table(user_id,body_measurement_type_id,body_measurement_value,date_created) VALUES('" . $user_id . "','6','" . $f . "','" . $date . "')";
+	mysqli_query($dbc,$strSQL) or die (mysql_error());
+	$strSQL = "INSERT INTO body_measurement_table(user_id,body_measurement_type_id,body_measurement_value,date_created) VALUES('" . $user_id . "','7','" . $bmi . "','" . $date . "')";
+	mysqli_query($dbc,$strSQL) or die (mysql_error());
+	$strSQL = "INSERT INTO body_measurement_table(user_id,body_measurement_type_id,body_measurement_value,date_created) VALUES('" . $user_id . "','8','" . $fat . "','" . $date . "')";
+	mysqli_query($dbc,$strSQL) or die (mysql_error());
 	
-	header('location:profile.php');
+
+        ////////////////////END OF BODY MEASUREMENTS////////////////////
+        ////////////////////START OF VITAL SIGNS////////////////////
+
+	$g = $_POST["hrate1"];
+	$h = $_POST["rrate1"];
+	$i = $_POST["systolic"];
+	$j = $_POST["diastolic"];
+	$date = date("Y-m-d");
+	$strSQL = "INSERT INTO vital_signs_table(user_id,vital_signs_type_id,vital_signs_value,date_created) VALUES('" . $user_id . "','1','" . $g . "','" . $date . "')";
+	mysqli_query($dbc,$strSQL) or die (mysql_error());
+	$strSQL = "INSERT INTO vital_signs_table(user_id,vital_signs_type_id,vital_signs_value,date_created) VALUES('" . $user_id . "','2','" . $h . "','" . $date . "')";
+	mysqli_query($dbc,$strSQL) or die (mysql_error());
+	$strSQL = "INSERT INTO vital_signs_table(user_id,vital_signs_type_id,vital_signs_value,date_created) VALUES('" . $user_id . "','3','" . $i . "','" . $date . "')";
+	mysqli_query($dbc,$strSQL) or die (mysql_error());
+	$strSQL = "INSERT INTO vital_signs_table(user_id,vital_signs_type_id,vital_signs_value,date_created) VALUES('" . $user_id . "','4','" . $j . "','" . $date . "')";
+	mysqli_query($dbc,$strSQL) or die (mysql_error());
+
+        ////////////////////END OF VITAL SIGNS////////////////////
+	
 	mysqli_close($dbc);
 	
 	/*
