@@ -473,6 +473,7 @@
 
         ////////////////////END OF VITAL SIGNS////////////////////
 	
+	header('location:profile.php');
 	mysqli_close($dbc);
 	
 	/*
