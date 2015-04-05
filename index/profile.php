@@ -496,7 +496,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			  </button>
-			  <a class="navbar-brand" href="profile.html">
+			  <a class="navbar-brand" href="profile.php">
 				<img class="logo" src="assets/images/trackmelogo.png">
 			  </a>
 			</div>
