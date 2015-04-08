@@ -34,18 +34,34 @@
 
 .col-md-3{
 	position:absolute;
-	top:210px;
-	right:296px;
-	min-height: 400px;
+	top:260px;
+	left:19px;
 	background-color: white;
-	margin-left: 10px;
+	width:280px;
+	min-height: 200px;
+	margin-left: 6px;
 	margin-right: 10px;
 	margin-bottom: 10px;
 	border-radius: 3px;
-	padding-bottom: 20px;
+	padding-bottom: 10px;
+}
+
+.col-md-4{
+	position:absolute;
+	left:309px;
+	background-color: white;
+	width:280px;
+	min-height: 200px;
+	margin-left: 6px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	border-radius: 3px;
+	padding-bottom: 10px;
 }
 
 .col-md-6{
+	position:absolute;
+	left:599px;
 	width:500px;
 	min-height: 543px;
 	background-color: white;
@@ -56,14 +72,6 @@
 }
 
 .col-md-3{
-	width:280px;
-	min-height: 200px;
-	background-color: white;
-	margin-left: 6px;
-	margin-right: 10px;
-	margin-bottom: 10px;
-	border-radius: 3px;
-	padding-bottom: 10px;
 }
 
 a {
@@ -130,5 +138,31 @@ a {
 	display:inline-block;                 /* SHOW "Collapse" (IF CHECKED) */
 }
 [id^="togList3"]:checked ~ .list3{
+	display:block;                        /* SHOW LIST (IF CHECKED) */
+}
+
+[id^="togList4"],                        /* HIDE CHECKBOX */
+[id^="togList4"] ~ .list4,                /* HIDE LIST */
+[id^="togList4"] + label  span + span,   /* HIDE "Collapse" */
+[id^="togList4"]:checked + label span{   /* HIDE "Expand" (IF CHECKED) */
+	display:none;
+}
+[id^="togList4"]:checked + label span + span{
+	display:inline-block;                 /* SHOW "Collapse" (IF CHECKED) */
+}
+[id^="togList4"]:checked ~ .list4{
+	display:block;                        /* SHOW LIST (IF CHECKED) */
+}
+
+[id^="togList5"],                        /* HIDE CHECKBOX */
+[id^="togList5"] ~ .list5,                /* HIDE LIST */
+[id^="togList5"] + label  span + span,   /* HIDE "Collapse" */
+[id^="togList5"]:checked + label span{   /* HIDE "Expand" (IF CHECKED) */
+	display:none;
+}
+[id^="togList5"]:checked + label span + span{
+	display:inline-block;                 /* SHOW "Collapse" (IF CHECKED) */
+}
+[id^="togList5"]:checked ~ .list5{
 	display:block;                        /* SHOW LIST (IF CHECKED) */
 }
