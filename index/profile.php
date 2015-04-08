@@ -447,6 +447,42 @@
 				 }
 			 }
 		 }
+
+		 function checkAllBM(ele) {
+			 var checkboxes = document.getElementsByClassName("body");
+			 if (ele.checked) {
+				 for (var i = 0; i < checkboxes.length; i++) {
+					 if (checkboxes[i].type == 'checkbox') {
+						 checkboxes[i].checked = true;
+					 }
+				 }
+			 } else {
+				 for (var i = 0; i < checkboxes.length; i++) {
+					 console.log(i)
+					 if (checkboxes[i].type == 'checkbox') {
+						 checkboxes[i].checked = false;
+					 }
+				 }
+			 }
+		 }
+
+		 function checkAllVR(ele) {
+			 var checkboxes = document.getElementsByClassName("vital");
+			 if (ele.checked) {
+				 for (var i = 0; i < checkboxes.length; i++) {
+					 if (checkboxes[i].type == 'checkbox') {
+						 checkboxes[i].checked = true;
+					 }
+				 }
+			 } else {
+				 for (var i = 0; i < checkboxes.length; i++) {
+					 console.log(i)
+					 if (checkboxes[i].type == 'checkbox') {
+						 checkboxes[i].checked = false;
+					 }
+				 }
+			 }
+		 }
 		</script>
 	</head>
 	<body style="background-color:#2d3e50;">
@@ -460,7 +496,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			  </button>
-			  <a class="navbar-brand" href="profile.html">
+			  <a class="navbar-brand" href="profile.php">
 				<img class="logo" src="assets/images/trackmelogo.png">
 			  </a>
 			</div>
@@ -703,8 +739,56 @@
 									<!--check all-->
 									<input type="checkbox" onchange="checkAllFood(this)" name="chk[]" />All
 							</ul>
-						  </div><!--end of list-->
+						  </div><!--end of list--><br>
+
+					&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot
 					
+					<span class="thumb"><h3>Body Measurements</h3></span>
+					<input id="togList4" type="checkbox">
+					<label for="togList4">
+							<span><p>Add body measurements<img src="res/addButton.png" style="margin-left:60px;" width="20px" height="20px"></p></span><!--<p>Click <span style="color:#AA3939;">ME</span> to add food consumed</p>-->
+							<span style="color:#AA3939;"><p>Collapse</p></span>
+					</label>
+					<div class="list4" style="overflow-y:scroll; height:100px; width: 260px; border:1px solid #E0E0E0; padding-top:5px; padding-left:5px;">
+					<ul style="margin-left:-40px;">
+					<strong>Location</strong><span style="margin-left:60px;"><strong>Measurement</strong></span><br>
+					<input class="body" type="checkbox" name="body" value="height">Height (m)</input>
+					<input type="text" name="height1" size=1 style="margin-left:60px;"><br>
+					<input class="body" type="checkbox" name="body" value="weight">Weight (kg)</input>
+					<input type="text" name="weight1" size=1 style="margin-left:54px;"><br>
+					<input class="body" type="checkbox" name="body" value="waist">Waist (cm)</input>
+					<input type="text" name="waist1" size=1 style="margin-left:59px;"><br>
+					<input class="body" type="checkbox" name="body" value="wrist">Wrist (cm)</input>
+					<input type="text" name="wrist1" size=1 style="margin-left:62px;"><br>
+					<input class="body" type="checkbox" name="body" value="hip">Hip (cm)</input>
+					<input type="text" name="hip1" size=1 style="margin-left:73px;"><br>
+					<input class="body" type="checkbox" name="body" value="forearm">Forearm (cm)</input>
+					<input type="text" name="forearm1" size=1 style="margin-left:39px;"><br>
+					<input type="checkbox" onchange="checkAllBM(this)" name="chk[]" />All
+					</ul>
+					</div><br>
+
+					&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot&middot
+					
+					<span class="thumb"><h3>Vital Signs</h3></span>
+					<input id="togList5" type="checkbox">
+					<label for="togList5">
+							<span><p>Add vital signs<img src="res/addButton.png" style="margin-left:60px;" width="20px" height="20px"></p></span><!--<p>Click <span style="color:#AA3939;">ME</span> to add food consumed</p>-->
+							<span style="color:#AA3939;"><p>Collapse</p></span>
+					</label>
+					<div class="list5" style="overflow-y:scroll; height:100px; width: 260px; border:1px solid #E0E0E0; padding-top:5px; padding-left:5px;">
+					<ul style="margin-left:-40px;">
+					<strong>Location</strong><span style="margin-left:60px;"><strong>Measurement</strong></span><br>
+					<input class="vital" type="checkbox" name="vital" value="hrate">Heart Rate</input>
+					<input type="text" name="hrate1" size=1 style="margin-left:58px;"><br>
+					<input class="vital" type="checkbox" name="vital" value="rrate">Respiratory Rate</input>
+					<input type="text" name="rrate1" size=1 style="margin-left:20px;"><br>
+					<input class="vital" type="checkbox" name="vital" value="bp">Blood Pressure</input>
+					<input type="text" name="systolic" size=1 style="margin-left:30px;">/<input type="text" name="diastolic" size=1><br>
+					<input type="checkbox" onchange="checkAllVR(this)" name="chk[]" />All
+					</ul>
+					</div><br>
+
 					<input type="submit" name="submit" value="Submit" style="width:30%; margin-left:80px; margin-top:50px; margin-bottom:8px; border-radius:4px; background-color:#AA3939; color:white;"/>
 				</form>
 				

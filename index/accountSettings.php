@@ -3,6 +3,7 @@
 	include '../mysqli_connect.php';
 ?>
 
+
 <!doctype html>
 <html>
 	<head>
@@ -13,6 +14,19 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<head>
 	<body>
+	
+	<?php
+		$user_id = $_GET['user_id'];
+		$firstName = $_GET['firstName'];
+		$lastName = $_GET['lastName'];
+		$email = $_GET['email'];
+
+		$sql = "UPDATE users_table ".
+			   "SET first_name = $firstName, last_name = $lastName, user_email = $email ".
+			   "WHERE user_id = $user_id" ;
+
+	?>
+	
 		<nav class="navbar navbar-inverse navbar-static-top">
 		  <div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -87,10 +101,9 @@
 			 </div>
 			 <div class="panel-body">
 				<form id="formPos" action="demo_form.asp" method="get">
-					First Name: <input class="FirstName" type="text" name="FirstName"><br><br>
-					Last Name: <input class="LastName" type="text" name="LastName"><br><br>
-					Username: <input class="Username" type="text" name="Username"><br><br>
-					Email: <input class="Email" type="text" name="Email"><br><br>
+					First Name: <input class="firstName" type="text" name="firstName"><br><br>
+					Last Name: <input class="lastName" type="text" name="lastName"><br><br>
+					Email: <input class="email" type="text" name="email"><br><br>
 					
 					<button type="button" class="btn btn-submit">Save Changes</button>
 				</form>
