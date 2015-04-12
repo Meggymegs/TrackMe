@@ -25,8 +25,11 @@
 .col-md-3{
 	min-height: 200px;
 	background-color: white;
+<<<<<<< HEAD
 	float: none;
 	margin: 0 auto;
+=======
+>>>>>>> 4b14088bec3c0db083b2ca840bfcb3e007800896
 	padding-top: 1px;
 	margin-bottom: 10px;
 	border-radius: 3px;

@@ -74,7 +74,11 @@
 			
 			<div class="col-md-3"><!--form for physical act and food intake-->
 				
+<<<<<<< HEAD
 				<form action="submitActivities.php" method="post">
+=======
+				<form action="createFood.php" method="post">
+>>>>>>> 4b14088bec3c0db083b2ca840bfcb3e007800896
 					
 					<span class="thumb"><h3>Add Food</h3></span>
 					
@@ -82,9 +86,15 @@
 						
 						  <div class="list1" style="border:1px solid #E0E0E0; width: 260px; padding-top:5px; padding-left:5px;">
 							<ul style="margin-left:-40px;">
+<<<<<<< HEAD
 								<strong>Activity</strong><span style="margin-left:50px;"><strong>Calories</strong><span style="margin-left:20px;"><br>
 								Running
 								<input name="run_hrs" type="number" min="0" max="500" style="margin-left:45px;width:35px; height:22px; margin-bottom:3px;"></input>
+=======
+								<strong>Food Name</strong><span style="margin-left:50px;"><strong>Calories</strong><span style="margin-left:20px;"><br>
+								<input name="foodName" type="text" min="0" max="500" style="margin-left:0px;width:95px; height:22px; margin-bottom:3px;"></input>
+								<input name="calories" type="number" min="0" max="500" style="margin-left:30px;width:55px; height:22px; margin-bottom:3px;"></input>
+>>>>>>> 4b14088bec3c0db083b2ca840bfcb3e007800896
 								<br> 
 								
 							</ul>
