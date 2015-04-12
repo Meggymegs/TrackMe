@@ -751,17 +751,17 @@
 					<div class="list4" style="overflow-y:scroll; height:100px; width: 260px; border:1px solid #E0E0E0; padding-top:5px; padding-left:5px;">
 					<ul style="margin-left:-40px;">
 					<strong>Location</strong><span style="margin-left:60px;"><strong>Measurement</strong></span><br>
-					<input class="body" type="checkbox" name="body" value="height">Height (m)</input>
+					<input class="body" type="checkbox" name="body1" value="height">Height (m)</input>
 					<input type="text" name="height" size=1 style="margin-left:60px;"><br>
-					<input class="body" type="checkbox" name="body" value="weight">Weight (kg)</input>
+					<input class="body" type="checkbox" name="body2" value="weight">Weight (kg)</input>
 					<input type="text" name="weight" size=1 style="margin-left:54px;"><br>
-					<input class="body" type="checkbox" name="body" value="waist">Waist (cm)</input>
+					<input class="body" type="checkbox" name="body3" value="waist">Waist (cm)</input>
 					<input type="text" name="waist" size=1 style="margin-left:59px;"><br>
-					<input class="body" type="checkbox" name="body" value="wrist">Wrist (cm)</input>
+					<input class="body" type="checkbox" name="body4" value="wrist">Wrist (cm)</input>
 					<input type="text" name="wrist" size=1 style="margin-left:62px;"><br>
-					<input class="body" type="checkbox" name="body" value="hip">Hip (cm)</input>
+					<input class="body" type="checkbox" name="body5" value="hip">Hip (cm)</input>
 					<input type="text" name="hip" size=1 style="margin-left:73px;"><br>
-					<input class="body" type="checkbox" name="body" value="forearm">Forearm (cm)</input>
+					<input class="body" type="checkbox" name="body6" value="forearm">Forearm (cm)</input>
 					<input type="text" name="forearm" size=1 style="margin-left:39px;"><br>
 					<input type="checkbox" onchange="checkAllBM(this)" name="chk[]" />All
 					</ul>
@@ -778,11 +778,11 @@
 					<div class="list5" style="overflow-y:scroll; height:100px; width: 260px; border:1px solid #E0E0E0; padding-top:5px; padding-left:5px;">
 					<ul style="margin-left:-40px;">
 					<strong>Location</strong><span style="margin-left:60px;"><strong>Measurement</strong></span><br>
-					<input class="vital" type="checkbox" name="vital" value="hrate">Heart Rate</input>
+					<input class="vital" type="checkbox" name="vital1" value="hrate">Heart Rate</input>
 					<input type="text" name="hrate" size=1 style="margin-left:58px;"><br>
-					<input class="vital" type="checkbox" name="vital" value="rrate">Respiratory Rate</input>
+					<input class="vital" type="checkbox" name="vital2" value="rrate">Respiratory Rate</input>
 					<input type="text" name="rrate" size=1 style="margin-left:20px;"><br>
-					<input class="vital" type="checkbox" name="vital" value="bp">Blood Pressure</input>
+					<input class="vital" type="checkbox" name="vital3" value="bp">Blood Pressure</input>
 					<input type="text" name="systolic" size=1 style="margin-left:30px;">/<input type="text" name="diastolic" size=1><br>
 					<input type="checkbox" onchange="checkAllVR(this)" name="chk[]" />All
 					</ul>

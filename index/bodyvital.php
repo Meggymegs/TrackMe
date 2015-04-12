@@ -24,6 +24,7 @@ $bmi = round($b/($a*$a),2);
 $fat = (415*$c-8.2*2.20462*$b-9442)/(2.20462*$b);
 $date = date("Y-m-d");
 
+if (isset($_POST['body1'])) {
 $strSQL = "SELECT COUNT(*) FROM body_measurement_table WHERE user_id = '" . $user_id . "' AND body_measurement_type_id = '1'";
 $rs = mysql_query($strSQL);
 $row = mysql_fetch_array($rs);
@@ -34,7 +35,9 @@ $strSQL = "INSERT INTO body_measurement_table(user_id,body_measurement_type_id,b
 $strSQL = "UPDATE body_measurement_table SET body_measurement_value = '" . $a . "', date_created = '" . $date . "' WHERE body_measurement_type_id = '1'";
 }
 mysql_query($strSQL) or die (mysql_error());
+}
 
+if (isset($_POST['body2'])) {
 $strSQL = "SELECT COUNT(*) FROM body_measurement_table WHERE user_id = '" . $user_id . "' AND body_measurement_type_id = '2'";
 $rs = mysql_query($strSQL);
 $row = mysql_fetch_array($rs);
@@ -45,7 +48,9 @@ $strSQL = "INSERT INTO body_measurement_table(user_id,body_measurement_type_id,b
 $strSQL = "UPDATE body_measurement_table SET body_measurement_value = '" . $b . "', date_created = '" . $date . "' WHERE body_measurement_type_id = '2'";
 }
 mysql_query($strSQL) or die (mysql_error());
+}
 
+if (isset($_POST['body3'])) {
 $strSQL = "SELECT COUNT(*) FROM body_measurement_table WHERE user_id = '" . $user_id . "' AND body_measurement_type_id = '3'";
 $rs = mysql_query($strSQL);
 $row = mysql_fetch_array($rs);
@@ -56,7 +61,9 @@ $strSQL = "INSERT INTO body_measurement_table(user_id,body_measurement_type_id,b
 $strSQL = "UPDATE body_measurement_table SET body_measurement_value = '" . $c . "', date_created = '" . $date . "' WHERE body_measurement_type_id = '3'";
 }
 mysql_query($strSQL) or die (mysql_error());
+}
 
+if (isset($_POST['body4'])) {
 $strSQL = "SELECT COUNT(*) FROM body_measurement_table WHERE user_id = '" . $user_id . "' AND body_measurement_type_id = '4'";
 $rs = mysql_query($strSQL);
 $row = mysql_fetch_array($rs);
@@ -67,7 +74,9 @@ $strSQL = "INSERT INTO body_measurement_table(user_id,body_measurement_type_id,b
 $strSQL = "UPDATE body_measurement_table SET body_measurement_value = '" . $d . "', date_created = '" . $date . "' WHERE body_measurement_type_id = '4'";
 }
 mysql_query($strSQL) or die (mysql_error());
+}
 
+if (isset($_POST['body5'])) {
 $strSQL = "SELECT COUNT(*) FROM body_measurement_table WHERE user_id = '" . $user_id . "' AND body_measurement_type_id = '5'";
 $rs = mysql_query($strSQL);
 $row = mysql_fetch_array($rs);
@@ -78,7 +87,9 @@ $strSQL = "INSERT INTO body_measurement_table(user_id,body_measurement_type_id,b
 $strSQL = "UPDATE body_measurement_table SET body_measurement_value = '" . $e . "', date_created = '" . $date . "' WHERE body_measurement_type_id = '5'";
 }
 mysql_query($strSQL) or die (mysql_error());
+}
 
+if (isset($_POST['body6'])) {
 $strSQL = "SELECT COUNT(*) FROM body_measurement_table WHERE user_id = '" . $user_id . "' AND body_measurement_type_id = '6'";
 $rs = mysql_query($strSQL);
 $row = mysql_fetch_array($rs);
@@ -89,7 +100,9 @@ $strSQL = "INSERT INTO body_measurement_table(user_id,body_measurement_type_id,b
 $strSQL = "UPDATE body_measurement_table SET body_measurement_value = '" . $f . "', date_created = '" . $date . "' WHERE body_measurement_type_id = '6'";
 }
 mysql_query($strSQL) or die (mysql_error());
+}
 
+if (isset($_POST['body1']) && isset($_POST['body2'])) {
 $strSQL = "SELECT COUNT(*) FROM body_measurement_table WHERE user_id = '" . $user_id . "' AND body_measurement_type_id = '7'";
 $rs = mysql_query($strSQL);
 $row = mysql_fetch_array($rs);
@@ -100,7 +113,9 @@ $strSQL = "INSERT INTO body_measurement_table(user_id,body_measurement_type_id,b
 $strSQL = "UPDATE body_measurement_table SET body_measurement_value = '" . $bmi . "', date_created = '" . $date . "' WHERE body_measurement_type_id = '7'";
 }
 mysql_query($strSQL) or die (mysql_error());
+}
 
+if (isset($_POST['body3']) && isset($_POST['body2'])) {
 $strSQL = "SELECT COUNT(*) FROM body_measurement_table WHERE user_id = '" . $user_id . "' AND body_measurement_type_id = '8'";
 $rs = mysql_query($strSQL);
 $row = mysql_fetch_array($rs);
@@ -111,7 +126,9 @@ $strSQL = "INSERT INTO body_measurement_table(user_id,body_measurement_type_id,b
 $strSQL = "UPDATE body_measurement_table SET body_measurement_value = '" . $fat . "', date_created = '" . $date . "' WHERE body_measurement_type_id = '8'";
 }
 mysql_query($strSQL) or die (mysql_error());
+}
 
+if (isset($_POST['vital1'])) {
 $strSQL = "SELECT COUNT(*) FROM vital_signs_table WHERE user_id = '" . $user_id . "' AND vital_signs_type_id = '1'";
 $rs = mysql_query($strSQL);
 $row = mysql_fetch_array($rs);
@@ -122,7 +139,9 @@ $strSQL = "INSERT INTO vital_signs_table(user_id,vital_signs_type_id,vital_signs
 $strSQL = "UPDATE vital_signs_table SET vital_signs_value = '" . $g . "', date_created = '" . $date . "' WHERE vital_signs_type_id = '1'";
 }
 mysql_query($strSQL) or die (mysql_error());
+}
 
+if (isset($_POST['vital2'])) {
 $strSQL = "SELECT COUNT(*) FROM vital_signs_table WHERE user_id = '" . $user_id . "' AND vital_signs_type_id = '2'";
 $rs = mysql_query($strSQL);
 $row = mysql_fetch_array($rs);
@@ -133,7 +152,9 @@ $strSQL = "INSERT INTO vital_signs_table(user_id,vital_signs_type_id,vital_signs
 $strSQL = "UPDATE vital_signs_table SET vital_signs_value = '" . $h . "', date_created = '" . $date . "' WHERE vital_signs_type_id = '2'";
 }
 mysql_query($strSQL) or die (mysql_error());
+}
 
+if (isset($_POST['vital3'])) {
 $strSQL = "SELECT COUNT(*) FROM vital_signs_table WHERE user_id = '" . $user_id . "' AND vital_signs_type_id = '3'";
 $rs = mysql_query($strSQL);
 $row = mysql_fetch_array($rs);
@@ -155,6 +176,7 @@ $strSQL = "INSERT INTO vital_signs_table(user_id,vital_signs_type_id,vital_signs
 $strSQL = "UPDATE vital_signs_table SET vital_signs_value = '" . $j . "', date_created = '" . $date . "' WHERE vital_signs_type_id = '4'";
 }
 mysql_query($strSQL) or die (mysql_error());
+}
 
 mysql_close();
 header('location:profile.php');
