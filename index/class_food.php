@@ -9,7 +9,7 @@ class Food
     function __construct($foodName, $calories)
     {
         $this->foodName = $foodName;
-	$this->calories = $calories;
+		$this->calories = $calories;
     }
 
     public function setFoodName($foodName)
@@ -26,7 +26,7 @@ class Food
         $this->calories = $calories;
     }
 
-    public function getFoodName()
+    public function getCalories()
     {
         return $this->calories;
     }

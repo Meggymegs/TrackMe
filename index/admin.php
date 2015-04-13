@@ -6,24 +6,39 @@
 	
 }
 	include '../mysqli_connect.php';
-?>
-<!doctype html>
-<html>
-	<head>
-		<title>Admin</title>
-		<link rel="stylesheet" href='css/fullcalendar/fullcalendar.css' />
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/bootstrap.theme.min.css">
-		<link rel="stylesheet" href="css/admin.css">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
-		<script src='js/lib/jquery.min.js'></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src='js/lib/moment.min.js'></script>
-		<script src='js/fullcalendar.js'></script>
-	</head>
 	
-	<body style="background-color:#2d3e50;">
+	if(isset($_GET['msg'])){	
+		$msg = $_GET['msg'];
+		if ($msg == "success"){
+			?> <script> alert("Food added Successfully"); </script> <?php
+		} else if ($msg ==  "fail"){
+			?> <script> alert("Please fill up all fields!"); </script> <?php
+		} else if ($msg ==  "special"){
+			?> <script> alert("Special Characters ()!@#$%^&* are not allowed!"); </script> <?php
+		}
+	}
+?>
+<html>
+  <head>
+    <title>Admin</title>
+    <script src="js/lib/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/typeahead.min.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap.theme.min.css">
+	<link rel="stylesheet" href="css/admin.css">
+    <script>
+    $(document).ready(function(){
+
+		$('input.typeahead').typeahead({
+			name: 'typeahead',
+			remote:'search.php?key=%QUERY',
+			limit : 10
+		});
+	});
+    </script>
+  </head>
+   <body style="background-color:#2d3e50;">
 		<nav class="navbar navbar-inverse navbar-static-top">
 		  <div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -69,7 +84,7 @@
 			</div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
-		
+	
 		<div class="container">
 			
 			<div class="col-md-3"><!--form for physical act and food intake-->
@@ -92,7 +107,7 @@
 								<input name="run_hrs" type="number" min="0" max="500" style="margin-left:45px;width:35px; height:22px; margin-bottom:3px;"></input>
 =======
 								<strong>Food Name</strong><span style="margin-left:50px;"><strong>Calories</strong><span style="margin-left:20px;"><br>
-								<input name="foodName" type="text" min="0" max="500" style="margin-left:0px;width:95px; height:22px; margin-bottom:3px;"></input>
+								<input name="foodName" type="text" style="margin-left:0px;width:95px; height:22px; margin-bottom:3px;"></input>
 								<input name="calories" type="number" min="0" max="500" style="margin-left:30px;width:55px; height:22px; margin-bottom:3px;"></input>
 >>>>>>> 4b14088bec3c0db083b2ca840bfcb3e007800896
 								<br> 
@@ -103,12 +118,41 @@
 					
 					<br>
 					<input type="submit" name="submit" value="Submit" style="width:30%; margin-left:80px; margin-top:50px; margin-bottom:8px; border-radius:4px; background-color:#AA3939; color:white;"/>
-				</form>
-				
-				
-				
+				</form>	
 			</div>
 			
-		</div>
-	</body>
+			<div class="col-md-5">
+			<div class="panel panel-default">
+			<div class="bs-example">
+				<h3>Food</h3>
+				<input type="text" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Search">
+				<?php
+					$query="SELECT * FROM food_table ORDER BY food_name ASC";
+					$result=mysqli_query($dbc, $query);
+					echo "<p></p>";
+					echo "<div style='width:100%; margin-left:auto; margin-right:auto; margin-top:30px;'><center><table class='rockwell' style='border-radius:10px;'>";
+					
+
+					while($row = mysqli_fetch_array($result)){
+						echo
+						"<table border='0' cellpadding='5px' cellspacing='1px' style='font-family:Verdana, Geneva, sans-serif; color:black; font-size:13px;' width='80%'>"
+						."<tr><td width = '30%'>"
+						."<div style='padding: 5px;'>" . "<br><span class='caption'>" . $row['food_name'] . "</span></div>"
+						. "</td>"
+						
+						."<td align='center'>
+							<a href='profile.php?photo_id=".$row['photo_id']."'" ?> onclick="return confirm('Are you sure you want to delete this photo?')";<?php echo "><button class='btn' type='button'><strong><center>Delete</center></strong></button></a>
+						</td>"	
+							
+						."</table>";
+					}
+					echo '</table>';
+				?>
+			</div>
+			</div>
+			</div>
+			
+		</div>  
+
+  </body>
 </html>

@@ -791,12 +791,14 @@
 				</form>
 			</div>	
 			<div class="col-md-6"> <!--for the calendar-->
-				<h1 align="center"><?php
+				<h1 align="center"><b>
+				<font size="3"><?php
 					$result = mysqli_query($dbc, "SELECT UPPER(first_name) AS first_name FROM `users_table` WHERE user_email like '$myusername'"); 
 					while ($row = mysqli_fetch_assoc($result)) {
 						echo $row['first_name']."'S";
 					}
-					?> CALENDAR</h1>
+					?>&nbspCALENDAR</h1>
+					</font></b>
 				<div id="calendar"></div>
 			</div>
 		</div>

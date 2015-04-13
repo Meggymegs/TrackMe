@@ -1,5 +1,4 @@
 <?php
-	session_start();
 
 	require_once 'sql_login.inc';
 	include 'class_food.php';
@@ -13,17 +12,15 @@
     $db_server->select_db($db_database)
         or die("Unable to select database: " . mysql_error()); 
 
-	$required = array('caption');
+	$required = array('foodName', 'calories');
 
-	$tbl_name = "photos";
-	$image = $_FILES['image'];
-	// Sanitize our inputs
-	$image['name'] = mysql_real_escape_string($image['name']);
+	$tbl_name = "food_table";
+	
 	// Loop over field names, make sure each one exists and is not empty
 	$error = false;
 	$isSpecial = false;
 	foreach($required as $field) {
-		if (empty($_POST[$field]) || ctype_space($_POST[$field]) || $image['name'] == "") {
+		if (empty($_POST[$field]) || ctype_space($_POST[$field])) {
 			$error = true;
 		} else if (preg_match('/[\^£$%&*()}{@#~?><>|=_¬]/', $_POST[$field])){
 			$isSpecial = true;
@@ -35,60 +32,17 @@
 	} else if ($isSpecial){
 		header("location:edit.php?msg=special");
 	} else {
-		//A LITTLE OBJECT ORIENTED PROGRAMMING HERE
-		$card = new Card(trim($_POST['caption']));
+		//Create food object
+		$food = new Food(trim($_POST['foodName']), trim($_POST['calories']));
 		
-		$name = $card->getCardName();
-		// This variable is the path to the image folder where all the images are going to be stored
-		$TARGET_PATH = "images/";
- 
-		// Build our target path full string.  This is where the file will be moved do
-		$TARGET_PATH .= $image['name'];
+		$name = $food->getFoodName();
+		$calories = $food->getCalories();
 		
-		// Check to make sure that our file is actually an image
-		if (!is_valid_type($image)){
-			$_SESSION['error'] = "You must upload a jpeg, png, or bmp";
-			header("Location: add_cards.php");
-			exit;
-		}
-		 
-		// Here we check to see if a file with that name already exists
-		if (file_exists($TARGET_PATH)){
-			$_SESSION['error'] = "A file with that name already exists";
-			header("Location: add_cards.php");
-			exit;
-		}
-		
-			$myusername = $_SESSION['myusername'];
-			include '../mysqli_connect.php';
-			$result = mysqli_query($dbc, "SELECT * FROM `users_table` WHERE user_email like '$myusername'"); 
-			$row = mysqli_fetch_assoc($result);
-		
-		if (move_uploaded_file($image['tmp_name'], $TARGET_PATH)){
-			$query = "INSERT INTO $tbl_name ( user_id, photo, caption) VALUES( '" .$row['user_id'] . "', '" . $image['name'] . "' , '$name')";
-		}
-		
+		$query = "INSERT INTO `food_table`(`food_id`, `food_name`, `food_calories`) VALUES ('DEFAULT','$name',$calories)";
 		$result = mysqli_query($db_server, $query);
-		echo mysql_error();
-		header("location:upload.php?msg=success");
+		//echo mysqli_error($db_server);
+		header("location:admin.php?msg=success");
 	}
 	
-	// Check to see if the type of file uploaded is a valid image type
-function is_valid_type($file)
-{
-    // This is an array that holds all the valid image MIME types
-    $valid_types = array("image/jpg", "image/jpeg", "image/bmp", "image/png");
- 
-    if (in_array($file['type'], $valid_types))
-        return 1;
-    return 0;
-}
- 
-function showContents($array)
-{
-    echo "<pre>";
-    print_r($array);
-    echo "</pre>";
-}
 
 ?>
