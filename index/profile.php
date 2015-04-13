@@ -3,7 +3,7 @@
 	session_start();
 	if(!isset($_SESSION['myusername'])){ //if login in session is not set
     header("Location:signin.php");
-	
+	$myusername = $_SESSION['myusername'];
 }
 	include '../mysqli_connect.php';
 ?>
@@ -16,474 +16,6 @@
 		<link rel="stylesheet" href="css/bootstrap.theme.min.css">
 		<link rel="stylesheet" href="css/profile.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
-		<script src='js/lib/jquery.min.js'></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src='js/lib/moment.min.js'></script>
-		<script src='js/fullcalendar.js'></script>
-		<script type="text/javascript" src="js/bmicalc.js"></script>
-		<script>
-		
-			$(document).ready(function() {
-			
-				$('#calendar').fullCalendar({
-					header: {
-						left: 'prev,next today',
-						center: 'title',
-						right: 'month,agendaWeek,agendaDay'
-					},
-					defaultDate: '2015-02-12',
-					editable: true,
-					eventLimit: true, // allow "more" link when too many events
-					events: {
-						url: 'events.php',
-						error: function() {
-							alert('There was an error while fetching events.');
-						}
-					},
-					loading: function(bool) {
-						$('#loading').toggle(bool);
-					}
-				});
-				
-				var date = $('#calendar').fullCalendar('today');
-			
-				$('#calendar').fullCalendar('gotoDate', date);
-			});
-		
-		 
-		 /*
-		 $(document).ready(function() {
-			  var date = new Date();
-			  var d = date.getDate();
-			  var m = date.getMonth();
-			  var y = date.getFullYear();
-
-			  var calendar = $('#calendar').fullCalendar({
-			   editable: true,
-			   header: {
-				left: 'prev,next today',
-				center: 'title',
-				right: 'month,agendaWeek,agendaDay'
-			   },
-			   
-			   events: "http://localhost/TrackMe/events.php",
-			   
-			   // Convert the allDay from string to boolean
-			   eventRender: function(event, element, view) {
-				if (event.allDay === 'true') {
-				 event.allDay = true;
-				} else {
-				 event.allDay = false;
-				}
-			   },
-			   selectable: true,
-			   selectHelper: true,
-			   select: function(start, end, allDay) {
-			   var title = prompt('Event Title:');
-			   var url = prompt('Type Event url, if exits:');
-			   if (title) {
-			   var start = $.fullCalendar.formatDate(start, "yyyy-MM-dd HH:mm:ss");
-			   var end = $.fullCalendar.formatDate(end, "yyyy-MM-dd HH:mm:ss");
-			   $.ajax({
-			   url: 'http://localhost:8888/fullcalendar/add_events.php',
-			   data: 'title='+ title+'&start='+ start +'&end='+ end +'&url='+ url ,
-			   type: "POST",
-			   success: function(json) {
-			   alert('Added Successfully');
-			   }
-			   });
-			   calendar.fullCalendar('renderEvent',
-			   {
-			   title: title,
-			   start: start,
-			   end: end,
-			   allDay: allDay
-			   },
-			   true // make the event "stick"
-			   );
-			   }
-			   calendar.fullCalendar('unselect');
-			   },
-			   
-			   editable: true,
-			   eventDrop: function(event, delta) {
-			   var start = $.fullCalendar.formatDate(event.start, "yyyy-MM-dd HH:mm:ss");
-			   var end = $.fullCalendar.formatDate(event.end, "yyyy-MM-dd HH:mm:ss");
-			   $.ajax({
-			   url: 'http://localhost:8888/fullcalendar/update_events.php',
-			   data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&id='+ event.id ,
-			   type: "POST",
-			   success: function(json) {
-				alert("Updated Successfully");
-			   }
-			   });
-			   },
-			   eventResize: function(event) {
-			   var start = $.fullCalendar.formatDate(event.start, "yyyy-MM-dd HH:mm:ss");
-			   var end = $.fullCalendar.formatDate(event.end, "yyyy-MM-dd HH:mm:ss");
-			   $.ajax({
-				url: 'http://localhost:8888/fullcalendar/update_events.php',
-				data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&id='+ event.id ,
-				type: "POST",
-				success: function(json) {
-				 alert("Updated Successfully");
-				}
-			   });
-
-			}
-			   
-			  });
-			  
-		});//end of fullCalendar
-		*/
-		/////////////////////////////////////////////////////////////
-		/*
-		$(document).ready(function() {
-			var calendar = $('#calendar').fullCalendar({
-				defaultView: 'month',
-				events: {
-					url: 'http://localhost/TrackMe/events.php',
-					type: 'POST', // Send post data
-					error: function() {
-						alert('There was an error while fetching events.');
-					}
-				}
-			});
-			
-			var date = $('#calendar').fullCalendar('today');
-			
-			$('#calendar').fullCalendar('gotoDate', date);
-		});//end of fullCalendar
-		*/
-				/*
-				// page is now ready, initialize the calendar...
-			
-			$('#calendar').fullCalendar({
-				defaultDate: '2015-02-12',
-				editable: true,
-				eventLimit: true, // allow "more" link when too many events
-				events: [
-					{
-						title: 'All Day Event',
-						start: '2015-02-01',
-						backgroundColor: '#FF4000',
-						borderColor: '#FF4000'
-					},
-					{
-						title: 'Long Event',
-						start: '2015-02-07',
-						end: '2015-02-10',
-						backgroundColor: '#FF4000',
-						borderColor: '#FF4000'
-					},
-					{
-						id: 999,
-						title: 'Repeating Event',
-						start: '2015-02-09T16:00:00',
-						backgroundColor: '#ED1317',
-						borderColor: '#ED1317'
-					},
-					{
-						id: 999,
-						title: 'Repeating Event',
-						start: '2015-02-16T16:00:00',
-						backgroundColor: '#ED1317',
-						borderColor: '#ED1317'
-					},
-					{
-						title: 'Conference',
-						start: '2015-02-11',
-						end: '2015-02-13',
-						backgroundColor: '#A901DB',
-						borderColor: '#A901DB'
-					},
-					{
-						title: 'Meeting',
-						start: '2015-02-12T10:30:00',
-						end: '2015-02-12T12:30:00',
-						backgroundColor: '#A901DB',
-						borderColor: '#A901DB'
-					},
-					{
-						title: 'Meeting',
-						start: '2015-02-12T14:30:00',
-						backgroundColor: '#A901DB',
-						borderColor: '#A901DB'
-					},
-					{
-						title: 'Happy Hour',
-						start: '2015-02-13T17:30:00',
-						backgroundColor: '#04B404',
-						borderColor: '#04B404'
-					},				
-					{
-						title: 'Click for Google',
-						url: 'http://google.com/',
-						start: '2015-02-28'
-					}
-				],
-		
-			});
-				////////////////////////////////////////////////////////////////////////////
-				$('#calendar').fullCalendar({
-				defaultDate: '2015-02-12',
-				editable: true,
-				eventLimit: true, // allow "more" link when too many events
-				events: [
-					{
-						title: 'All Day Event',
-						start: '2015-02-01',
-						backgroundColor: '#FF4000',
-						borderColor: '#FF4000'
-					},
-					{
-						title: 'Long Event',
-						start: '2015-02-07',
-						end: '2015-02-10',
-						backgroundColor: '#FF4000',
-						borderColor: '#FF4000'
-					},
-					{
-						id: 999,
-						title: 'Repeating Event',
-						start: '2015-02-09T16:00:00',
-						backgroundColor: '#ED1317',
-						borderColor: '#ED1317'
-					},
-					{
-						id: 999,
-						title: 'Repeating Event',
-						start: '2015-02-16T16:00:00',
-						backgroundColor: '#ED1317',
-						borderColor: '#ED1317'
-					},
-					{
-						title: 'Conference',
-						start: '2015-02-11',
-						end: '2015-02-13',
-						backgroundColor: '#A901DB',
-						borderColor: '#A901DB'
-					},
-					{
-						title: 'Meeting',
-						start: '2015-02-12T10:30:00',
-						end: '2015-02-12T12:30:00',
-						backgroundColor: '#A901DB',
-						borderColor: '#A901DB'
-					},
-					{
-						title: 'Meeting',
-						start: '2015-02-12T14:30:00',
-						backgroundColor: '#A901DB',
-						borderColor: '#A901DB'
-					},
-					{
-						title: 'Happy Hour',
-						start: '2015-02-13T17:30:00',
-						backgroundColor: '#04B404',
-						borderColor: '#04B404'
-					},				
-					{
-						title: 'Click for Google',
-						url: 'http://google.com/',
-						start: '2015-02-28'
-					}
-				],
-		
-			});
-////////////////////////////////////////////////////////////////////////////////
-			
-			$(document).ready(function()){
-			var calendar = $('#calendar').fullCalendar({
-				editable: true,
-				header: {
-				left: 'today, prevYear, nextYear',
-				center: 'title',
-				right: 'prev,next,basicDay,month'
-				},
-				
-				eventSource: ['getEvent.php','profile.php']
-				
-				});
-				});
-				
-			
-			$(document).ready(function()){
-				var date =  new Date();
-				var d = date.getDate();
-				var m = date.getMonth();
-				var y = date.getFullYear();
-				var calendar = $('#calendar').fullCalendar({
-					editable: false;
-					header: {
-						left:'prev,next, today',
-						center: 'title',
-						right: 'month,agendaWeek,agendaDay'
-					},
-					events: "http://localhost:80/fullCalendar/getEvent.php"
-					eventRender: function(event,element, view){
-						if(event.allDay == 'true'){
-							event.allDay = true;
-						} else {
-							event.allDay = false;
-						}
-						
-						selectable: true,
-						selectHelper: true,
-						select: function(start, end, allDay){
-							var title = prompt('Event Title:');
-							if(title){
-								start = $.fullCalendar.formatDate(start,"yyyy-MM-dd HH:mm:ss");
-								end = $.fullCalendar.formatDate(end, "yyyy-MM-dd HH:mm:ss");
-								$.ajax({
-									url: 'http://localhost:80/fullCalendar/add_events.php',
-									data: 'title=' + title + '&start=' + start + '&end='+ end,
-									type: "POST",
-									success: function(json){
-									alert('Add Success');
-									}
-								});
-								calendar.fullCalendar('renderEvent',
-								{
-									title: title,
-									start: start,
-									end: end,
-									allDay: allDay
-								},
-									true
-								);
-							}
-							calendar.fullCalendar('unselect');
-						},
-						editable: true,
-						eventDrop: function(event, delta){
-							start = $.fullCalendar.formatDate(event.start, "yyyy-MM-dd HH:mm:ss");
-							end = $.fullCalendar.formatDate(event.end, "yyyy-MM-dd HH:mm:ss");
-							$.ajax({
-								url: 'http://localhost:80/fullCalendar/add_events.php',
-									data: 'title=' + title + '&start=' + start + '&end='+ end,
-									type: "POST",
-									success: function(json){
-									alert('Update Successfull');
-									}
-								});
-							}
-						});
-					});
-							
-			*/
-			//to set the calendar to today date
-			
-			/*
-				$('#calendar').fullCalendar({
-				
-				dayClick: function(date, jsEvent, view) {
-					
-						alert('Clicked on: ' + date.format() + '\nCoordinates: ' 
-						+ jsEvent.pageX + ',' + jsEvent.pageY + '\nCurrent view: ' + view.name);
-					
-					// change the day's background color just for fun
-					$(this).css('background-color', '#5FB404');
-					
-					}
-			
-				});
-			*/
-		//});//end of fullcalendar
-		
-		//responsible for checking all checkboxes with class name 'TimeAct'
-		function checkAllTimeAct(ele) {
-			 var checkboxes = document.getElementsByClassName("TimeAct");
-			 if (ele.checked) {
-				 for (var i = 0; i < checkboxes.length; i++) {
-					 if (checkboxes[i].type == 'checkbox') {
-						 checkboxes[i].checked = true;
-					 }
-				 }
-			 } else {
-				 for (var i = 0; i < checkboxes.length; i++) {
-					 console.log(i)
-					 if (checkboxes[i].type == 'checkbox') {
-						 checkboxes[i].checked = false;
-					 }
-				 }
-			 }
-		 }
-		 //responsible for checking all checkboxes with class name 'RepSetAct'
-		 function checkAllRepSetAct(ele) {
-			 var checkboxes = document.getElementsByClassName("RepSetAct");
-			 if (ele.checked) {
-				 for (var i = 0; i < checkboxes.length; i++) {
-					 if (checkboxes[i].type == 'checkbox') {
-						 checkboxes[i].checked = true;
-					 }
-				 }
-			 } else {
-				 for (var i = 0; i < checkboxes.length; i++) {
-					 console.log(i)
-					 if (checkboxes[i].type == 'checkbox') {
-						 checkboxes[i].checked = false;
-					 }
-				 }
-			 }
-		 }
-		 
-		 //responsible for checking all checkboxes with class name 'food'
-		 function checkAllFood(ele) {
-			 var checkboxes = document.getElementsByClassName("food");
-			 if (ele.checked) {
-				 for (var i = 0; i < checkboxes.length; i++) {
-					 if (checkboxes[i].type == 'checkbox') {
-						 checkboxes[i].checked = true;
-					 }
-				 }
-			 } else {
-				 for (var i = 0; i < checkboxes.length; i++) {
-					 console.log(i)
-					 if (checkboxes[i].type == 'checkbox') {
-						 checkboxes[i].checked = false;
-					 }
-				 }
-			 }
-		 }
-
-		 function checkAllBM(ele) {
-			 var checkboxes = document.getElementsByClassName("body");
-			 if (ele.checked) {
-				 for (var i = 0; i < checkboxes.length; i++) {
-					 if (checkboxes[i].type == 'checkbox') {
-						 checkboxes[i].checked = true;
-					 }
-				 }
-			 } else {
-				 for (var i = 0; i < checkboxes.length; i++) {
-					 console.log(i)
-					 if (checkboxes[i].type == 'checkbox') {
-						 checkboxes[i].checked = false;
-					 }
-				 }
-			 }
-		 }
-
-		 function checkAllVR(ele) {
-			 var checkboxes = document.getElementsByClassName("vital");
-			 if (ele.checked) {
-				 for (var i = 0; i < checkboxes.length; i++) {
-					 if (checkboxes[i].type == 'checkbox') {
-						 checkboxes[i].checked = true;
-					 }
-				 }
-			 } else {
-				 for (var i = 0; i < checkboxes.length; i++) {
-					 console.log(i)
-					 if (checkboxes[i].type == 'checkbox') {
-						 checkboxes[i].checked = false;
-					 }
-				 }
-			 }
-		 }
-		</script>
 	</head>
 	<body style="background-color:#2d3e50;">
 		<nav class="navbar navbar-inverse navbar-static-top">
@@ -802,5 +334,230 @@
 				<div id="calendar"></div>
 			</div>
 		</div>
+		
+	<!--SCRIPTS-->	
+		<script type="text/javascript" src="js/bmicalc.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		
+		<script src='js/lib/jquery.min.js'></script>
+		<script src='js/lib/moment.min.js'></script>
+		<script src='js/fullcalendar.js'></script>
+		
+		<script>
+		
+		$(document).ready(function() {
+			var date = new Date();
+			var d = date.getDate();
+			var m = date.getMonth();
+			var y = date.getFullYear();
+			var calendar = $('#calendar').fullCalendar({
+			  header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay'
+			  },
+			  selectable: true,
+			  selectHelper: true,
+			  select: function(start, end, allDay) {
+			  /*
+				var title = prompt('Event Title:');
+				if (title) {
+				  calendar.fullCalendar('renderEvent',
+					{
+					  title: title,
+					  start: start,
+					  end: end,
+					  allDay: allDay
+					},
+					true // make the event "stick"
+				  );
+				}
+				calendar.fullCalendar('unselect');
+			  */
+			  },
+			  editable: true,
+			  eventLimit: 6, // allow "more" link when too many events
+			  events: [
+			  <?php
+			  error_reporting(0);
+					
+					$events=mysqli_query($dbc,"
+					SELECT food_name, fs.date_created 
+					FROM food_served_table AS fs, food_table AS f, users_table AS u 
+					WHERE fs.food_id = f.food_id 
+					AND fs.user_id = u.user_id 
+					AND u.user_email like '$myusername'
+					");
+				
+				while($row = mysqli_fetch_assoc($events)) {
+				$foodName= $row['food_name'];
+				list($year,$month,$day)=explode("-", $row['date_created']);
+				?>
+				{
+				  title: '<?php echo"$foodName"?>',
+				  start: new Date(<?php echo $year; ?>,<?php echo $month; ?>-1, <?php echo $day; ?>),
+				  backgroundColor: '#34495e',
+				  borderColor: '#34495e',
+				  allDay: true
+				  
+				},
+				<?php
+				}//end of while for food inputs
+			  ?>
+			  <?php
+			  error_reporting(0);
+					
+					$events=mysqli_query($dbc,"
+					SELECT ptype.physical_activity_dist_type, ptable.date_created 
+					FROM physical_activities_dist_table AS ptable, physical_activities_dist_type_table AS ptype, users_table AS u 
+					WHERE ptype.physical_activity_dist_id = ptable.physical_activity_dist_id 
+					AND ptable.user_id = u.user_id
+					AND u.user_email like '$myusername'
+					");
+				
+				while($row = mysqli_fetch_assoc($events)) {
+				$activityName= $row['physical_activity_dist_type'];
+				list($year,$month,$day)=explode("-", $row['date_created']);
+				?>
+				{
+				  title: '<?php echo"$activityName"?>',
+				  start: new Date(<?php echo $year; ?>,<?php echo $month; ?>-1, <?php echo $day; ?>),
+				  backgroundColor: '#e74c3c',
+				  borderColor: '#e74c3c',
+				  allDay: true
+				  
+				},
+				<?php
+				}//end of while for activities inputs - distance and time type
+			  ?>
+			  <?php
+			  error_reporting(0);
+					
+					$events=mysqli_query($dbc,"
+					SELECT ptype.physical_activity_rep_type, ptable.date_created 
+					FROM physical_activities_rep_table AS ptable, physical_activities_rep_type_table AS ptype, users_table AS u 
+					WHERE ptype.physical_activity_rep_id = ptable.physical_activity_rep_id 
+					AND ptable.user_id = u.user_id
+					AND u.user_email like '$myusername'
+					");
+				
+				while($row = mysqli_fetch_assoc($events)) {
+				$activityName= $row['physical_activity_rep_type'];
+				list($year,$month,$day)=explode("-", $row['date_created']);
+				?>
+				{
+				  title: '<?php echo"$activityName"?>',
+				  start: new Date(<?php echo $year; ?>,<?php echo $month; ?>-1, <?php echo $day; ?>),
+				  backgroundColor: '#e74c3c',
+				  borderColor: '#e74c3c',
+				  allDay: true
+				  
+				},
+				<?php
+				}//end of while for activities inputs - reps and sets type
+			  ?>
+			  ]
+			});
+				var date = $('#calendar').fullCalendar('today');
+				
+				$('#calendar').fullCalendar('gotoDate', date);
+      });
+				
+				
+			
+		////////////////////////////////////////////////end of fullcalendar////////////////////////////////////////
+		
+		//responsible for checking all checkboxes with class name 'TimeAct'
+		function checkAllTimeAct(ele) {
+			 var checkboxes = document.getElementsByClassName("TimeAct");
+			 if (ele.checked) {
+				 for (var i = 0; i < checkboxes.length; i++) {
+					 if (checkboxes[i].type == 'checkbox') {
+						 checkboxes[i].checked = true;
+					 }
+				 }
+			 } else {
+				 for (var i = 0; i < checkboxes.length; i++) {
+					 console.log(i)
+					 if (checkboxes[i].type == 'checkbox') {
+						 checkboxes[i].checked = false;
+					 }
+				 }
+			 }
+		 }
+		 //responsible for checking all checkboxes with class name 'RepSetAct'
+		 function checkAllRepSetAct(ele) {
+			 var checkboxes = document.getElementsByClassName("RepSetAct");
+			 if (ele.checked) {
+				 for (var i = 0; i < checkboxes.length; i++) {
+					 if (checkboxes[i].type == 'checkbox') {
+						 checkboxes[i].checked = true;
+					 }
+				 }
+			 } else {
+				 for (var i = 0; i < checkboxes.length; i++) {
+					 console.log(i)
+					 if (checkboxes[i].type == 'checkbox') {
+						 checkboxes[i].checked = false;
+					 }
+				 }
+			 }
+		 }
+		 
+		 //responsible for checking all checkboxes with class name 'food'
+		 function checkAllFood(ele) {
+			 var checkboxes = document.getElementsByClassName("food");
+			 if (ele.checked) {
+				 for (var i = 0; i < checkboxes.length; i++) {
+					 if (checkboxes[i].type == 'checkbox') {
+						 checkboxes[i].checked = true;
+					 }
+				 }
+			 } else {
+				 for (var i = 0; i < checkboxes.length; i++) {
+					 console.log(i)
+					 if (checkboxes[i].type == 'checkbox') {
+						 checkboxes[i].checked = false;
+					 }
+				 }
+			 }
+		 }
+
+		 function checkAllBM(ele) {
+			 var checkboxes = document.getElementsByClassName("body");
+			 if (ele.checked) {
+				 for (var i = 0; i < checkboxes.length; i++) {
+					 if (checkboxes[i].type == 'checkbox') {
+						 checkboxes[i].checked = true;
+					 }
+				 }
+			 } else {
+				 for (var i = 0; i < checkboxes.length; i++) {
+					 console.log(i)
+					 if (checkboxes[i].type == 'checkbox') {
+						 checkboxes[i].checked = false;
+					 }
+				 }
+			 }
+		 }
+
+		 function checkAllVR(ele) {
+			 var checkboxes = document.getElementsByClassName("vital");
+			 if (ele.checked) {
+				 for (var i = 0; i < checkboxes.length; i++) {
+					 if (checkboxes[i].type == 'checkbox') {
+						 checkboxes[i].checked = true;
+					 }
+				 }
+			 } else {
+				 for (var i = 0; i < checkboxes.length; i++) {
+					 console.log(i)
+					 if (checkboxes[i].type == 'checkbox') {
+						 checkboxes[i].checked = false;
+					 }
+				 }
+			 }
+		 }
+		</script>
 	</body>
 </html>
