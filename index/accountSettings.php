@@ -16,14 +16,35 @@
 	<body>
 	
 	<?php
-		$user_id = $_GET['user_id'];
-		$firstName = $_GET['firstName'];
-		$lastName = $_GET['lastName'];
-		$email = $_GET['email'];
+	
+		$servername = "localhost";
+		$username = "root";
+		$password = "1234";
+		$dbname = "trackme";
+		
+		$conn = new mysqli($servername, $username, $password, $dbname);
+		// Check connection
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		} 
+		//$value = isset($_POST['value']) ? $_POST['value'] : '';
+		
+		$user_id = isset($_GET['user_id']) ? $_GET['user_id']: '';
+		$firstName = isset($_GET['firstName']) ? $_GET['firstName']: '';
+		$lastName = isset($_GET['lastName']) ? $_GET['lastName']: '';
+		$email = isset($_GET['email']) ? $_GET['email']: '';
 
 		$sql = "UPDATE users_table ".
-			   "SET first_name = $firstName, last_name = $lastName, user_email = $email ".
-			   "WHERE user_id = $user_id" ;
+			   "SET first_name = 'Captain', last_name = 'America', user_email = 'first@shield.com' ".
+			   "WHERE user_id = 2" ;
+			   
+		if ($conn->query($sql) === TRUE) {
+			echo "Record updated successfully";
+		} else {
+			echo "Error updating record: " . $conn->error;
+		}
+		
+		$conn->close();
 
 	?>
 	
@@ -100,12 +121,12 @@
 				<h3 class="panel-title">Basic Information</h3>
 			 </div>
 			 <div class="panel-body">
-				<form id="formPos" action="demo_form.asp" method="get">
+				<form id="formPos" action="accountSettings.php" method="get">
 					First Name: <input class="firstName" type="text" name="firstName"><br><br>
 					Last Name: <input class="lastName" type="text" name="lastName"><br><br>
 					Email: <input class="email" type="text" name="email"><br><br>
 					
-					<button type="button" class="btn btn-submit">Save Changes</button>
+					<button type="button" class="btn btn-submit" >Save Changes</button>
 				</form>
 			 </div>
 		</div>
