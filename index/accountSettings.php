@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	include '../mysqli_connect.php';
+	error_reporting(0);
 ?>
 
 
