@@ -17,7 +17,7 @@
 	<body>
 	
 	<?php
-	
+	/*
 		$servername = "localhost";
 		$username = "root";
 		$password = "1234";
@@ -46,7 +46,7 @@
 		}
 		
 		$conn->close();
-
+*/
 	?>
 	
 		<nav class="navbar navbar-inverse navbar-static-top">

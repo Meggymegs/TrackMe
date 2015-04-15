@@ -11,7 +11,6 @@
 <html>
 	<head>
 		<title>Profile</title>
-		<script src='js/lib/jquery.min.js'></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/typeahead.min.js"></script>
 		<link rel="stylesheet" href='css/fullcalendar/fullcalendar.css' />
@@ -19,6 +18,7 @@
 		<link rel="stylesheet" href="css/bootstrap.theme.min.css">
 		<link rel="stylesheet" href="css/profile.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src='js/lib/jquery.min.js'></script>
 		<script>
 		$(document).ready(function(){
 
@@ -124,7 +124,7 @@
 
 				if($count==0){
 					echo "You have not entered any information yet. Please <b>update body measurements</b>.";
-				}
+				}else{
 				?>
 				<b>Weight:</b>
 				<?php
@@ -138,6 +138,7 @@
 				$result = mysqli_query($dbc, "SELECT * FROM `body_measurement_table` WHERE user_id like '$tempId' AND body_measurement_type_id = 1"); 
 				$row = mysqli_fetch_assoc($result);
 				echo $row['body_measurement_value'] . " m";
+				}
 				?>
 				<br><br>
 			</div>

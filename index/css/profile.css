@@ -23,13 +23,14 @@
 
 .col-md-2{
 	width: 280px;
-	min-height: 100px;
+	height: 179px;
 	background-color: white;
 	margin-left: 10px;
 	margin-right: 10px;
 	margin-bottom: 10px;
 	border-radius: 3px;
 	padding-bottom: 20px;
+	overflow: hidden;
 }
 
 .col-md-3{
