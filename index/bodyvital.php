@@ -32,7 +32,7 @@ $check = $row[0];
 if ($check == 0) {
 $strSQL = "INSERT INTO body_measurement_table(user_id,body_measurement_type_id,body_measurement_value,date_created) VALUES('" . $user_id . "','1','" . $a . "','" . $date . "')";
 } else {
-$strSQL = "UPDATE body_measurement_table SET body_measurement_value = '" . $a . "', date_created = '" . $date . "' WHERE body_measurement_type_id = '1'";
+$strSQL = "UPDATE body_measurement_table SET body_measurement_value = '" . $a . "', date_created = '" . $date . "' WHERE body_measurement_type_id = '1' AND user_id = '" . $user_id . "'";
 }
 mysql_query($strSQL) or die (mysql_error());
 }
@@ -45,7 +45,7 @@ $check = $row[0];
 if ($check == 0) {
 $strSQL = "INSERT INTO body_measurement_table(user_id,body_measurement_type_id,body_measurement_value,date_created) VALUES('" . $user_id . "','2','" . $b . "','" . $date . "')";
 } else {
-$strSQL = "UPDATE body_measurement_table SET body_measurement_value = '" . $b . "', date_created = '" . $date . "' WHERE body_measurement_type_id = '2'";
+$strSQL = "UPDATE body_measurement_table SET body_measurement_value = '" . $b . "', date_created = '" . $date . "' WHERE body_measurement_type_id = '2' AND user_id = '" . $user_id . "'";
 }
 mysql_query($strSQL) or die (mysql_error());
 }
@@ -58,7 +58,7 @@ $check = $row[0];
 if ($check == 0) {
 $strSQL = "INSERT INTO body_measurement_table(user_id,body_measurement_type_id,body_measurement_value,date_created) VALUES('" . $user_id . "','3','" . $c . "','" . $date . "')";
 } else {
-$strSQL = "UPDATE body_measurement_table SET body_measurement_value = '" . $c . "', date_created = '" . $date . "' WHERE body_measurement_type_id = '3'";
+$strSQL = "UPDATE body_measurement_table SET body_measurement_value = '" . $c . "', date_created = '" . $date . "' WHERE body_measurement_type_id = '3' AND user_id = '" . $user_id . "'";
 }
 mysql_query($strSQL) or die (mysql_error());
 }
@@ -71,7 +71,7 @@ $check = $row[0];
 if ($check == 0) {
 $strSQL = "INSERT INTO body_measurement_table(user_id,body_measurement_type_id,body_measurement_value,date_created) VALUES('" . $user_id . "','4','" . $d . "','" . $date . "')";
 } else {
-$strSQL = "UPDATE body_measurement_table SET body_measurement_value = '" . $d . "', date_created = '" . $date . "' WHERE body_measurement_type_id = '4'";
+$strSQL = "UPDATE body_measurement_table SET body_measurement_value = '" . $d . "', date_created = '" . $date . "' WHERE body_measurement_type_id = '4' AND user_id = '" . $user_id . "'";
 }
 mysql_query($strSQL) or die (mysql_error());
 }
@@ -84,7 +84,7 @@ $check = $row[0];
 if ($check == 0) {
 $strSQL = "INSERT INTO body_measurement_table(user_id,body_measurement_type_id,body_measurement_value,date_created) VALUES('" . $user_id . "','5','" . $e . "','" . $date . "')";
 } else {
-$strSQL = "UPDATE body_measurement_table SET body_measurement_value = '" . $e . "', date_created = '" . $date . "' WHERE body_measurement_type_id = '5'";
+$strSQL = "UPDATE body_measurement_table SET body_measurement_value = '" . $e . "', date_created = '" . $date . "' WHERE body_measurement_type_id = '5' AND user_id = '" . $user_id . "'";
 }
 mysql_query($strSQL) or die (mysql_error());
 }
@@ -97,7 +97,7 @@ $check = $row[0];
 if ($check == 0) {
 $strSQL = "INSERT INTO body_measurement_table(user_id,body_measurement_type_id,body_measurement_value,date_created) VALUES('" . $user_id . "','6','" . $f . "','" . $date . "')";
 } else {
-$strSQL = "UPDATE body_measurement_table SET body_measurement_value = '" . $f . "', date_created = '" . $date . "' WHERE body_measurement_type_id = '6'";
+$strSQL = "UPDATE body_measurement_table SET body_measurement_value = '" . $f . "', date_created = '" . $date . "' WHERE body_measurement_type_id = '6' AND user_id = '" . $user_id . "'";
 }
 mysql_query($strSQL) or die (mysql_error());
 }
@@ -110,7 +110,7 @@ $check = $row[0];
 if ($check == 0) {
 $strSQL = "INSERT INTO body_measurement_table(user_id,body_measurement_type_id,body_measurement_value,date_created) VALUES('" . $user_id . "','7','" . $bmi . "','" . $date . "')";
 } else {
-$strSQL = "UPDATE body_measurement_table SET body_measurement_value = '" . $bmi . "', date_created = '" . $date . "' WHERE body_measurement_type_id = '7'";
+$strSQL = "UPDATE body_measurement_table SET body_measurement_value = '" . $bmi . "', date_created = '" . $date . "' WHERE body_measurement_type_id = '7' AND user_id = '" . $user_id . "'";
 }
 mysql_query($strSQL) or die (mysql_error());
 }
@@ -123,7 +123,7 @@ $check = $row[0];
 if ($check == 0) {
 $strSQL = "INSERT INTO body_measurement_table(user_id,body_measurement_type_id,body_measurement_value,date_created) VALUES('" . $user_id . "','8','" . $fat . "','" . $date . "')";
 } else {
-$strSQL = "UPDATE body_measurement_table SET body_measurement_value = '" . $fat . "', date_created = '" . $date . "' WHERE body_measurement_type_id = '8'";
+$strSQL = "UPDATE body_measurement_table SET body_measurement_value = '" . $fat . "', date_created = '" . $date . "' WHERE body_measurement_type_id = '8' AND user_id = '" . $user_id . "'";
 }
 mysql_query($strSQL) or die (mysql_error());
 }
@@ -136,7 +136,7 @@ $check = $row[0];
 if ($check == 0) {
 $strSQL = "INSERT INTO vital_signs_table(user_id,vital_signs_type_id,vital_signs_value,date_created) VALUES('" . $user_id . "','1','" . $g . "','" . $date . "')";
 } else {
-$strSQL = "UPDATE vital_signs_table SET vital_signs_value = '" . $g . "', date_created = '" . $date . "' WHERE vital_signs_type_id = '1'";
+$strSQL = "UPDATE vital_signs_table SET vital_signs_value = '" . $g . "', date_created = '" . $date . "' WHERE vital_signs_type_id = '1' AND user_id = '" . $user_id . "'";
 }
 mysql_query($strSQL) or die (mysql_error());
 }
@@ -149,7 +149,7 @@ $check = $row[0];
 if ($check == 0) {
 $strSQL = "INSERT INTO vital_signs_table(user_id,vital_signs_type_id,vital_signs_value,date_created) VALUES('" . $user_id . "','2','" . $h . "','" . $date . "')";
 } else {
-$strSQL = "UPDATE vital_signs_table SET vital_signs_value = '" . $h . "', date_created = '" . $date . "' WHERE vital_signs_type_id = '2'";
+$strSQL = "UPDATE vital_signs_table SET vital_signs_value = '" . $h . "', date_created = '" . $date . "' WHERE vital_signs_type_id = '2' AND user_id = '" . $user_id . "'";
 }
 mysql_query($strSQL) or die (mysql_error());
 }
@@ -162,7 +162,7 @@ $check = $row[0];
 if ($check == 0) {
 $strSQL = "INSERT INTO vital_signs_table(user_id,vital_signs_type_id,vital_signs_value,date_created) VALUES('" . $user_id . "','3','" . $i . "','" . $date . "')";
 } else {
-$strSQL = "UPDATE vital_signs_table SET vital_signs_value = '" . $i . "', date_created = '" . $date . "' WHERE vital_signs_type_id = '3'";
+$strSQL = "UPDATE vital_signs_table SET vital_signs_value = '" . $i . "', date_created = '" . $date . "' WHERE vital_signs_type_id = '3' AND user_id = '" . $user_id . "'";
 }
 mysql_query($strSQL) or die (mysql_error());
 
@@ -173,7 +173,7 @@ $check = $row[0];
 if ($check == 0) {
 $strSQL = "INSERT INTO vital_signs_table(user_id,vital_signs_type_id,vital_signs_value,date_created) VALUES('" . $user_id . "','4','" . $j . "','" . $date . "')";
 } else {
-$strSQL = "UPDATE vital_signs_table SET vital_signs_value = '" . $j . "', date_created = '" . $date . "' WHERE vital_signs_type_id = '4'";
+$strSQL = "UPDATE vital_signs_table SET vital_signs_value = '" . $j . "', date_created = '" . $date . "' WHERE vital_signs_type_id = '4' AND user_id = '" . $user_id . "'";
 }
 mysql_query($strSQL) or die (mysql_error());
 }
