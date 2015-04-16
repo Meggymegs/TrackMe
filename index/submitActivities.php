@@ -333,6 +333,10 @@
 			$fn = $_POST['typeahead'];
 			$userID = mysqli_query($dbc, "SELECT user_id FROM $tbl_user WHERE user_email like '$myusername'");
 			$foodID = mysqli_query($dbc,"SELECT food_id FROM $tbl_food WHERE food_name = '$fn'");
+			$count = mysqli_num_rows($foodID);
+			if($count == 0){
+				header("location: profile.php?msg=fail");
+			}else{
 			$user_id = 0;
 			$food_id = 0;
 			
@@ -363,19 +367,16 @@
 			if($affected_rows == 1) {
 				echo 'Successful!<br>';
 				mysqli_stmt_close($stmt);
-				//header('location:profile.php');
+				header('location:profile.php?msg=success');
 			} else {
 				echo '<br>Error occurred <br />';
 				echo mysqli_error($dbc);
 				//header('location:profile.php');
 			}
-			
+			}
 		}//end of if post
 	}//end of if egg
 	
-	
-	header('location:profile.php');
-	mysqli_close($dbc);
 	
 	/*
 	//debugging

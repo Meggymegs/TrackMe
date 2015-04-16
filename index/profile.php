@@ -6,6 +6,15 @@
 	$myusername = $_SESSION['myusername'];
 }
 	include '../mysqli_connect.php';
+	
+	if(isset($_GET['msg'])){	
+		$msg = $_GET['msg'];
+		if ($msg == "success"){
+			echo "SAASJODOJSOJADOOASJODJSAOJODJOO";?> <script> alert("Food added Successfully"); </script> <?php
+		} else if ($msg ==  "fail"){
+			?> <script> alert("Food not found. Please select one from our suggestions."); </script> <?php
+		}
+	}
 ?>
 <!doctype html>
 <html>
