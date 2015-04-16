@@ -167,3 +167,17 @@ a {
 [id^="togList5"]:checked ~ .list5{
 	display:block;                        /* SHOW LIST (IF CHECKED) */
 }
+
+.typeahead, .tt-query, .tt-hint {
+	width: 80px;
+}
+
+.tt-dropdown-menu {
+	background-color: #FFFFFF;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 8px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	margin-top: 12px;
+	padding: 8px 0;
+	width: 100px;
+}

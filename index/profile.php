@@ -11,18 +11,11 @@
 <html>
 	<head>
 		<title>Profile</title>
-<<<<<<< HEAD
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/typeahead.min.js"></script>
-=======
->>>>>>> parent of 7d0a292... AJAX Live search to Profile page
+		<script src='js/lib/jquery.min.js'></script>
 		<link rel="stylesheet" href='css/fullcalendar/fullcalendar.css' />
 		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/bootstrap.theme.min.css">
 		<link rel="stylesheet" href="css/profile.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-		<script src='js/lib/jquery.min.js'></script>
 		<script>
 		$(document).ready(function(){
 
@@ -33,8 +26,6 @@
 			});
 		});
 		</script>
-=======
->>>>>>> parent of 7d0a292... AJAX Live search to Profile page
 	</head>
 	<body style="background-color:#2d3e50;">
 		<nav class="navbar navbar-inverse navbar-static-top">
@@ -121,7 +112,6 @@
 						}
 					?>
 				<br>
-<<<<<<< HEAD
 				<?php
 				$result = mysqli_query($dbc, "SELECT * FROM `users_table` WHERE user_email like '$myusername'"); 
 				$row = mysqli_fetch_assoc($result);
@@ -148,11 +138,6 @@
 				}
 				?>
 				<br><br>
-=======
->>>>>>> parent of 7d0a292... AJAX Live search to Profile page
-				<b>Weight:</b>56kg <br>
-				<b>Height:</b>5'4" <br>
-				<b>Target&nbspWeight:</b>54kg
 			</div>
 			<div class="col-md-3"><!--form for physical act and food intake-->
 				
@@ -237,11 +222,11 @@
 							<span><p>Add food consumed<img src="res/addButton.png" style="margin-left:60px;" width="20px" height="20px"></p></span><!--<p>Click <span style="color:#AA3939;">ME</span> to add food consumed</p>-->
 							<span style="color:#AA3939;"><p>Collapse</p></span>
 						  </label>
-						  <div class="list3" style="overflow-y:scroll; height:100px; width: 260px; border:1px solid #E0E0E0; padding-top:5px; padding-left:5px;">
+						  <div class="list3" style="height:100px; width: 260px; border:1px solid #E0E0E0; padding-top:5px; padding-left:5px;">
 							<ul style="margin-left:-40px;">
 								<strong>Food</strong><span style="margin-left:40px;"><strong>Servings & </span><span style="margin-left:2px;">Servings</strong><br>
-								<input class="food" type="checkbox" name="food" value="egg">Fried Eggs</input> 
-									<select name="egg_srvng1" value="egg_srvng1" style="margin-left:6px; width:45px; margin-bottom:3px;">
+								<input type="text" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Search">
+									<select name="srvng1" value="srvng1" style="margin-left:6px; width:45px; margin-bottom:3px;">
 										<option value="0">0</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
@@ -249,7 +234,7 @@
 										<option value="4">4</option>
 										<option value="5">5</option>
 									</select>
-									<select name="egg_srvng2" value="egg_srvng2" style="margin-left:20px; width:45px; margin-bottom:3px;">
+									<select name="srvng2" value="srvng2" style="margin-left:20px; width:45px; margin-bottom:3px;">
 										<option value="0">0</option>
 										<option value=".5">1/2</option>
 										<option value=".33">1/3</option>
@@ -257,64 +242,7 @@
 										<option value=".2">1/5</option>
 										<option value=".17">1/6</option>
 									</select>
-									<br><!--end of choice egg-->
-								<input class="food" type="checkbox" name="food" value="beef">Beef</input> 
-									<select name="beef_srvng1" value="beef_srvng1" style="margin-left:45.5px; width:45px; margin-bottom:3px;">
-										<option value="0">0</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-									</select>
-									<select name="beef_srvng2" value="beef_srvng2" style="margin-left:20px; width:45px; margin-bottom:3px;">
-										<option value="0">0</option>
-										<option value=".5">1/2</option>
-										<option value=".33">1/3</option>
-										<option value=".25">1/4</option>
-										<option value=".2">1/5</option>
-										<option value=".17">1/6</option>
-									</select>
-									<br><!--end of choice pork-->
-								<input class="food" type="checkbox" name="food" value="chicken">Chicken</input> 
-									<select name="chicken_srvng1" value="chicken_srvng1" style="margin-left:24.3px; width:45px; margin-bottom:3px;">
-										<option value="0">0</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-									</select>
-									<select name="chicken_srvng2" value="chicken_srvng2" style="margin-left:20px; width:45px; margin-bottom:3px;">
-										<option value="0">0</option>
-										<option value=".5">1/2</option>
-										<option value=".33">1/3</option>
-										<option value=".25">1/4</option>
-										<option value=".2">1/5</option>
-										<option value=".17">1/6</option>
-									</select>
-									<br><!--end of choice chicken-->
-								<input class="food" type="checkbox" name="food" value="bread">Bread</input> 
-									<select name="bread_srvng1" value="bread_srvng1" style="margin-left:36.5px; width:45px; margin-bottom:3px;">
-										<option value="0">0</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-									</select>
-									<select name="bread_srvng2" value="bread_srvng2" style="margin-left:20px; width:45px;">
-										<option value="0">0</option>
-										<option value=".5">1/2</option>
-										<option value=".33">1/3</option>
-										<option value=".25">1/4</option>
-										<option value=".2">1/5</option>
-										<option value=".17">1/6</option>
-									</select>
-									<br><!--end of choice chicken-->
-									
-									<!--check all-->
-									<input type="checkbox" onchange="checkAllFood(this)" name="chk[]" />All
+									<br><!--end of choice-->
 							</ul>
 						  </div><!--end of list--><br>
 					<input id="foodActForm" type="submit" name="submit" value="Submit"/>
@@ -382,10 +310,9 @@
 		</div><!--end of div container-->
 		
 	<!--SCRIPTS-->	
-		<script type="text/javascript" src="js/bmicalc.js"></script>
 		<script src="js/bootstrap.min.js"></script>
-		
 		<script src='js/lib/jquery.min.js'></script>
+		<script src="js/typeahead.min.js"></script>
 		<script src='js/lib/moment.min.js'></script>
 		<script src='js/fullcalendar.js'></script>
 		
