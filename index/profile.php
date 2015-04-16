@@ -11,13 +11,17 @@
 <html>
 	<head>
 		<title>Profile</title>
+<<<<<<< HEAD
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/typeahead.min.js"></script>
+=======
+>>>>>>> parent of 7d0a292... AJAX Live search to Profile page
 		<link rel="stylesheet" href='css/fullcalendar/fullcalendar.css' />
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/bootstrap.theme.min.css">
 		<link rel="stylesheet" href="css/profile.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
 		<script src='js/lib/jquery.min.js'></script>
 		<script>
 		$(document).ready(function(){
@@ -29,6 +33,8 @@
 			});
 		});
 		</script>
+=======
+>>>>>>> parent of 7d0a292... AJAX Live search to Profile page
 	</head>
 	<body style="background-color:#2d3e50;">
 		<nav class="navbar navbar-inverse navbar-static-top">
@@ -115,6 +121,7 @@
 						}
 					?>
 				<br>
+<<<<<<< HEAD
 				<?php
 				$result = mysqli_query($dbc, "SELECT * FROM `users_table` WHERE user_email like '$myusername'"); 
 				$row = mysqli_fetch_assoc($result);
@@ -141,6 +148,8 @@
 				}
 				?>
 				<br><br>
+=======
+>>>>>>> parent of 7d0a292... AJAX Live search to Profile page
 				<b>Weight:</b>56kg <br>
 				<b>Height:</b>5'4" <br>
 				<b>Target&nbspWeight:</b>54kg
