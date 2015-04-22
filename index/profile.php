@@ -5,7 +5,16 @@
     header("Location:signin.php");
 	$myusername = $_SESSION['myusername'];
 }
+
 	include '../mysqli_connect.php';
+	session_start();
+	$tbl_user = "users_table";
+	$myusername = $_SESSION['myusername'];
+	$user_id = 0;
+	$userID = mysqli_query($dbc, "SELECT user_id FROM $tbl_user WHERE user_email like '$myusername'");
+	while ($row = mysqli_fetch_assoc($userID)) {
+		$user_id = $user_id + $row['user_id'];
+	}
 	
 	if(isset($_GET['msg'])){	
 		$msg = $_GET['msg'];
@@ -315,6 +324,47 @@
 					}
 					?> CALENDAR</h1>
 				<div id="calendar"></div>
+			</div>
+			<div class="col-md-5">
+				<span><h3>User History</h3></span>
+				<div class="history" style="overflow-y:scroll; height:100px; width: 210px; border:1px solid #E0E0E0; padding-top:5px; padding-left:5px;">
+				<?php
+				echo "<b>Time-based activities:</b><br>";
+				$userID = mysqli_query($dbc, "SELECT * FROM physical_activities_dist_table a, physical_activities_dist_type_table b WHERE user_id = '$user_id' AND a.physical_activity_dist_id = b.physical_acitivty_dist_id AND a.date_created > NOW() - INTERVAL 7 DAY ORDER BY a.date_created");
+				while ($row = mysqli_fetch_assoc($userID)) {
+					echo "<b>" . $row['date_created'] . ":</b>" . "<br>";
+					echo $row['physical_activity_dist_type'] . " for " . $row['time'] . " hours for " . $row['distance'] . " kilometers<br>";
+				}
+				echo "<br>";
+				echo "<b>Rep/set-based activities:</b><br>";
+				$userID = mysqli_query($dbc, "SELECT * FROM physical_activities_rep_table a, physical_activities_rep_type_table b WHERE user_id = '$user_id' AND a.physical_activity_rep_id = b.physical_activity_rep_id AND a.date_created > NOW() - INTERVAL 7 DAY ORDER BY a.date_created");
+				while ($row = mysqli_fetch_assoc($userID)) {
+					echo "<b>" . $row['date_created'] . ":</b>" . "<br>";
+					echo $row['physical_activity_rep_type'] . " for " . $row['number_of_reps'] . " reps and " . $row['number_of_sets'] . " sets<br>";
+				}
+				echo "<br>";
+				echo "<b>Food intake:</b><br>";
+				$userID = mysqli_query($dbc, "SELECT * FROM food_served_table a, food_table b WHERE user_id = '$user_id' AND a.food_id = b.food_id AND a.date_created > NOW() - INTERVAL 7 DAY ORDER BY a.date_created");
+				while ($row = mysqli_fetch_assoc($userID)) {
+					echo "<b>" . $row['date_created'] . ":</b>" . "<br>";
+					echo "Ate " . $row['food_serving'] . " servings of " . $row['food_name'] . "<br>";
+				}
+				echo "<br>";
+				echo "<b>Body measurements:</b><br>";
+				$userID = mysqli_query($dbc, "SELECT * FROM body_measurement_table a, body_measurement_type_table b WHERE user_id = '$user_id' AND a.body_measurement_type_id = b.body_measurement_type_id AND a.date_created > NOW() - INTERVAL 7 DAY ORDER BY a.date_created");
+				while ($row = mysqli_fetch_assoc($userID)) {
+					echo "<b>" . $row['date_created'] . ":</b>" . "<br>";
+					echo "Updated " . $row['body_measurement_type'] . " to " . $row['body_measurement_value'] . "<br>";
+				}
+				echo "<br>";
+				echo "<b>Vital measurements:</b><br>";
+				$userID = mysqli_query($dbc, "SELECT * FROM vital_signs_table a, vital_signs_type_table b WHERE user_id = '$user_id' AND a.vital_signs_type_id = b.vital_signs_type_id AND a.date_created > NOW() - INTERVAL 7 DAY ORDER BY a.date_created");
+				while ($row = mysqli_fetch_assoc($userID)) {
+					echo "<b>" . $row['date_created'] . ":</b>" . "<br>";
+					echo "Updated " . $row['vital_signs_type'] . " to " . $row['vital_signs_value'] . "<br>";
+				}
+				?>
+				</div>
 			</div>
 		</div><!--end of div container-->
 		

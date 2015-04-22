@@ -1,7 +1,7 @@
 <?php
-include '../mysqli_connect.php';
+include 'mysqli_connect.php';
 session_start();
-mysql_connect("localhost", "root", "1234") or die (mysql_error());
+mysql_connect("localhost", "root", "") or die (mysql_error());
 mysql_select_db("trackme") or die (mysql_error());
 $tbl_user = "users_table";
 $myusername = $_SESSION['myusername'];
@@ -22,7 +22,7 @@ $i = $_POST["systolic"];
 $j = $_POST["diastolic"];
 $bmi = round($b/($a*$a),2);
 $fat = (415*$c-8.2*2.20462*$b-9442)/(2.20462*$b);
-$date = date("Y-m-d");
+$date = date("Y-m-d H:i:s");
 
 if (isset($_POST['body1'])) {
 $strSQL = "SELECT COUNT(*) FROM body_measurement_table WHERE user_id = '" . $user_id . "' AND body_measurement_type_id = '1'";

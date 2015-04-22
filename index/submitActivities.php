@@ -1,5 +1,5 @@
 <?php
-	include '../mysqli_connect.php';
+	include 'mysqli_connect.php';
 	session_start();
 	$user_id = 0;	
 	$tbl_user = "users_table";
