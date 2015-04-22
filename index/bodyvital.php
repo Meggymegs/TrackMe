@@ -1,7 +1,7 @@
 <?php
-include 'mysqli_connect.php';
+include '../mysqli_connect.php';
 session_start();
-mysql_connect("localhost", "root", "") or die (mysql_error());
+mysql_connect("localhost", "root", "1234") or die (mysql_error());
 mysql_select_db("trackme") or die (mysql_error());
 $tbl_user = "users_table";
 $myusername = $_SESSION['myusername'];
