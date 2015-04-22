@@ -315,19 +315,10 @@
 					</div><br>
 					<input type="submit" name="submit" value="Submit" style="width:30%; margin-left:80px; margin-top:50px; margin-bottom:8px; border-radius:4px; background-color:#AA3939; color:white;"/>
 				</form>
-			</div>	
-			<div class="col-md-6"> <!--for the calendar-->
-				<h1 align="center"><?php
-					$result = mysqli_query($dbc, "SELECT UPPER(first_name) AS first_name FROM `users_table` WHERE user_email like '$myusername'"); 
-					while ($row = mysqli_fetch_assoc($result)) {
-						echo $row['first_name']."'S";
-					}
-					?> CALENDAR</h1>
-				<div id="calendar"></div>
 			</div>
 			<div class="col-md-5">
 				<span><h3>User History</h3></span>
-				<div class="history" style="overflow-y:scroll; height:100px; width: 210px; border:1px solid #E0E0E0; padding-top:5px; padding-left:5px;">
+				<div class="history" style="overflow-y:scroll; height:230px; width: 260px; border:1px solid #E0E0E0; padding-top:5px; padding-left:5px;">
 				<?php
 				echo "<b>Time-based activities:</b><br>";
 				$userID = mysqli_query($dbc, "SELECT * FROM physical_activities_dist_table a, physical_activities_dist_type_table b WHERE user_id = '$user_id' AND a.physical_activity_dist_id = b.physical_acitivty_dist_id AND a.date_created > NOW() - INTERVAL 7 DAY ORDER BY a.date_created");
@@ -365,6 +356,15 @@
 				}
 				?>
 				</div>
+			</div>	
+			<div class="col-md-6"> <!--for the calendar-->
+				<h1 align="center"><?php
+					$result = mysqli_query($dbc, "SELECT UPPER(first_name) AS first_name FROM `users_table` WHERE user_email like '$myusername'"); 
+					while ($row = mysqli_fetch_assoc($result)) {
+						echo $row['first_name']."'S";
+					}
+					?> CALENDAR</h1>
+				<div id="calendar"></div>
 			</div>
 		</div><!--end of div container-->
 		

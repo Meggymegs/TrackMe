@@ -25,7 +25,7 @@ body{
 	width: 100%;
 }
 
-#formHeader,.col-md-2,.col-md-3,.col-md-4,.col-md-6,.col-md-7{
+#formHeader,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7{
 	box-shadow: 8px 7px 5px #888888;
 	background-color:#ecf0f1;
 }
@@ -63,14 +63,12 @@ body{
 }
 
 .col-md-5{
-	position:absolute;
-	left:1109px;
-	background-color: white;
-	width:240px;
-	min-height: 200px;
-	margin-left: 6px;
-	margin-right: 10px;
-	margin-bottom: 10px;
+	display:inline-block;
+	width:280px;
+	min-height: 300px;
+	margin-left: 10px;
+	margin-top: 30px;
+	margin-bottom:100px;
 	border-radius: 3px;
 	padding-bottom: 10px;
 }
