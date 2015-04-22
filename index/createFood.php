@@ -15,7 +15,7 @@
 	$required = array('foodName', 'calories');
 
 	$tbl_name = "food_table";
-	
+
 	// Loop over field names, make sure each one exists and is not empty
 	$error = false;
 	$isSpecial = false;
@@ -34,15 +34,15 @@
 	} else {
 		//Create food object
 		$food = new Food(trim($_POST['foodName']), trim($_POST['calories']));
-		
+
 		$name = $food->getFoodName();
 		$calories = $food->getCalories();
-		
+
 		$query = "INSERT INTO `food_table`(`food_id`, `food_name`, `food_calories`) VALUES ('DEFAULT','$name',$calories)";
 		$result = mysqli_query($db_server, $query);
 		//echo mysqli_error($db_server);
 		header("location:admin.php?msg=success");
 	}
-	
+
 
 ?>
