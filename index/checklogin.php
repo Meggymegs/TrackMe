@@ -1,18 +1,19 @@
 <?php
+error_reporting(-1);
 include '../mysqli_connect.php';
 
 $tbl_name = "users_table";
 
-// username and password sent from form 
-$myusername=$_POST['myusername']; 
+// username and password sent from form
+$myusername=$_POST['myusername'];
 $salt = sha1(md5($_POST['mypassword']));
 $mypassword = md5($_POST['mypassword'].$salt);
 
 // To protect MySQL injection
 $myusername = stripslashes($myusername);
 $mypassword = stripslashes($mypassword);
-$myusername = mysql_real_escape_string($myusername);
-$mypassword = mysql_real_escape_string($mypassword);
+$myusername = mysqli_real_escape_string($dbc, $myusername);
+$mypassword = mysqli_real_escape_string($dbc, $mypassword);
 //$sql="SELECT * FROM $tbl_name WHERE username='$myusername' and password='$mypassword'";
 $result = mysqli_query($dbc, "SELECT * FROM $tbl_name WHERE user_email='$myusername' and user_password='$mypassword'");
 
@@ -29,5 +30,7 @@ header("location:profile.php");
 else {
 header("location:signin.php?message=Wrong Email or Password");
 }
-?>	
+
+
+?>
 </html>
