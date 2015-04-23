@@ -14,17 +14,6 @@
 	<head>
 	<body>
 	
-		<?php
-		$user_id = $_GET['user_id'];
-		$newPassword = $_GET['newPassword'];
-		
-
-		$sql = "UPDATE users_table ".
-			   "SET user_password = $newPassword".
-			   "WHERE user_id = $user_id" ;
-
-		?>
-	
 		<nav class="navbar navbar-inverse navbar-static-top">
 		  <div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -98,11 +87,11 @@
 				<h3 class="panel-title">Change Password</h3>
 			 </div>
 			 <div class="panel-body">
-				<form id="formPos" action="demo_form.asp" method="get">
-					Current Password: <input class="currentPassword" type="text" name="currentPassword"><br><br>
-					New Password: <input class="newPassword" type="text" name="newPassword"><br><br>
-					Verify Password: <input class="verifyPassword" type="text" name="verifyPassword"><br><br>
-					<button type="button" class="btn btn-submit">Save Changes</button>
+				<form id="formPos" action="updatePassword.php" method="get">
+					Current Password: <input class="currentPassword" type="password" name="currentPassword"><br><br>
+					New Password: <input class="newPassword" type="password" name="newPassword"><br><br>
+					Verify Password: <input class="verifyPassword" type="password" name="verifyPassword"><br><br>
+					<button type="submit" class="btn btn-submit" onclick="return confirm('Save Changes?')">Save Changes</button>
 				</form>
 			 </div>
 		</div>

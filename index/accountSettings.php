@@ -79,7 +79,7 @@
 				<a class="btn btn-default" href="changePicture.php">Profile Picture >></a>
 			</div>
 			<div class="btn-group" role="group">
-				<a class="btn btn-default" href="changePassword.php">Password >></a>
+				<a class="btn btn-default" href="accountPassword.php">Password >></a>
 			</div>
 		</div>
 		
