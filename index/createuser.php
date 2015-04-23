@@ -2,7 +2,7 @@
 	ini_set('display_errors', 1);
 	require_once('../mysqli_connect.php');
 	require_once('User.php');
-	
+
 	$required = array('first_name', 'last_name', 'email', 'password', 'repass');
 	$error = false;
 	$isSpecial = false;
@@ -13,13 +13,13 @@
 			$isSpecial = true;
 		}
 	}
-	
+
 	if ($error) {
 	    header("location:signup.php?msg=fail");
 	} else if ($isSpecial){
 		header("location:signup.php?msg=special");
 	}else{
-	
+
 		$first_name = $last_name = $email = $password = $birthdate = "";
 
 		if(isset($_POST['submit'])) {
@@ -37,11 +37,12 @@
 
 		$user = new User($first_name, $last_name, $email, $password, $birthdate);
 
-		$query = "INSERT INTO users_table VALUES (DEFAULT, ?, ?, ?, ?, ?, DEFAULT)";
+		$query = "INSERT INTO users_table (first_name, last_name, user_email, user_password, user_birthdate, user_profile_pic) 
+			VALUES (?, ?, ?, ?, ?, 'assets/images/placeholder.png')";
 
 		$stmt = mysqli_prepare($dbc, $query);
 
-		mysqli_stmt_bind_param($stmt, "sssss", $user->getFirstName(), $user->getLastName(), $user->getUserEmail(), 
+		mysqli_stmt_bind_param($stmt, "sssss", $user->getFirstName(), $user->getLastName(), $user->getUserEmail(),
 			$user->getPassword(), $user->getBirthdate());
 
 		mysqli_stmt_execute($stmt);
@@ -62,8 +63,8 @@
 			mysqli_close($dbc);
 
 		}
-	}	
-	
+	}
+
 	function test_input($data) {
 		$data = trim($data);
 		$data = stripslashes($data);
