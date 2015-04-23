@@ -29,7 +29,6 @@
 			$password = test_input($_POST["password"]);
 			$birthdate = $_POST['bday'];
 		}
-
 		$salt = sha1(md5($password));
 		$password = md5($password.$salt);
 
@@ -60,8 +59,8 @@
 			echo 'Error occured <br />';
 			echo mysqli_error($dbc);
 			mysqli_close($dbc);
-
 		}
+		
 	}	
 	
 	function test_input($data) {

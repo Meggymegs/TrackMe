@@ -47,13 +47,13 @@
 	$email = isset($_GET['email']) ? $_GET['email']: '';
 	$sql = "UPDATE users_table ".
 		   "SET first_name = '$firstName', last_name = '$lastName', user_email = '$email' ".
-		   "WHERE user_id = '$tempId'" ;//query for changing user number 3 //needs to be changed to current person logged in
+		   "WHERE user_id = '$tempId'" ;
    
 	if ($conn->query($sql) === TRUE) {
 		echo "Record updated successfully";
 	} else {
 		echo "Error updating record: " . $conn->error;
-	}
+	}	
 	header("location:accountSettings.php?msg=success&user_id=$user_id");
 	
 	$conn->close();
