@@ -89,9 +89,9 @@
 			 </div>
 			 <div class="panel-body">
 				<form id="formPos" action="updateAccount.php" method="get">
-					First Name: <input class="firstName" type="text" name="firstName"><br><br>
-					Last Name: <input class="lastName" type="text" name="lastName"><br><br>
-					Email: <input class="email" type="text" name="email"><br><br>
+					First Name: <input class="firstName" type="text" name="firstName" required><br><br>
+					Last Name: <input class="lastName" type="text" name="lastName" required><br><br>
+					Email: <input class="email" type="text" name="email" required><br><br>
 					
 					<button type="submit" class="btn btn-submit" onclick="return confirm('Save Changes?')">Save Changes</button>
 				</form>
