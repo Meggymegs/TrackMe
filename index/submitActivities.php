@@ -1,5 +1,5 @@
 <?php
-	include '../mysqli_connect.php';
+	include 'mysqli_connect.php';
 	session_start();
 	$user_id = 0;	
 	$tbl_user = "users_table";
@@ -10,7 +10,7 @@
 	$userID = mysqli_query($dbc, "SELECT user_id FROM $tbl_user WHERE user_email like '$myusername'");
 	while ($row = mysqli_fetch_assoc($userID)) {
 				//to get the integer value of the $userID
-				echo $row['user_id'];//debugging
+				//echo $row['user_id'];//debugging
 				$user_id = $user_id + $row['user_id'];
 	}
 	
@@ -18,8 +18,7 @@
 	if(isset($_POST['running']) && $_POST['running']==='running'){ 
 		echo 'check running <br>';//debugging
 		if(isset($_POST['run_hrs'],$_POST['run_mins'],$_POST['run_dist'])){
-			
-			
+						
 			$hours = trim($_POST['run_hrs']);
 			$mins = trim($_POST['run_mins']);
 			$dist = trim($_POST['run_dist']);
@@ -70,7 +69,6 @@
 	if(isset($_POST['walking']) && $_POST['walking']==='walking'){ 
 		echo 'check walking <br>';//debugging
 		if(isset($_POST['walk_hrs'],$_POST['walk_mins'],$_POST['walk_dist'])){
-			
 			
 			$hours = trim($_POST['walk_hrs']);
 			$mins = trim($_POST['walk_mins']);
@@ -324,19 +322,15 @@
 	////////////////////END OF REP/SET BASED PHYSICAL ACTIVITIES INSERTION////////////////////
 	////////////////////START OF FOOD INTAKE INSERTION////////////////////
 	
-	if(isset($_POST['typeahead'])){ 
-		if(isset($_POST['srvng1'],$_POST['srvng2'])){
+	if(isset($_POST['egg']) && $_POST['egg']==='egg'){ 
+		echo 'check egg <br>';//debugging
+		if(isset($_POST['egg_srvng1'],$_POST['egg_srvng2'])){
 			
-			$srvng1 = trim($_POST['srvng1']);
-			$srvng2 = trim($_POST['srvng2']);
+			$srvng1 = trim($_POST['egg_srvng1']);
+			$srvng2 = trim($_POST['egg_srvng2']);
 			$food_srvngs = $srvng1 + $srvng2;
-			$fn = $_POST['typeahead'];
 			$userID = mysqli_query($dbc, "SELECT user_id FROM $tbl_user WHERE user_email like '$myusername'");
-			$foodID = mysqli_query($dbc,"SELECT food_id FROM $tbl_food WHERE food_name = '$fn'");
-			$count = mysqli_num_rows($foodID);
-			if($count == 0){
-				header("location: profile.php?msg=fail");
-			}else{
+			$foodID = mysqli_query($dbc,"SELECT food_id FROM $tbl_food WHERE food_name = 'Fried Eggs'");
 			$user_id = 0;
 			$food_id = 0;
 			
@@ -367,16 +361,65 @@
 			if($affected_rows == 1) {
 				echo 'Successful!<br>';
 				mysqli_stmt_close($stmt);
-				header('location:profile.php?msg=success');
+				//header('location:profile.php');
 			} else {
 				echo '<br>Error occurred <br />';
 				echo mysqli_error($dbc);
 				//header('location:profile.php');
 			}
-			}
+			
 		}//end of if post
 	}//end of if egg
 	
+	if(isset($_POST['beef']) && $_POST['beef']==='beef'){ 
+		echo 'check beef <br>';//debugging
+		if(isset($_POST['beef_srvng1'],$_POST['beef_srvng2'])){		
+			$srvng1 = trim($_POST['beef_srvng1']);
+			$srvng2 = trim($_POST['beef_srvng2']);
+			$food_srvngs = $srvng1 + $srvng2;
+			$userID = mysqli_query($dbc, "SELECT user_id FROM $tbl_user WHERE user_email like '$myusername'");
+			$foodID = mysqli_query($dbc,"SELECT food_id FROM $tbl_food WHERE food_name = 'Beef'");
+			$user_id = 0;
+			$food_id = 0;
+			
+			echo '<br>now im here<br>';//debugging
+			while ($row = mysqli_fetch_assoc($userID)) {
+				//to get the integer value of the $userID
+				echo $row['user_id'];//debugging
+				$user_id = $user_id + $row['user_id'];
+			}
+			
+			while ($row = mysqli_fetch_assoc($foodID)) {
+				//to get the integer value of the $phyID
+				echo $row['food_id'];//debugging
+				$food_id = $food_id + $row['food_id'];
+			}
+			
+			$query = "INSERT INTO food_served_table (user_id, food_id, food_serving, date_created) 
+										VALUES (?, ?, ?, NOW())";
+		
+			$stmt = mysqli_prepare($dbc, $query);
+			
+			mysqli_stmt_bind_param($stmt, "iid", $user_id, $food_id, $food_srvngs);
+			
+			mysqli_stmt_execute($stmt);
+			
+			$affected_rows = mysqli_stmt_affected_rows($stmt);
+			
+			if($affected_rows == 1) {
+				echo 'Successful!<br>';
+				mysqli_stmt_close($stmt);
+				//header('location:profile.php');
+			} else {
+				echo '<br>Error occurred <br />';
+				echo mysqli_error($dbc);
+			}
+			
+		}//end of if post
+	}//end of if beef
+	
+	header('location:profile.php');
+	mysqli_close($dbc);
 	
 	/*
 	//debugging

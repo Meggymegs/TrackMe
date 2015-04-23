@@ -111,6 +111,13 @@ body{
 	width: 100px;
 }
 
+#legend{
+	display:inline-block;
+	position:absolute;
+	margin-left:10px;
+	margin-top:20px;
+}
+
 #fade{
     display: none;
     position: fixed;

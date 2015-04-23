@@ -37,8 +37,9 @@
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
-		<script src="chartjs/Chart.js"></script>
 		<script src='js/lib/jquery.min.js'></script>
+		<script src="chartjs/Chart.js"></script>
+		
 		<script>
 			$(document).ready(function(){
 
@@ -194,6 +195,21 @@
 						}
 						?> Progress</h3>
 				</span>
+				<div id="legend">
+					<h3>Legend</h3>
+					<canvas id="myCanvas" width="10" height="10" style="border:1px solid #3498db; background-color:#3498db"></canvas> Height <br>
+					<canvas id="myCanvas" width="10" height="10" style="border:1px solid #e74c3c; background-color:#e74c3c"></canvas> Weight <br>
+					<canvas id="myCanvas" width="10" height="10" style="border:1px solid #2ecc71; background-color:#2ecc71"></canvas> Waist <br>
+					<canvas id="myCanvas" width="10" height="10" style="border:1px solid #1abc9c; background-color:#1abc9c"></canvas> Wrist <br>
+					<canvas id="myCanvas" width="10" height="10" style="border:1px solid #e67e22; background-color:#e67e22"></canvas> Hips <br>
+					<canvas id="myCanvas" width="10" height="10" style="border:1px solid #9b59b6; background-color:#9b59b6"></canvas> Forearm <br>
+					<canvas id="myCanvas" width="10" height="10" style="border:1px solid #34495e; background-color:#34495e"></canvas> BMI <br>
+					<canvas id="myCanvas" width="10" height="10" style="border:1px solid #7f8c8d; background-color:#7f8c8d"></canvas> Body Fat <br>
+					<canvas id="myCanvas" width="10" height="10" style="border:1px solid #8e44ad; background-color:#8e44ad"></canvas> Heart Rate <br>
+					<canvas id="myCanvas" width="10" height="10" style="border:1px solid #27ae60; background-color:#27ae60"></canvas> Respiratory Rate <br>
+					<canvas id="myCanvas" width="10" height="10" style="border:1px solid #16a085; background-color:#16a085"></canvas> Systolic <br>
+					<canvas id="myCanvas" width="10" height="10" style="border:1px solid #c0392b; background-color:#c0392b"></canvas> Diastolic <br>
+				</div>
 				<div style="width:65%; margin-left:auto; margin-right:auto;">
 					<div>
 						<canvas id="canvas" height="450" width="600"></canvas>
@@ -345,11 +361,11 @@
 							<span><p>Add food consumed<img src="res/addButton.png" style="margin-left:60px;" width="20px" height="20px"></p></span><!--<p>Click <span style="color:#AA3939;">ME</span> to add food consumed</p>-->
 							<span style="color:#AA3939;"><p>Collapse</p></span>
 						  </label>
-						  <div class="list3" style="height:100px; width: 260px; border:1px solid #E0E0E0; padding-top:5px; padding-left:5px;">
+						  <div class="list3" style="overflow-y:scroll; height:100px; width: 260px; border:1px solid #E0E0E0; padding-top:5px; padding-left:5px;">
 							<ul style="margin-left:-40px;">
 								<strong>Food</strong><span style="margin-left:40px;"><strong>Servings & </span><span style="margin-left:2px;">Servings</strong><br>
-								<input type="text" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Search">
-									<select name="srvng1" value="srvng1" style="margin-left:6px; width:45px; margin-bottom:3px;">
+								<input class="food" type="checkbox" name="egg" value="egg">Egg</input> 
+									<select name="egg_srvng1" style="margin-left:50px; width:45px; margin-bottom:3px;">
 										<option value="0">0</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
@@ -357,7 +373,7 @@
 										<option value="4">4</option>
 										<option value="5">5</option>
 									</select>
-									<select name="srvng2" value="srvng2" style="margin-left:20px; width:45px; margin-bottom:3px;">
+									<select name="egg_srvng2" style="margin-left:20px; width:45px; margin-bottom:3px;">
 										<option value="0">0</option>
 										<option value=".5">1/2</option>
 										<option value=".33">1/3</option>
@@ -365,9 +381,66 @@
 										<option value=".2">1/5</option>
 										<option value=".17">1/6</option>
 									</select>
-									<br><!--end of choice-->
+									<br><!--end of choice egg-->
+								<input class="food" type="checkbox" name="beef" value="beef">Beef</input> 
+									<select name="beef_srvng1" style="margin-left:45.5px; width:45px; margin-bottom:3px;">
+										<option value="0">0</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+									</select>
+									<select name="beef_srvng2" style="margin-left:20px; width:45px; margin-bottom:3px;">
+										<option value="0">0</option>
+										<option value=".5">1/2</option>
+										<option value=".33">1/3</option>
+										<option value=".25">1/4</option>
+										<option value=".2">1/5</option>
+										<option value=".17">1/6</option>
+									</select>
+									<br><!--end of choice pork-->
+								<input class="food" type="checkbox" name="food" value="chicken">Chicken</input> 
+									<select name="chicken_srvng1" style="margin-left:24.3px; width:45px; margin-bottom:3px;">
+										<option value="0">0</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+									</select>
+									<select name="chicken_srvng2" style="margin-left:20px; width:45px; margin-bottom:3px;">
+										<option value="0">0</option>
+										<option value=".5">1/2</option>
+										<option value=".33">1/3</option>
+										<option value=".25">1/4</option>
+										<option value=".2">1/5</option>
+										<option value=".17">1/6</option>
+									</select>
+									<br><!--end of choice chicken-->
+								<input class="food" type="checkbox" name="food" value="bread">Bread</input> 
+									<select name="bread_srvng1" style="margin-left:36.5px; width:45px; margin-bottom:3px;">
+										<option value="0">0</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+									</select>
+									<select name="bread_srvng2" style="margin-left:20px; width:45px;">
+										<option value="0">0</option>
+										<option value=".5">1/2</option>
+										<option value=".33">1/3</option>
+										<option value=".25">1/4</option>
+										<option value=".2">1/5</option>
+										<option value=".17">1/6</option>
+									</select>
+									<br><!--end of choice chicken-->
+									
+									<!--check all-->
+									<input type="checkbox" onchange="checkAllFood(this)" name="chk[]" />All
 							</ul>
-						  </div><!--end of list--><br>
+						  </div><!--end of list-->
 							<input id="foodActForm" type="submit" name="submit" value="Submit"/>
 						</form>
 					</div><!--end of col-md-3-->
@@ -449,7 +522,7 @@
 			var m = date.getMonth();
 			var y = date.getFullYear();
 			var calendar = $('#calendar').fullCalendar({
-			  height:480,
+			  height:500,
 			  header: {
 				left: 'prev,next today',
 				center: 'title',
@@ -695,13 +768,37 @@
 			labels : ["January","February","March","April","May","June","July", "August", "September", "October", "November", "December"],
 			datasets : [
 				{
-					
-					label: "My Data",
+					label: "Height",
 					fillColor : "rgba(220,220,220,0.5)",
 					strokeColor : "#3498db",
-					pointColor : "rgba(220,220,220,1)",
+					pointColor : "#3498db",
 					pointStrokeColor : "#3498db",
 					pointHighlightFill : "#3498db",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : [
+						<?php
+							$events=mysqli_query($dbc,"
+							SELECT body_measurement_value, date_created 
+							FROM body_measurement_table AS bmt, users_table AS u 
+							WHERE bmt.user_id = u.user_id
+							AND bmt.body_measurement_type_id = 1
+							AND u.user_email like '$myusername'
+							");
+							
+							while($row = mysqli_fetch_assoc($events)) {
+							$data= $row['body_measurement_value'];
+							echo $data . ",";
+							}//end of while
+						?>
+					]//end of data
+				},
+				{
+					label: "Weight",
+					fillColor : "rgba(220,220,220,0.5)",
+					strokeColor : "#e74c3c",
+					pointColor : "#e74c3c",
+					pointStrokeColor : "#e74c3c",
+					pointHighlightFill : "#e74c3c",
 					pointHighlightStroke : "rgba(220,220,220,1)",
 					data : [
 						<?php
@@ -718,8 +815,259 @@
 							echo $data . ",";
 							}//end of while
 						?>
-					]
-				}
+					]//end of data
+				},
+				{
+					label: "Waist",
+					fillColor : "rgba(220,220,220,0.5)",
+					strokeColor : "#2ecc71",
+					pointColor : "#2ecc71",
+					pointStrokeColor : "#2ecc71",
+					pointHighlightFill : "#2ecc71",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : [
+						<?php
+							$events=mysqli_query($dbc,"
+							SELECT body_measurement_value, date_created 
+							FROM body_measurement_table AS bmt, users_table AS u 
+							WHERE bmt.user_id = u.user_id
+							AND bmt.body_measurement_type_id = 3
+							AND u.user_email like '$myusername'
+							");
+							
+							while($row = mysqli_fetch_assoc($events)) {
+							$data= $row['body_measurement_value'];
+							echo $data . ",";
+							}//end of while
+						?>
+					]//end of data
+				},
+				{
+					label: "Wrist",
+					fillColor : "rgba(220,220,220,0.5)",
+					strokeColor : "#1abc9c",
+					pointColor : "#1abc9c",
+					pointStrokeColor : "#1abc9c",
+					pointHighlightFill : "#1abc9c",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : [
+						<?php
+							$events=mysqli_query($dbc,"
+							SELECT body_measurement_value, date_created 
+							FROM body_measurement_table AS bmt, users_table AS u 
+							WHERE bmt.user_id = u.user_id
+							AND bmt.body_measurement_type_id = 4
+							AND u.user_email like '$myusername'
+							");
+							
+							while($row = mysqli_fetch_assoc($events)) {
+							$data= $row['body_measurement_value'];
+							echo $data . ",";
+							}//end of while
+						?>
+					]//end of data
+				},
+				{
+					label: "Hips",
+					fillColor : "rgba(220,220,220,0.5)",
+					strokeColor : "#e67e22",
+					pointColor : "#e67e22",
+					pointStrokeColor : "#e67e22",
+					pointHighlightFill : "#e67e22",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : [
+						<?php
+							$events=mysqli_query($dbc,"
+							SELECT body_measurement_value, date_created 
+							FROM body_measurement_table AS bmt, users_table AS u 
+							WHERE bmt.user_id = u.user_id
+							AND bmt.body_measurement_type_id = 5
+							AND u.user_email like '$myusername'
+							");
+							
+							while($row = mysqli_fetch_assoc($events)) {
+							$data= $row['body_measurement_value'];
+							echo $data . ",";
+							}//end of while
+						?>
+					]//end of data
+				},
+				{
+					label: "Forearm",
+					fillColor : "rgba(220,220,220,0.5)",
+					strokeColor : "#9b59b6",
+					pointColor : "#9b59b6",
+					pointStrokeColor : "#9b59b6",
+					pointHighlightFill : "#9b59b6",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : [
+						<?php
+							$events=mysqli_query($dbc,"
+							SELECT body_measurement_value, date_created 
+							FROM body_measurement_table AS bmt, users_table AS u 
+							WHERE bmt.user_id = u.user_id
+							AND bmt.body_measurement_type_id = 6
+							AND u.user_email like '$myusername'
+							");
+							
+							while($row = mysqli_fetch_assoc($events)) {
+							$data= $row['body_measurement_value'];
+							echo $data . ",";
+							}//end of while
+						?>
+					]//end of data
+				},
+				{
+					label: "BMI",
+					fillColor : "rgba(220,220,220,0.5)",
+					strokeColor : "#34495e",
+					pointColor : "#34495e",
+					pointStrokeColor : "#34495e",
+					pointHighlightFill : "#34495e",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : [
+						<?php
+							$events=mysqli_query($dbc,"
+							SELECT body_measurement_value, date_created 
+							FROM body_measurement_table AS bmt, users_table AS u 
+							WHERE bmt.user_id = u.user_id
+							AND bmt.body_measurement_type_id = 7
+							AND u.user_email like '$myusername'
+							");
+							
+							while($row = mysqli_fetch_assoc($events)) {
+							$data= $row['body_measurement_value'];
+							echo $data . ",";
+							}//end of while
+						?>
+					]//end of data
+				},
+				{
+					label: "Body fat",
+					fillColor : "rgba(220,220,220,0.5)",
+					strokeColor : "#7f8c8d",
+					pointColor : "#7f8c8d",
+					pointStrokeColor : "#7f8c8d",
+					pointHighlightFill : "#7f8c8d",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : [
+						<?php
+							$events=mysqli_query($dbc,"
+							SELECT body_measurement_value, date_created 
+							FROM body_measurement_table AS bmt, users_table AS u 
+							WHERE bmt.user_id = u.user_id
+							AND bmt.body_measurement_type_id = 8
+							AND u.user_email like '$myusername'
+							");
+							
+							while($row = mysqli_fetch_assoc($events)) {
+							$data= $row['body_measurement_value'];
+							echo $data . ",";
+							}//end of while
+						?>
+					]//end of data
+				},
+				//////////////////vital signs///////////////////
+				{
+					label: "Heart Rate",
+					fillColor : "rgba(220,220,220,0.5)",
+					strokeColor : "#8e44ad",
+					pointColor : "#8e44ad",
+					pointStrokeColor : "#8e44ad",
+					pointHighlightFill : "#8e44ad",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : [
+						<?php
+							$events=mysqli_query($dbc,"
+							SELECT vital_signs_value, date_created 
+							FROM vital_signs_table AS vst, users_table AS u 
+							WHERE vst.user_id = u.user_id
+							AND vst.vital_signs_type_id = 1
+							AND u.user_email like '$myusername'
+							");
+							
+							while($row = mysqli_fetch_assoc($events)) {
+							$data= $row['vital_signs_value'];
+							echo $data . ",";
+							}//end of while
+						?>
+					]//end of data
+				},
+				{
+					label: "Respiratory Rate",
+					fillColor : "rgba(220,220,220,0.5)",
+					strokeColor : "#27ae60",
+					pointColor : "#27ae60",
+					pointStrokeColor : "#27ae60",
+					pointHighlightFill : "#27ae60",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : [
+						<?php
+							$events=mysqli_query($dbc,"
+							SELECT vital_signs_value, date_created 
+							FROM vital_signs_table AS vst, users_table AS u 
+							WHERE vst.user_id = u.user_id
+							AND vst.vital_signs_type_id = 2
+							AND u.user_email like '$myusername'
+							");
+							
+							while($row = mysqli_fetch_assoc($events)) {
+							$data= $row['vital_signs_value'];
+							echo $data . ",";
+							}//end of while
+						?>
+					]//end of data
+				},
+				{
+					label: "Systolic",
+					fillColor : "rgba(220,220,220,0.5)",
+					strokeColor : "#c0392b",
+					pointColor : "#c0392b",
+					pointStrokeColor : "#c0392b",
+					pointHighlightFill : "#c0392b",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : [
+						<?php
+							$events=mysqli_query($dbc,"
+							SELECT vital_signs_value, date_created 
+							FROM vital_signs_table AS vst, users_table AS u 
+							WHERE vst.user_id = u.user_id
+							AND vst.vital_signs_type_id = 3
+							AND u.user_email like '$myusername'
+							");
+							
+							while($row = mysqli_fetch_assoc($events)) {
+							$data= $row['vital_signs_value'];
+							echo $data . ",";
+							}//end of while
+						?>
+					]//end of data
+				},
+				{
+					label: "Diastolic",
+					fillColor : "rgba(220,220,220,0.5)",
+					strokeColor : "#16a085",
+					pointColor : "#16a085",
+					pointStrokeColor : "#16a085",
+					pointHighlightFill : "#16a085",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : [
+						<?php
+							$events=mysqli_query($dbc,"
+							SELECT vital_signs_value, date_created 
+							FROM vital_signs_table AS vst, users_table AS u 
+							WHERE vst.user_id = u.user_id
+							AND vst.vital_signs_type_id = 4
+							AND u.user_email like '$myusername'
+							");
+							
+							while($row = mysqli_fetch_assoc($events)) {
+							$data= $row['vital_signs_value'];
+							echo $data . ",";
+							}//end of while
+						?>
+					]//end of data
+				},
 			]
 
 		}
@@ -730,7 +1078,6 @@
 				responsive: true
 			});
 		}
-		
 		</script>
 	</body>
 </html>
