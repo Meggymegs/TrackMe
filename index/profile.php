@@ -148,27 +148,18 @@
 					?><br>
 					<b>Weight:</b>
 					<?php
-						$result = mysqli_query($dbc, "SELECT t1.*
-						FROM body_measurement_table t1
-						WHERE body_measurement_type_id = 2 AND t1.date_created = (SELECT t2.date_created
-										 FROM body_measurement_table t2
-										 WHERE t2.user_id = t1.user_id 
-										 ORDER BY t2.date_created DESC
-										 LIMIT 1)"); 
+						$result = mysqli_query($dbc, "SELECT * 
+						FROM body_measurement_table WHERE body_measurement_type_id = 2
+						order by date_created DESC LIMIT 1"); 
 						$row = mysqli_fetch_assoc($result);
 						echo $row['body_measurement_value'] . " kg";
 					?>
 					<br>
 					<b>Height:</b>
 					<?php
-						$result = mysqli_query($dbc, "SELECT t1.*
-						FROM body_measurement_table t1
-						WHERE body_measurement_type_id = 1 AND t1.date_created = (SELECT t2.date_created
-										 FROM body_measurement_table t2
-										 WHERE t2.user_id = t1.user_id 
-
-										 ORDER BY t2.date_created DESC
-										 LIMIT 1)"); 
+						$result = mysqli_query($dbc, "SELECT * 
+						FROM body_measurement_table WHERE body_measurement_type_id = 1
+						order by date_created DESC LIMIT 1"); 
 						$row = mysqli_fetch_assoc($result);
 						echo $row['body_measurement_value'] . " cm";
 						}
@@ -1081,45 +1072,3 @@
 		</script>
 	</body>
 </html>
-
-<!--
-<?php 
-					error_reporting(0);
-					
-					$events=mysqli_query($dbc,"
-					SELECT body_measurement_value, date_created, body_measurement_type
-					FROM body_measurement_table AS bmt, users_table AS u, body_measurement_type_table AS bmtt
-					WHERE bmt.user_id = u.user_id
-					AND u.user_email like '$myusername'
-					");
-							
-					while($row = mysqli_fetch_assoc($events)) {
-					$name= $row['body_measurement_type'];
-					?>
-						label: <?php echo "$name"?>,
-						fillColor : "rgba(220,220,220,0.5)",
-						strokeColor : "#3498db",
-						pointColor : "rgba(220,220,220,1)",
-						pointStrokeColor : "#3498db",
-						pointHighlightFill : "#3498db",
-						pointHighlightStroke : "rgba(220,220,220,1)",
-						data : [
-							<?php
-								$events=mysqli_query($dbc,"
-								SELECT body_measurement_value, date_created 
-								FROM body_measurement_table AS bmt, users_table AS u 
-								WHERE bmt.user_id = u.user_id
-								AND bmt.body_measurement_type_id = 2
-								AND u.user_email like '$myusername'
-								");
-								
-								while($row = mysqli_fetch_assoc($events)) {
-								$data= $row['body_measurement_value'];
-								echo $data . ",";
-								}//end of while
-							?>
-						],
-					<?php
-					}//end of while
-					?>
--->
