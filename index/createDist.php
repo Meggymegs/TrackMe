@@ -1,7 +1,7 @@
 <?php
 
 	require_once 'sql_login.inc';
-	include 'class_food.php';
+	include 'class_dist.php';
 
 
 	$db_server = new mysqli($db_hostname, $db_username, $db_password);
@@ -12,9 +12,9 @@
     $db_server->select_db($db_database)
         or die("Unable to select database: " . mysql_error()); 
 
-	$required = array('foodName', 'calories');
+	$required = array('distName');
 
-	$tbl_name = "food_table";
+	$tbl_name = "physical_activities_dist_type_table";
 
 	// Loop over field names, make sure each one exists and is not empty
 	$error = false;
@@ -33,12 +33,11 @@
 		header("location:admin.php?msg=special");
 	} else {
 		//Create food object
-		$food = new Food(trim($_POST['foodName']), trim($_POST['calories']));
+		$dist = new Dist(trim($_POST['distName']));
 
-		$name = $food->getFoodName();
-		$calories = $food->getCalories();
+		$name = $dist->getDistName();
 
-		$query = "INSERT INTO `food_table`(`food_id`, `food_name`, `food_calories`) VALUES ('DEFAULT','$name',$calories)";
+		$query = "INSERT INTO `physical_activities_dist_type_table`(`physical_activity_dist_id`, `physical_activity_dist_type`) VALUES ('DEFAULT','$name')";
 		$result = mysqli_query($db_server, $query);
 		//echo mysqli_error($db_server);
 		header("location:admin.php?msg=success");
