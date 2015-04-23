@@ -77,7 +77,7 @@
 				<a class="btn btn-default" href="#">Profile Picture >></a>
 			</div>
 			<div class="btn-group" role="group">
-				<a class="btn btn-default" href="changePassword.php">Password >></a>
+				<a class="btn btn-default" href="accountPassword.php">Password >></a>
 			</div>
 		</div>
 		
@@ -86,9 +86,9 @@
 				<h3 class="panel-title">Change Profile Picture</h3>
 			 </div>
 			 <div class="panel-body">
-				<form id="formPos" action="demo_form.asp" method="get">
-					Select image to upload: <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
-					<button type="button" class="btn btn-submit">Upload Image</button>
+				<form id="formPos" action="updatePicture.php" method="get">
+					Select image to upload: <input type="file" name="displayPicture" id="displayPicture"><br><br>
+					<button type="submit" class="btn btn-submit">Upload Image</button>
 				</form>
 			 </div>
 		</div>
