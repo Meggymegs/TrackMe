@@ -34,26 +34,32 @@
 	    header("location:accountPassword.php?msg=fail&user_id=$user_id");
 	} else if ($isSpecial){
 		header("location:accountPassword.php?msg=special&user_id=$user_id");
-	else {
+	} else {
 		
+
 	$currentPassword = isset($_GET['currentPassword']) ? $_GET['currentPassword']: '';
 	$newPassword = isset($_GET['newPassword']) ? $_GET['newPassword']: '';
 	$verifyPassword = isset($_GET['verifyPassword']) ? $_GET['verifyPassword']: '';
-		
-	$salt = sha1(md5($newPassword));
-	$newPassword = md5($newPassword.$salt);	
-		
-	$sql = "UPDATE users_table ".
-		   "SET user_password = '$newPassword'".
-		   "WHERE user_id = 2" ;
-   
-	if ($conn->query($sql) === TRUE) {
-		echo "Record updated successfully";
-	} else {
-		echo "Error updating record: " . $conn->error;
-	}
-	header("location:accountPassword.php?msg=success&user_id=$user_id");
 	
-	$conn->close();
+		if(strcmp ($newPassword, $verifyPassword) == 0){
+			$salt = sha1(md5($newPassword));
+			$newPassword = md5($newPassword.$salt);
+		
+			$sql = "UPDATE users_table ".
+			   "SET user_password = '$newPassword'".
+			   "WHERE user_id = 2" ;
+	   
+			if ($conn->query($sql) === TRUE) {
+				echo "Record updated successfully";
+			} else {
+				echo "Error updating record: " . $conn->error;
+			}
+			header("location:accountPassword.php?msg=success&user_id=$user_id");
+		
+			$conn->close();
+		} else {
+			header("location:accountPassword.php?msg=fail&user_id=$user_id");
+		}
 	}
+	
 ?>
