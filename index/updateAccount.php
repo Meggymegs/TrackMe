@@ -1,6 +1,11 @@
 <?php
 	session_start();
 	include '../mysqli_connect.php';
+	
+	$myusername = $_SESSION['myusername'];
+	$result = mysqli_query($dbc, "SELECT * FROM `users_table` WHERE user_email like '$myusername'"); 
+	$row = mysqli_fetch_assoc($result);
+	$tempId = $row['user_id'];
 ?>
 
 
@@ -42,7 +47,7 @@
 	$email = isset($_GET['email']) ? $_GET['email']: '';
 	$sql = "UPDATE users_table ".
 		   "SET first_name = '$firstName', last_name = '$lastName', user_email = '$email' ".
-		   "WHERE user_id = 3" ;//query for changing user number 3 //needs to be changed to current person logged in
+		   "WHERE user_id = '$tempId'" ;//query for changing user number 3 //needs to be changed to current person logged in
    
 	if ($conn->query($sql) === TRUE) {
 		echo "Record updated successfully";

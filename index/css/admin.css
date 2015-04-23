@@ -22,17 +22,51 @@
 }
 
 
-.col-md-3{
-	min-height: 200px;
+#addFood{
+	height: 200px;
 	background-color: white;
-<<<<<<< HEAD
 	float: none;
 	margin: 0 auto;
-=======
->>>>>>> 4b14088bec3c0db083b2ca840bfcb3e007800896
 	padding-top: 1px;
 	margin-bottom: 10px;
 	border-radius: 3px;
+	margin-left: 15px;
+}
+#food{
+	height: 200px;
+	float: none;
+	margin: 0 auto;
+	padding-top: 1px;
+	margin-bottom: 10px;
+	border-radius: 3px;
+	margin-left: 15px;
+}
+
+#addDist{
+	position: absolute;
+	top: 71px;
+	left: 384px;
+	height: 200px;
+	background-color: white;
+	float: none;
+	margin: 0 auto;
+	padding-top: 1px;
+	margin-bottom: 10px;
+	border-radius: 3px;
+	margin-left: 15px;
+}
+
+#dist{
+	position: absolute;
+	top: 281px;
+	left: 400px;
+	height: 200px;
+	float: none;
+	margin: 0 auto;
+	padding-top: 1px;
+	margin-bottom: 10px;
+	border-radius: 3px;
+	margin-left: 15px;
 }
 
 a {
@@ -75,7 +109,7 @@ a {
 	line-height: 30px;
 	outline: medium none;
 	padding: 8px 12px;
-	width: 396px;
+	width: 250px;
 }
 .typeahead {
 	background-color: #FFFFFF;
@@ -96,7 +130,7 @@ a {
 	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 	margin-top: 12px;
 	padding: 8px 0;
-	width: 422px;
+	width: 250px;
 }
 .tt-suggestion {
 	font-size: 24px;

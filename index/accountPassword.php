@@ -88,9 +88,9 @@
 			 </div>
 			 <div class="panel-body">
 				<form id="formPos" action="updatePassword.php" method="get">
-					Current Password: <input class="currentPassword" type="password" name="currentPassword"><br><br>
-					New Password: <input class="newPassword" type="password" name="newPassword"><br><br>
-					Verify Password: <input class="verifyPassword" type="password" name="verifyPassword"><br><br>
+					Current Password: <input class="currentPassword" type="password" name="currentPassword" required><br><br>
+					New Password: <input class="newPassword" type="password" name="newPassword" required><br><br>
+					Verify Password: <input class="verifyPassword" type="password" name="verifyPassword" required><br><br>
 					<button type="submit" class="btn btn-submit" onclick="return confirm('Save Changes?')">Save Changes</button>
 				</form>
 			 </div>

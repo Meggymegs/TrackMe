@@ -87,7 +87,7 @@
 			 </div>
 			 <div class="panel-body">
 				<form id="formPos" action="updatePicture.php" method="get">
-					Select image to upload: <input type="file" name="displayPicture" id="displayPicture"><br><br>
+					Select image to upload: <input type="file" name="displayPicture" id="displayPicture" required><br><br>
 					<button type="submit" class="btn btn-submit">Upload Image</button>
 				</form>
 			 </div>
