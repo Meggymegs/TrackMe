@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `admin_table` (
 --
 
 CREATE TABLE IF NOT EXISTS `body_measurement_table` (
-  `user_id` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `user_id` int(10) CHARACTER SET utf8 NOT NULL,
   `body_measurement_type_id` int(255) NOT NULL,
   `body_measurement_value` int(255) NOT NULL,
   `date_created` date NOT NULL
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `body_measurement_table` (
 --
 
 CREATE TABLE IF NOT EXISTS `body_measurement_type_table` (
-  `body_measurement_type_id` int(11) NOT NULL,
+  `body_measurement_type_id` int(11) NOT NULL AUTO_INCREMENT,
   `body_measurement_type` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -81,7 +81,7 @@ INSERT INTO `body_measurement_type_table` (`body_measurement_type_id`, `body_mea
 --
 
 CREATE TABLE IF NOT EXISTS `food_served_table` (
-  `user_id` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `user_id` int(10) CHARACTER SET utf8 NOT NULL,
   `food_id` int(255) NOT NULL,
   `food_serving` float NOT NULL,
   `date_created` date NOT NULL
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `food_served_table` (
 --
 
 CREATE TABLE IF NOT EXISTS `food_table` (
-  `food_id` int(255) NOT NULL,
+  `food_id` int(10) NOT NULL AUTO_INCREMENT,
   `food_name` varchar(50) NOT NULL,
   `food_calories` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -106,8 +106,8 @@ CREATE TABLE IF NOT EXISTS `food_table` (
 --
 
 CREATE TABLE IF NOT EXISTS `physical_activities_dist_table` (
-  `user_id` varchar(30) CHARACTER SET utf8 NOT NULL,
-  `physical_activity_dist_id` int(255) NOT NULL,
+  `user_id` int(10) CHARACTER SET utf8 NOT NULL,
+  `physical_activity_dist_id` int(10) NOT NULL,
   `distance` int(255) NOT NULL,
   `time` int(255) NOT NULL,
   `date_created` date NOT NULL
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `physical_activities_dist_table` (
 --
 
 CREATE TABLE IF NOT EXISTS `physical_activities_dist_type_table` (
-  `physical_activity_dist_id` int(255) NOT NULL,
+  `physical_activity_dist_id` int(10) NOT NULL AUTO_INCREMENT,
   `physical_activity_dist_type` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -131,8 +131,8 @@ CREATE TABLE IF NOT EXISTS `physical_activities_dist_type_table` (
 --
 
 CREATE TABLE IF NOT EXISTS `physical_activities_rep_table` (
-  `user_id` varchar(30) CHARACTER SET utf8 NOT NULL,
-  `physical_activity_rep_id` int(255) NOT NULL,
+  `user_id` int(10) CHARACTER SET utf8 NOT NULL,
+  `physical_activity_rep_id` int(10) NOT NULL,
   `number_of_reps` int(255) NOT NULL,
   `number_of_sets` int(255) NOT NULL,
   `date_created` date NOT NULL
@@ -145,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `physical_activities_rep_table` (
 --
 
 CREATE TABLE IF NOT EXISTS `physical_activities_rep_type_table` (
-  `physical_activity_rep_id` int(255) NOT NULL,
+  `physical_activity_rep_id` int(10) NOT NULL AUTO_INCREMENT,
   `physical_activity_rep_type` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -156,8 +156,8 @@ CREATE TABLE IF NOT EXISTS `physical_activities_rep_type_table` (
 --
 
 CREATE TABLE IF NOT EXISTS `physical_activities_time_table` (
-  `user_id` varchar(30) CHARACTER SET utf8 NOT NULL,
-  `physical_activity_time_id` int(255) NOT NULL,
+  `user_id` int(10) CHARACTER SET utf8 NOT NULL,
+  `physical_activity_time_id` int(10) NOT NULL,
   `time` int(255) NOT NULL,
   `date_created` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -169,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `physical_activities_time_table` (
 --
 
 CREATE TABLE IF NOT EXISTS `physical_activities_time_type_table` (
-  `physical_activity_time_id` int(255) NOT NULL,
+  `physical_activity_time_id` int(10) NOT NULL AUTO_INCREMENT,
   `physical_activity_time_type` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -180,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `physical_activities_time_type_table` (
 --
 
 CREATE TABLE IF NOT EXISTS `users_table` (
-  `user_id` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `user_id` int(10) CHARACTER SET utf8 NOT NULL AUTO_INCREMENT,
   `first_name` varchar(50) CHARACTER SET utf8 NOT NULL,
   `last_name` varchar(50) CHARACTER SET utf8 NOT NULL,
   `user_email` varchar(320) CHARACTER SET utf8 NOT NULL,
@@ -194,8 +194,8 @@ CREATE TABLE IF NOT EXISTS `users_table` (
 -- Dumping data for table `users_table`
 --
 
-INSERT INTO `users_table` (`user_id`, `first_name`, `last_name`, `user_email`, `user_password`, `user_birthdate`, `user_profile_pic`) VALUES
-('1', 'Mark Genesis', 'Romantigue', 'markg.romantigue@gmail.com', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', '1995-10-13', 'assets/images/profilePic.jpg');
+INSERT INTO `users_table` (`first_name`, `last_name`, `user_email`, `user_password`, `user_birthdate`, `user_profile_pic`) VALUES
+('Mark Genesis', 'Romantigue', 'markg.romantigue@gmail.com', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', '1995-10-13', 'assets/images/profilePic.jpg');
 
 -- --------------------------------------------------------
 
@@ -204,8 +204,8 @@ INSERT INTO `users_table` (`user_id`, `first_name`, `last_name`, `user_email`, `
 --
 
 CREATE TABLE IF NOT EXISTS `vital_signs_table` (
-  `user_id` varchar(30) CHARACTER SET utf8 NOT NULL,
-  `vital_signs_type_id` int(255) NOT NULL,
+  `user_id` int(10) CHARACTER SET utf8 NOT NULL,
+  `vital_signs_type_id` int(10) NOT NULL,
   `vital_signs_value` int(255) NOT NULL,
   `date_created` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -217,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `vital_signs_table` (
 --
 
 CREATE TABLE IF NOT EXISTS `vital_signs_type_table` (
-  `vital_signs_type_id` int(255) NOT NULL,
+  `vital_signs_type_id` int(10) NOT NULL AUTO_INCREMENT,
   `vital_signs_type` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
