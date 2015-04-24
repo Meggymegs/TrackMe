@@ -86,8 +86,9 @@
 				<h3 class="panel-title">Change Profile Picture</h3>
 			 </div>
 			 <div class="panel-body">
-				<form id="formPos" action="updatePicture.php" method="get">
-					Select image to upload: <input type="file" name="displayPicture" id="displayPicture" required><br><br>
+				<form id="formPos" action="updatePicture.php" method="post" enctype="multipart/form-data">
+					Select image to upload: <input type="file" name="image" id="displayPicture" required>
+					<input type="hidden" name="MAX_FILE_SIZE" value="4000000" /><br><br>
 					<button type="submit" class="btn btn-submit">Upload Image</button>
 				</form>
 			 </div>
