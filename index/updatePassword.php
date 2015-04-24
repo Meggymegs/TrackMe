@@ -40,12 +40,21 @@
 	} else if ($isSpecial){
 		header("location:accountPassword.php?msg=special&user_id=$tempId");
 	} else {
-		
-
+	
+	$result = mysqli_query($dbc, "SELECT * FROM `users_table` WHERE user_email like '$myusername'"); 
+					while ($row = mysqli_fetch_assoc($result)) {
+						$oldPassword = $row['user_password'];
+					}
+	
 	$currentPassword = isset($_GET['currentPassword']) ? $_GET['currentPassword']: '';
 	$newPassword = isset($_GET['newPassword']) ? $_GET['newPassword']: '';
 	$verifyPassword = isset($_GET['verifyPassword']) ? $_GET['verifyPassword']: '';
 	
+	$salt = sha1(md5($currentPassword));
+			$currentPassword = md5($currentPassword.$salt);
+			
+	
+	if(strcmp ($oldPassword, $currentPassword) == 0){
 		if(strcmp ($newPassword, $verifyPassword) == 0){
 			$salt = sha1(md5($newPassword));
 			$newPassword = md5($newPassword.$salt);
@@ -63,6 +72,9 @@
 		
 			$conn->close();
 		} else {
+			header("location:accountPassword.php?msg=fail&user_id=$tempId");
+		}
+	} else {
 			header("location:accountPassword.php?msg=fail&user_id=$tempId");
 		}
 	}
