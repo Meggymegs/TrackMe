@@ -24,23 +24,11 @@
 	
 	$user_id = isset($_GET['user_id']) ? $_GET['user_id']: '';
 	
-	$required = array('fileToUpload');
-	$error = false;
-	foreach($required as $field) {
-		if (empty($_GET[$field])) {
-			$error = true;
-		}
-	}
-	
-	if ($error) {
-	    header("location:accountPicture.php?msg=fail&user_id=$tempId");
-	} else {
-		
 	if (!is_valid_type($image)){
 			$_SESSION['error'] = "You must upload a jpeg, png, or bmp";
 			header("Location: accountPicture.php");
 			exit;
-	}
+	} else{
 		
 	$sql = "UPDATE users_table ".
 		   "SET user_profile_pic = '$displayPicture'".
