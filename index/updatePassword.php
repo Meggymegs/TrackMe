@@ -41,9 +41,9 @@
 		header("location:accountPassword.php?msg=special&user_id=$tempId");
 	} else {
 	
-	$result = mysqli_query($dbc, "SELECT * FROM `users_table` WHERE user_email like '$myusername'"); 
+	$result = mysqli_query($dbc, "SELECT * FROM `users_table` WHERE user_email like '$myusername'"); //query for placing current password in database in a variable
 					while ($row = mysqli_fetch_assoc($result)) {
-						$oldPassword = $row['user_password'];
+						$oldPassword = $row['user_password'];//assigning current password in database to a variable to be used in strcmp
 					}
 	
 	$currentPassword = isset($_GET['currentPassword']) ? $_GET['currentPassword']: '';
@@ -51,17 +51,17 @@
 	$verifyPassword = isset($_GET['verifyPassword']) ? $_GET['verifyPassword']: '';
 	
 	$salt = sha1(md5($currentPassword));
-			$currentPassword = md5($currentPassword.$salt);
+	$currentPassword = md5($currentPassword.$salt);//encrypts the input current password to be matched with current password in database
 			
 	
-	if(strcmp ($oldPassword, $currentPassword) == 0){
-		if(strcmp ($newPassword, $verifyPassword) == 0){
+	if(strcmp ($oldPassword, $currentPassword) == 0){//checking if password in database matches with input current password
+		if(strcmp ($newPassword, $verifyPassword) == 0){//checking if new password matches with verify new password
 			$salt = sha1(md5($newPassword));
 			$newPassword = md5($newPassword.$salt);
 		
 			$sql = "UPDATE users_table ".
-			   "SET user_password = '$newPassword'".
-			   "WHERE user_id = '$tempId'" ;
+			   "SET user_password = '$newPassword'".//query for updating password
+			   "WHERE user_id = '$tempId'" ;//current logged in user_id will be updated
 	   
 			if ($conn->query($sql) === TRUE) {
 				echo "Record updated successfully";

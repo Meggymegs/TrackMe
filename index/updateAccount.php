@@ -5,7 +5,7 @@
 	$myusername = $_SESSION['myusername'];
 	$result = mysqli_query($dbc, "SELECT * FROM `users_table` WHERE user_email like '$myusername'"); 
 	$row = mysqli_fetch_assoc($result);
-	$tempId = $row['user_id'];
+	$tempId = $row['user_id']; //current logged in user_id will be used
 	
 	if(isset($_GET['msg'])){	
 		$msg = $_GET['msg'];
@@ -42,7 +42,7 @@
 	foreach($required as $field) {
 		if (empty($_GET[$field])) {
 			$error = true;
-		} else if (preg_match('/[\^£$%&*()}{#~?><>|=¬]/', $_GET[$field])){
+		} else if (preg_match('/[\^£$%&*()}{#~?><>|=¬]/', $_GET[$field])){//checking for special characters
 			$isSpecial = true;
 		}
 	}
@@ -58,8 +58,8 @@
 	$lastName = isset($_GET['lastName']) ? $_GET['lastName']: '';
 	$email = isset($_GET['email']) ? $_GET['email']: '';
 	$sql = "UPDATE users_table ".
-		   "SET first_name = '$firstName', last_name = '$lastName', user_email = '$email' ".
-		   "WHERE user_id = '$tempId'" ;
+		   "SET first_name = '$firstName', last_name = '$lastName', user_email = '$email' ". //query for updating account details
+		   "WHERE user_id = '$tempId'" ;//current logged in user_id will be updated
    
 	if ($conn->query($sql) === TRUE) {
 		echo "Record updated successfully";
