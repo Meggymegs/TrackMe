@@ -33,7 +33,7 @@
 	}
 	
 	if ($error) {
-	    header("location:accountPicture.php?msg=fail&user_id=$user_id");
+	    header("location:accountPicture.php?msg=fail&user_id=$tempId");
 	} else {
 		
 	if (!is_valid_type($image)){
@@ -51,7 +51,7 @@
 	} else {
 		echo "Error updating record: " . $conn->error;
 	}
-	header("location:accountPicture.php?msg=success&user_id=$user_id");
+	header("location:accountPicture.php?msg=success&user_id=$tempId");
 	
 	$conn->close();
 	}

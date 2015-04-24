@@ -36,9 +36,9 @@
 	}
 	
 	if ($error) {
-	    header("location:accountPassword.php?msg=fail&user_id=$user_id");
+	    header("location:accountPassword.php?msg=fail&user_id=$tempId");
 	} else if ($isSpecial){
-		header("location:accountPassword.php?msg=special&user_id=$user_id");
+		header("location:accountPassword.php?msg=special&user_id=$tempId");
 	} else {
 		
 
@@ -59,11 +59,11 @@
 			} else {
 				echo "Error updating record: " . $conn->error;
 			}
-			header("location:accountPassword.php?msg=success&user_id=$user_id");
+			header("location:accountPassword.php?msg=success&user_id=$tempId");
 		
 			$conn->close();
 		} else {
-			header("location:accountPassword.php?msg=fail&user_id=$user_id");
+			header("location:accountPassword.php?msg=fail&user_id=$tempId");
 		}
 	}
 	

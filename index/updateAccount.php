@@ -6,8 +6,20 @@
 	$result = mysqli_query($dbc, "SELECT * FROM `users_table` WHERE user_email like '$myusername'"); 
 	$row = mysqli_fetch_assoc($result);
 	$tempId = $row['user_id'];
+	
+	if(isset($_GET['msg'])){	
+		$msg = $_GET['msg'];
+		if ($msg == "success"){
+			?> <script> alert("Food added Successfully"); </script> <?php
+		} else if ($msg ==  "fail"){
+			?> <script> alert("Food not found. Please select one from our suggestions."); </script> <?php
+		}
+	}
+	
+	
 ?>
 
+<script src='js/lib/jquery.min.js'></script>
 
 <?php
 			
@@ -36,9 +48,9 @@
 	}
 	
 	if ($error) {
-	    header("location:accountSettings.php?msg=fail&user_id=$user_id");
+	    header("location:accountSettings.php?msg=fail&user_id=$tempId");
 	} else if ($isSpecial){
-		header("location:accountSettings.php?msg=special&user_id=$user_id");
+		header("location:accountSettings.php?msg=special&user_id=$tempId");
 	} else {
 	
 	
@@ -54,7 +66,7 @@
 	} else {
 		echo "Error updating record: " . $conn->error;
 	}	
-	header("location:accountSettings.php?msg=success&user_id=$user_id");
+	header("location:accountSettings.php?msg=success&user_id=$tempId");
 	
 	$conn->close();
 	}
