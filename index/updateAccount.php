@@ -66,6 +66,7 @@
 	} else {
 		echo "Error updating record: " . $conn->error;
 	}	
+	$_SESSION['myusername'] = $email;
 	header("location:accountSettings.php?msg=success&user_id=$tempId");
 	
 	$conn->close();
