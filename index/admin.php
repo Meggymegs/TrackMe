@@ -19,6 +19,12 @@
 		mysqli_close();
 	}
 	
+	if(isset($_GET['rep_id'])){
+		$repId = $_GET['rep_id'];
+        $query="DELETE FROM physical_activities_rep_type_table WHERE physical_activity_rep_id like '$repId'";$result=mysqli_query($dbc, $query);
+		mysqli_close();
+	}
+	
 	if(isset($_GET['msg'])){	
 		$msg = $_GET['msg'];
 		if ($msg == "success"){
@@ -60,9 +66,31 @@
 		});
 	});
     </script>
+	
+	<script>
+    $(document).ready(function(){
+
+		$('input.typeahead3').typeahead({
+			name: 'typeahead3',
+			remote:'search3.php?key=%QUERY',
+			limit : 10
+		});
+	});
+    </script>
+	
+	<script>
+    $(document).ready(function(){
+
+		$('input.typeahead4').typeahead({
+			name: 'typeahead4',
+			remote:'search4.php?key=%QUERY',
+			limit : 10
+		});
+	});
+    </script>
   </head>
    <body style="background-color:#2d3e50;">
-		<nav class="navbar navbar-inverse navbar-static-top">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
 		  <div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -154,9 +182,53 @@
 					<input type="submit" name="submit" value="Submit" style="position: absolute; top: 110px; width:30%; margin-left:80px; margin-top:50px; margin-bottom:8px; border-radius:4px; background-color:#AA3939; color:white;"/>
 				</form>	
 			</div>
+			
+			<div class="col-md-3" id="addRep"><!--form for physical act and food intake-->
+				
+				<form action="createRep.php" method="post">
+					
+					<span class="thumb"><h3>Add Activity (Reps Type)</h3></span>
+					
+						<span><p>Add new activity</p></span>
+						
+						  <div class="list1" style="border:1px solid #E0E0E0; width: 260px; padding-top:5px; padding-left:5px;">
+							<ul style="margin-left:-40px;">
+								<strong>Activity Name</strong><span style="margin-left:50px;"><br>
+								<input name="repName" type="text" style="margin-left:0px;width:95px; height:22px; margin-bottom:3px;"></input>
+								
+								
+							</ul>
+						  </div><!--end of list-->
+						
+				
+					<input type="submit" name="submit" value="Submit" style="position: absolute; top: 110px; width:30%; margin-left:80px; margin-top:50px; margin-bottom:8px; border-radius:4px; background-color:#AA3939; color:white;"/>
+				</form>	
+			</div>
+			
+			<div class="col-md-3" id="addTime"><!--form for physical act and food intake-->
+				
+				<form action="createTime.php" method="post">
+					
+					<span class="thumb"><h3>Add Activity (Time Type)</h3></span>
+					
+						<span><p>Add new activity</p></span>
+						
+						  <div class="list1" style="border:1px solid #E0E0E0; width: 260px; padding-top:5px; padding-left:5px;">
+							<ul style="margin-left:-40px;">
+								<strong>Activity Name</strong><span style="margin-left:50px;"><br>
+								<input name="timeName" type="text" style="margin-left:0px;width:95px; height:22px; margin-bottom:3px;"></input>
+								
+								
+							</ul>
+						  </div><!--end of list-->
+						
+				
+					<input type="submit" name="submit" value="Submit" style="position: absolute; top: 110px; width:30%; margin-left:80px; margin-top:50px; margin-bottom:8px; border-radius:4px; background-color:#AA3939; color:white;"/>
+				</form>	
+			</div>
 
 			<div class="col-md-3" id="food">
-			<div class="panel panel-default" style="margin-left: -15px; width: 334px; height: 350px; overflow-y: scroll;">
+			<div class="panel panel-default" style="margin-left: -15px; width: 332px; height: 350px; overflow-y: scroll;">
 			<div class="bs-example">
 				<h3>Food</h3>
 				<input type="text" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Search">
@@ -189,7 +261,7 @@
 		</div>  
 		
 		<div id="dist">
-			<div class="panel panel-default" style="margin-left: -15px; width: 334px; height: 350px; overflow-y: scroll;">
+			<div class="panel panel-default" style="margin-left: -15px; width: 338px; height: 350px; overflow-y: scroll;">
 			<div class="bs-example">
 				<h3>Activity (Distance)</h3>
 				<input type="text" name="typeahead2" class="typeahead2 tt-query" autocomplete="off" spellcheck="false" placeholder="Search">
@@ -209,6 +281,72 @@
 						
 						."<td align='left'>
 							<a href='admin.php?dist_id=".$row['physical_activity_dist_id']."'" ?> onclick="return confirm('Are you sure you want to delete this activity?')";<?php echo "><button class='btn' type='button' style='background-color: #AA3939;'><strong><center><font size='1'>Delete</font></center></strong></button></a>
+						</td>"
+							
+						."</table>";
+					}
+					echo '</table>';
+				?>
+			</div>
+			</div>
+			</div>
+			
+		</div>
+		
+		<div id="rep">
+			<div class="panel panel-default" style="margin-left: -15px; width: 338px; height: 350px; overflow-y: scroll;">
+			<div class="bs-example">
+				<h3>Activity (Repetitions)</h3>
+				<input type="text" name="typeahead3" class="typeahead3 tt-query" autocomplete="off" spellcheck="false" placeholder="Search">
+				<?php
+					$query="SELECT * FROM physical_activities_rep_type_table ORDER BY physical_activity_rep_type ASC";
+					$result=mysqli_query($dbc, $query);
+					echo "<p></p>";
+					echo "<div style='width:100%; margin-left:auto; margin-right:auto; margin-top:30px;'><center><table class='rockwell' style='border-radius:10px;'>";
+					
+
+					while($row = mysqli_fetch_array($result)){
+						echo
+						"<table border='0' cellpadding='0px' cellspacing='1px' style='font-family:Verdana, Geneva, sans-serif; color:black; font-size:13px;' width='80%'>"
+						."<tr><td width = '60%' style='vertical-align: middle;'>"
+						."<div style='padding: 0px;'>" . "<br><span class='caption'>" . $row['physical_activity_rep_type'] . "</span></div>"
+						. "</td>"
+						
+						."<td align='left'>
+							<a href='admin.php?rep_id=".$row['physical_activity_rep_id']."'" ?> onclick="return confirm('Are you sure you want to delete this activity?')";<?php echo "><button class='btn' type='button' style='background-color: #AA3939;'><strong><center><font size='1'>Delete</font></center></strong></button></a>
+						</td>"
+							
+						."</table>";
+					}
+					echo '</table>';
+				?>
+			</div>
+			</div>
+			</div>
+			
+		</div>
+		
+		<div id="time">
+			<div class="panel panel-default" style="margin-left: -15px; width: 338px; height: 350px; overflow-y: scroll;">
+			<div class="bs-example">
+				<h3>Activity (Time)</h3>
+				<input type="text" name="typeahead4" class="typeahead4 tt-query" autocomplete="off" spellcheck="false" placeholder="Search">
+				<?php
+					$query="SELECT * FROM physical_activities_time_type_table ORDER BY physical_activity_time_type ASC";
+					$result=mysqli_query($dbc, $query);
+					echo "<p></p>";
+					echo "<div style='width:100%; margin-left:auto; margin-right:auto; margin-top:30px;'><center><table class='rockwell' style='border-radius:10px;'>";
+					
+
+					while($row = mysqli_fetch_array($result)){
+						echo
+						"<table border='0' cellpadding='0px' cellspacing='1px' style='font-family:Verdana, Geneva, sans-serif; color:black; font-size:13px;' width='80%'>"
+						."<tr><td width = '60%' style='vertical-align: middle;'>"
+						."<div style='padding: 0px;'>" . "<br><span class='caption'>" . $row['physical_activity_time_type'] . "</span></div>"
+						. "</td>"
+						
+						."<td align='left'>
+							<a href='admin.php?time_id=".$row['physical_activity_time_id']."'" ?> onclick="return confirm('Are you sure you want to delete this activity?')";<?php echo "><button class='btn' type='button' style='background-color: #AA3939;'><strong><center><font size='1'>Delete</font></center></strong></button></a>
 						</td>"
 							
 						."</table>";

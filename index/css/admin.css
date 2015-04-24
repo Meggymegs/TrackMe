@@ -23,6 +23,7 @@
 
 
 #addFood{
+	top: 71px;
 	height: 200px;
 	background-color: white;
 	float: none;
@@ -33,6 +34,7 @@
 	margin-left: 15px;
 }
 #food{
+	top: 71px;
 	height: 200px;
 	float: none;
 	margin: 0 auto;
@@ -45,7 +47,7 @@
 #addDist{
 	position: absolute;
 	top: 71px;
-	left: 384px;
+	left: 380px;
 	height: 200px;
 	background-color: white;
 	float: none;
@@ -59,10 +61,64 @@
 #dist{
 	position: absolute;
 	top: 281px;
-	left: 400px;
+	left: 396px;
 	height: 200px;
 	float: none;
 	margin: 0 auto;
+	padding-top: 1px;
+	margin-bottom: 10px;
+	border-radius: 3px;
+	margin-left: 15px;
+}
+
+#addRep{
+	position: absolute;
+	top: 71px;
+	left: 750px;
+	height: 200px;
+	background-color: white;
+	float: none;
+	margin: 0 auto;
+	padding-top: 1px;
+	margin-bottom: 10px;
+	border-radius: 3px;
+	margin-left: 15px;
+}
+
+#rep{
+	position: absolute;
+	top: 281px;
+	left: 766px;
+	height: 200px;
+	float: none;
+	margin: 0 auto;
+	padding-top: 1px;
+	margin-bottom: 10px;
+	border-radius: 3px;
+	margin-left: 15px;
+}
+
+#addTime{
+	position: absolute;
+	margin-right: 100px;
+	top: 71px;
+	left: 1120px;
+	height: 200px;
+	background-color: white;
+	float: none;
+	padding-top: 1px;
+	margin-bottom: 10px;
+	border-radius: 3px;
+	margin-left: 15px;
+}
+
+#time{
+	position: absolute;
+	top: 281px;
+	left: 1135px;
+	height: 200px;
+	float: none;
+	margin-right: 15px;
 	padding-top: 1px;
 	margin-bottom: 10px;
 	border-radius: 3px;
