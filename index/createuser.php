@@ -29,7 +29,12 @@
 			$password = test_input($_POST["password"]);
 			$birthdate = $_POST['bday'];
 		}
-
+		
+		$password = $_POST['password'];
+		$repass = $_POST['repass'];
+		
+		if($password == $repass){
+		
 		$salt = sha1(md5($password));
 		$password = md5($password.$salt);
 
@@ -62,6 +67,9 @@
 			echo mysqli_error($dbc);
 			mysqli_close($dbc);
 
+		}
+	} else {
+			header("location:signup.php?msg=fail");
 		}
 	}
 
