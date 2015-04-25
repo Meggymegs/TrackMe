@@ -136,55 +136,41 @@
 						}
 					?><br>
 					<?php
-						$result = mysqli_query($dbc, "SELECT * FROM `users_table` WHERE user_email like '$myusername'"); 
-						$row = mysqli_fetch_assoc($result);
-						$tempId = $row['user_id'];
-						$result2 = mysqli_query($dbc, "SELECT * FROM `body_measurement_table` WHERE user_id like '$tempId'"); 
-						$count=mysqli_num_rows($result2);
+				$result = mysqli_query($dbc, "SELECT * FROM `users_table` WHERE user_email like '$myusername'"); 
+				$row = mysqli_fetch_assoc($result);
+				$tempId = $row['user_id'];
+				$result2 = mysqli_query($dbc, "SELECT * FROM `body_measurement_table` WHERE user_id like '$tempId'"); 
+				$count=mysqli_num_rows($result2);
 
-						if($count==0){
-							echo "You have not entered any information yet. Please <b>update body measurements</b>.";
-						}else{
-					?><br>
-					<b>Weight:</b>
-					<?php
-						$result = mysqli_query($dbc, "SELECT * 
-						FROM body_measurement_table WHERE body_measurement_type_id = 2
-						order by date_created DESC LIMIT 1"); 
-						$row = mysqli_fetch_assoc($result);
-						echo $row['body_measurement_value'] . " kg";
-					?>
-					<br>
-					<b>Height:</b>
-					<?php
-						$result = mysqli_query($dbc, "SELECT * 
-						FROM body_measurement_table WHERE body_measurement_type_id = 1
-						order by date_created DESC LIMIT 1"); 
-						$row = mysqli_fetch_assoc($result);
-						echo $row['body_measurement_value'] . " cm";
-						}
-					?>
+				if($count==0){
+					echo "You have not entered any information yet. Please <b>update body measurements</b>.";
+				}else {
+				?>
+				<b>Weight:</b>
+				<?php
+				$result = mysqli_query($dbc, "SELECT * FROM `body_measurement_table`  WHERE user_id like '$tempId' AND body_measurement_type_id = 2 ORDER BY date_created DESC"); 
+				$row = mysqli_fetch_assoc($result);
+				echo $row['body_measurement_value'] . " kg";
+				?>
+				<br>
+				<b>Height:</b>
+				<?php
+				$result = mysqli_query($dbc, "SELECT * FROM `body_measurement_table` WHERE user_id like '$tempId' AND body_measurement_type_id = 1 ORDER BY date_created DESC"); 
+				$row = mysqli_fetch_assoc($result);
+				echo $row['body_measurement_value'] . " cm";
+				}?>
+				<br><br>
 				</div><!--end of div profile details-->
 			</div><!--end of col-md-2-->
 			<div class="col-md-6"> <!--for the calendar-->
-				<h1 align="center"><?php
-					$result = mysqli_query($dbc, "SELECT UPPER(first_name) AS first_name FROM `users_table` WHERE user_email like '$myusername'"); 
-					while ($row = mysqli_fetch_assoc($result)) {
-						echo $row['first_name']."'S";
-					}
-					?> CALENDAR</h1>
+				<h1 align="center">CALENDAR</h1>
 				<div id="calendar"></div>
 			</div><!--end of col-md-6-->
 			
 			<div class="col-md-7">
 				<!--<center><h1>place graph here</h1></center>-->
 				<span style="text-align:center;">
-					<h3 align="center"><?php
-						$result = mysqli_query($dbc, "SELECT first_name AS first_name FROM `users_table` WHERE user_email like '$myusername'"); 
-						while ($row = mysqli_fetch_assoc($result)) {
-							echo $row['first_name']."'s";
-						}
-						?> Progress</h3>
+					<h3 align="center">Progress</h3>
 				</span>
 				<div id="legend">
 					<h3>Legend</h3>
@@ -210,12 +196,7 @@
 			
 			<div class="col-md-5">
 				<span style="text-align:center;">
-				<h3 align="center"><?php
-						$result = mysqli_query($dbc, "SELECT first_name AS first_name FROM `users_table` WHERE user_email like '$myusername'"); 
-						while ($row = mysqli_fetch_assoc($result)) {
-							echo $row['first_name']."'s";
-						}
-						?> History</h3>
+				<h3 align="center">History</h3>
 				</span>
 				<div class="history" style="overflow-y:scroll; height:400px; width: 260px; border:1px solid #E0E0E0; padding-top:5px; padding-left:5px;">
 				<?php
@@ -281,11 +262,11 @@
 								  </label>
 								  <div class="list1" style="border:1px solid #E0E0E0; width: 260px; padding-top:5px; padding-left:5px;">
 									<ul style="margin-left:-40px;">
-										<strong>Activity</strong><span style="margin-left:50px;"><strong>Hours</strong><span style="margin-left:20px;"><strong>Mins</strong><span style="margin-left:20px;"><strong>KM</strong><br>
+										<strong>Activity</strong><span style="margin-left:50px;"><strong>Hours</strong><span style="margin-left:20px;"><strong>Mins</strong><span style="margin-left:20px;"><strong>Km</strong><br>
 										<input class="TimeAct" type="checkbox" name="running" value="running">Running</input> 
 										<input name="run_hrs" type="number" min="0" max="24" style="margin-left:35px;width:35px; height:22px; margin-bottom:3px;"></input>
 										<input name="run_mins" type="number" min="0" max="59" style="margin-left:18px;width:35px; height:22px; margin-bottom:3px;"></input>
-										<input name="run_dist" type="number" min="0" max="1" style="margin-left:10px;width:35px; height:22px; margin-bottom:3px;"></input>
+										<input name="run_dist" type="number" min="0" style="margin-left:10px;width:35px; height:22px; margin-bottom:3px;"></input>
 										<br> 
 										
 										<input class="TimeAct" type="checkbox" name="walking" value="walking">Walking</input> 
@@ -352,11 +333,11 @@
 							<span><p>Add food consumed<img src="res/addButton.png" style="margin-left:60px;" width="20px" height="20px"></p></span><!--<p>Click <span style="color:#AA3939;">ME</span> to add food consumed</p>-->
 							<span style="color:#AA3939;"><p>Collapse</p></span>
 						  </label>
-						  <div class="list3" style="overflow-y:scroll; height:100px; width: 260px; border:1px solid #E0E0E0; padding-top:5px; padding-left:5px;">
+						  <div class="list3" style=" height:100px; width: 260px; border:1px solid #E0E0E0; padding-top:5px; padding-left:5px;">
 							<ul style="margin-left:-40px;">
-								<strong>Food</strong><span style="margin-left:40px;"><strong>Servings & </span><span style="margin-left:2px;">Servings</strong><br>
-								<input class="food" type="checkbox" name="egg" value="egg">Egg</input> 
-									<select name="egg_srvng1" style="margin-left:50px; width:45px; margin-bottom:3px;">
+								<strong>Food</strong><span style="margin-left:40px;"><strong>&nbsp&nbsp&nbspServings & </span><span style="margin-left:2px;">Servings</strong><br>
+								<input type="text" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Search">
+									<select name="srvng1" value="srvng1" style="margin-left:20px; width:45px; margin-bottom:3px;">
 										<option value="0">0</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
@@ -364,7 +345,7 @@
 										<option value="4">4</option>
 										<option value="5">5</option>
 									</select>
-									<select name="egg_srvng2" style="margin-left:20px; width:45px; margin-bottom:3px;">
+									<select name="srvng2" value="srvng2" style="margin-left:20px; width:45px; margin-bottom:3px;">
 										<option value="0">0</option>
 										<option value=".5">1/2</option>
 										<option value=".33">1/3</option>
@@ -372,64 +353,6 @@
 										<option value=".2">1/5</option>
 										<option value=".17">1/6</option>
 									</select>
-									<br><!--end of choice egg-->
-								<input class="food" type="checkbox" name="beef" value="beef">Beef</input> 
-									<select name="beef_srvng1" style="margin-left:45.5px; width:45px; margin-bottom:3px;">
-										<option value="0">0</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-									</select>
-									<select name="beef_srvng2" style="margin-left:20px; width:45px; margin-bottom:3px;">
-										<option value="0">0</option>
-										<option value=".5">1/2</option>
-										<option value=".33">1/3</option>
-										<option value=".25">1/4</option>
-										<option value=".2">1/5</option>
-										<option value=".17">1/6</option>
-									</select>
-									<br><!--end of choice pork-->
-								<input class="food" type="checkbox" name="food" value="chicken">Chicken</input> 
-									<select name="chicken_srvng1" style="margin-left:24.3px; width:45px; margin-bottom:3px;">
-										<option value="0">0</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-									</select>
-									<select name="chicken_srvng2" style="margin-left:20px; width:45px; margin-bottom:3px;">
-										<option value="0">0</option>
-										<option value=".5">1/2</option>
-										<option value=".33">1/3</option>
-										<option value=".25">1/4</option>
-										<option value=".2">1/5</option>
-										<option value=".17">1/6</option>
-									</select>
-									<br><!--end of choice chicken-->
-								<input class="food" type="checkbox" name="food" value="bread">Bread</input> 
-									<select name="bread_srvng1" style="margin-left:36.5px; width:45px; margin-bottom:3px;">
-										<option value="0">0</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-									</select>
-									<select name="bread_srvng2" style="margin-left:20px; width:45px;">
-										<option value="0">0</option>
-										<option value=".5">1/2</option>
-										<option value=".33">1/3</option>
-										<option value=".25">1/4</option>
-										<option value=".2">1/5</option>
-										<option value=".17">1/6</option>
-									</select>
-									<br><!--end of choice chicken-->
-									
-									<!--check all-->
-									<input type="checkbox" onchange="checkAllFood(this)" name="chk[]" />All
 							</ul>
 						  </div><!--end of list-->
 							<input id="foodActForm" type="submit" name="submit" value="Submit"/>
@@ -446,7 +369,7 @@
 							<div class="list4" style="overflow-y:scroll; height:100px; width: 260px; border:1px solid #E0E0E0; padding-top:5px; padding-left:5px;">
 								<ul style="margin-left:-40px;">
 								<strong>Location</strong><span style="margin-left:60px;"><strong>Measurement</strong></span><br>
-								<input class="body" type="checkbox" name="body1" value="height">Height (m)</input>
+								<input class="body" type="checkbox" name="body1" value="height">Height (cm)</input>
 								<input type="text" name="height" size=1 style="margin-left:60px;"><br>
 								<input class="body" type="checkbox" name="body2" value="weight">Weight (kg)</input>
 								<input type="text" name="weight" size=1 style="margin-left:54px;"><br>
@@ -525,8 +448,8 @@
 					}
 					if(calEvent.data.belongsto === "dist_type"){
 						alert('Activity Name: ' + calEvent.title + '\n' +
-							"Distance travelled: " + calEvent.data.distance + "KM"
-							+ "\nTime: " + calEvent.data.time  + "mins");
+							"Distance travelled: " + calEvent.data.distance + " Km"
+							+ "\nTime: " + calEvent.data.time  + " mins");
 					}
 					if(calEvent.data.belongsto === "rep_type"){
 						alert('Activity Name: ' + calEvent.title + '\n' + "Number of Reps: " + calEvent.data.reps
@@ -1072,3 +995,45 @@
 		</script>
 	</body>
 </html>
+
+<!--
+<?php 
+					error_reporting(0);
+					
+					$events=mysqli_query($dbc,"
+					SELECT body_measurement_value, date_created, body_measurement_type
+					FROM body_measurement_table AS bmt, users_table AS u, body_measurement_type_table AS bmtt
+					WHERE bmt.user_id = u.user_id
+					AND u.user_email like '$myusername'
+					");
+							
+					while($row = mysqli_fetch_assoc($events)) {
+					$name= $row['body_measurement_type'];
+					?>
+						label: <?php echo "$name"?>,
+						fillColor : "rgba(220,220,220,0.5)",
+						strokeColor : "#3498db",
+						pointColor : "rgba(220,220,220,1)",
+						pointStrokeColor : "#3498db",
+						pointHighlightFill : "#3498db",
+						pointHighlightStroke : "rgba(220,220,220,1)",
+						data : [
+							<?php
+								$events=mysqli_query($dbc,"
+								SELECT body_measurement_value, date_created 
+								FROM body_measurement_table AS bmt, users_table AS u 
+								WHERE bmt.user_id = u.user_id
+								AND bmt.body_measurement_type_id = 2
+								AND u.user_email like '$myusername'
+								");
+								
+								while($row = mysqli_fetch_assoc($events)) {
+								$data= $row['body_measurement_value'];
+								echo $data . ",";
+								}//end of while
+							?>
+						],
+					<?php
+					}//end of while
+					?>
+-->

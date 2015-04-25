@@ -1,5 +1,5 @@
 <?php
-	include 'mysqli_connect.php';
+	include '../mysqli_connect.php';
 	session_start();
 	$user_id = 0;	
 	$tbl_user = "users_table";
@@ -322,15 +322,16 @@
 	////////////////////END OF REP/SET BASED PHYSICAL ACTIVITIES INSERTION////////////////////
 	////////////////////START OF FOOD INTAKE INSERTION////////////////////
 	
-	if(isset($_POST['egg']) && $_POST['egg']==='egg'){ 
+	if(isset($_POST['typeahead'])){ 
 		echo 'check egg <br>';//debugging
-		if(isset($_POST['egg_srvng1'],$_POST['egg_srvng2'])){
+		if(isset($_POST['srvng1'],$_POST['srvng2'])){
 			
-			$srvng1 = trim($_POST['egg_srvng1']);
-			$srvng2 = trim($_POST['egg_srvng2']);
+			$srvng1 = trim($_POST['srvng1']);
+			$srvng2 = trim($_POST['srvng2']);
 			$food_srvngs = $srvng1 + $srvng2;
+			$fn = $_POST['typeahead'];
 			$userID = mysqli_query($dbc, "SELECT user_id FROM $tbl_user WHERE user_email like '$myusername'");
-			$foodID = mysqli_query($dbc,"SELECT food_id FROM $tbl_food WHERE food_name = 'Fried Eggs'");
+			$foodID = mysqli_query($dbc,"SELECT food_id FROM $tbl_food WHERE food_name = '$fn'");
 			$user_id = 0;
 			$food_id = 0;
 			
